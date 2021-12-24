@@ -1,0 +1,23 @@
+@import "../../stylesGeneral/general.scss";
+.filter-type {
+  color: $text-color;
+  padding: 1rem;
+  select {
+    width: 80%;
+    padding: 3px;
+    margin: 15px 10px;
+  }
+}
+
+.input__filter {
+  margin: 1rem auto;
+}
+.button__filter {
+  padding: 0.5rem 3rem;
+  display: block;
+  margin: 1rem auto;
+  color: #fff;
+  cursor: pointer;
+  background: #5d60ff;
+  border: none;
+}

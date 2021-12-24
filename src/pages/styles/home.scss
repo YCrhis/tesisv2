@@ -1,0 +1,406 @@
+@import "../../components/stylesGeneral/general.scss";
+@import "../../components/stylesGeneral/mixinButtons.scss";
+
+body {
+  position: relative;
+  height: 100%;
+}
+
+.section__home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.text__section {
+  padding: 3rem;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text__section__information {
+  width: 60%;
+  overflow: hidden;
+  margin: auto;
+}
+.text__section__information h1 {
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 60px;
+  padding-bottom: 30px;
+}
+.text__section__information p {
+  color: gray;
+}
+.text__section__image {
+  width: 70%;
+  height: 500px;
+  position: relative;
+}
+.text__section__image img {
+  width: 80%;
+  display: block;
+  /* @include positionTheme; */
+  margin: auto;
+}
+.section__home button {
+  @include button;
+}
+
+/* about us */
+
+.about__us {
+  position: relative;
+  width: 100%;
+}
+.about__us__container {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.about__us__title h1 {
+  font-size: 35px;
+}
+.about__us__container .about__us__services {
+  position: relative;
+  width: 90%;
+  height: 56ch;
+  padding: 2rem;
+}
+.about__us__container .about__us__services h3 {
+  font-size: 30px;
+}
+.about__us__container .about__us__services .about__us__services__each1 {
+  color: $text-second;
+  width: 70%;
+  padding: 2.7rem;
+  background: $color-primary;
+  left: 15%;
+  top: 3%;
+  position: absolute;
+}
+.about__us__container .about__us__services .about__us__services__each1 button {
+  @include second-button;
+}
+.about__us__container .about__us__services .about__us__services__each2 button {
+  @include third-button;
+}
+.about__us__container .about__us__services .about__us__services__each2 {
+  width: 70%;
+  padding: 2.7rem;
+  background: $text-color;
+  right: 5% !important;
+  bottom: 0%;
+  position: absolute;
+  color: $text-second;
+}
+
+/* WAVE EFFECT */
+.custom-shape-divider-bottom-1628897114 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1628897114 svg {
+  position: relative;
+  display: block;
+  width: calc(139% + 1.3px);
+  height: 204px;
+}
+
+.custom-shape-divider-bottom-1628897114 .shape-fill {
+  fill: rgb(233, 233, 233);
+}
+
+/* community */
+.community {
+  width: 100%;
+  position: relative;
+  background: rgb(233, 233, 233) !important;
+  .link__login {
+    width: 46% !important;
+    text-decoration: none !important;
+    @include button;
+  }
+
+  .community__container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  img {
+    width: 70%;
+    z-index: 10;
+    position: relative;
+  }
+  .community__rightSection {
+    h2 {
+      font-size: 50px;
+    }
+  }
+}
+/* wave end */
+
+.custom-shape-divider-bottom-1628735807 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1628735807 svg {
+  position: relative;
+  display: block;
+  width: calc(156% + 1.3px);
+  height: 278px;
+}
+
+.custom-shape-divider-bottom-1628735807 .shape-fill {
+  fill: rgb(233, 233, 233);
+}
+
+/* slider swipper  services*/
+.services__container {
+  width: 80%;
+  margin: auto;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.services__title {
+  text-align: center;
+  i {
+    font-size: 43px;
+    margin-top: 10px;
+  }
+}
+
+/* services */
+.services {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  padding-top: 5rem;
+}
+
+/* how */
+.how {
+  width: 90%;
+  margin: auto;
+  .how__title {
+    font-size: 40px;
+    font-weight: 600;
+    padding-left: 10px;
+  }
+}
+
+.container__how {
+  background: $text-color;
+  color: $text-second;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 2rem;
+  width: 80%;
+  height: 240px;
+  transition: all 500ms;
+  margin: 4rem auto;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.137) !important;
+  }
+}
+.container__how h1 {
+  width: 50%;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+}
+.container__how a {
+  text-decoration: none;
+  padding: 0.9rem;
+  background: $color-primary;
+  color: $text-second;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+  .text__section {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 930px) {
+  .text__section {
+    text-align: center;
+    flex-direction: column;
+    width: 90%;
+  }
+  .text__section__information {
+    margin: 2.5rem auto 0;
+    width: 100%;
+  }
+  .text__section__image img {
+    width: 80%;
+  }
+  .section__home button {
+    margin: 2rem auto;
+  }
+
+  /* about us */
+  .about__us__container {
+    height: 100vh;
+    width: 80%;
+    flex-direction: column;
+  }
+  .about__us__title {
+    text-align: center;
+  }
+  .about__us__container .about__us__services {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  .about__us__container .about__us__services .about__us__services__each1 {
+    position: relative;
+    height: auto;
+    width: 100%;
+    left: -0%;
+    top: 6%;
+    height: 370px !important;
+  }
+  .about__us__container .about__us__services .about__us__services__each2 {
+    position: relative;
+    width: 100%;
+    top: 3%;
+    height: 370px !important;
+  }
+
+  /* community */
+  .community__container {
+    flex-direction: column;
+    text-align: center;
+    img {
+      width: 65%;
+    }
+    .link__login {
+      display: block;
+      margin: auto;
+    }
+  }
+}
+@media screen and (max-width: 748px) {
+  .about__us__container {
+    height: 100%;
+    width: 80%;
+    flex-direction: column;
+  }
+  .about__us__container {
+    width: 90%;
+  }
+  .about__us__container .about__us__services {
+    flex-direction: column;
+  }
+  .about__us__container .about__us__services .about__us__services__each1 {
+    top: 1%;
+  }
+  .about__us__container .about__us__services .about__us__services__each2 {
+    top: -3%;
+  }
+
+  /* how */
+
+  .container__how {
+    flex-direction: column;
+  }
+  .container__how h1 {
+    width: 100%;
+    text-align: center;
+  }
+  .services__container {
+    padding-top: 50px;
+    flex-direction: column-reverse;
+    .services__title {
+    }
+  }
+}
+@media screen and (max-width: 548px) {
+  .section__home {
+    height: 100vh;
+  }
+  .text__section {
+    width: 100%;
+  }
+  .text__section__information h1 {
+    font-size: 30px;
+  }
+  .text__section__image img {
+    width: 100%;
+    left: -20%;
+  }
+
+  /* about us */
+  .about__us {
+    display: block;
+    height: 120vh;
+    width: 100%;
+  }
+  .about__us__container .about__us__services .about__us__services__each1 {
+    top: 2%;
+  }
+  .about__us__container .about__us__services .about__us__services__each2 {
+    bottom: 10%;
+  }
+  /* swiper / slider*/
+  .swiper-slide {
+    width: 90%;
+    margin: auto;
+  }
+  .services__container {
+    flex-direction: column-reverse !important;
+  }
+  .services__container .services__title {
+    width: 80%;
+    padding: 3rem 0.8rem;
+  }
+  .services__container .swiper__content {
+    text-align: center;
+    width: 80%;
+  }
+
+  /* how */
+
+  .container__how h1 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
+.success {
+  position: fixed;
+  top: 20%;
+  right: 3%;
+  z-index: 10;
+  transition: all 500ms;
+}
+
+.opinion__section {
+  width: 75%;
+  margin: auto;
+}

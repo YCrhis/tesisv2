@@ -1,0 +1,45 @@
+@import '../../components/stylesGeneral/general.scss';
+
+.container__items{
+    width: 95%;
+    margin:auto;
+    padding: 2rem 1rem;
+    .product-and-filter{
+        display: flex;
+        .filters{
+            width: 30%;
+            padding: 1rem;
+        }
+    }
+    .container__products{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+/* filters */
+.each-filter h2{
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+    .container__items{
+        width: 90%;
+        .container__products{
+            gap: .1rem;
+        }
+    }
+}
+@media screen and (max-width: 900px){
+    .container__products{
+        grid-template-columns: repeat(2,1fr) !important;
+    }
+}
+@media screen and (max-width: 650px){
+    .container__items{
+        width: 80%;
+    }
+    .container__products{
+        grid-template-columns: repeat(1,1fr) !important;
+    }
+}

@@ -1,0 +1,40 @@
+@import "../../stylesGeneral/general.scss";
+@import "../../stylesGeneral/mixinButtons.scss";
+.sendButton {
+  @include third-button;
+  margin: 1rem auto;
+  display: block;
+}
+.everyting {
+  width: 100%;
+  height: 85vh;
+  margin-bottom: 10rem;
+}
+
+.container__denied {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+
+  img {
+    width: 30%;
+    margin: 1rem auto;
+  }
+  a {
+    text-decoration: none;
+    background: #5d60ff;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .everyting {
+    height: auto !important;
+    margin: none !important;
+  }
+}

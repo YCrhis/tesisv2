@@ -1,0 +1,140 @@
+@import "../stylesGeneral/general.scss";
+.all-banner {
+  overflow: hidden !important;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.banner-error {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: $color-third;
+  color: #fff;
+  .container-banner {
+    width: 80%;
+    margin: 6rem auto;
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    overflow: hidden;
+    .text-error h2 {
+      font-size: 4rem;
+      font-weight: 400;
+      margin: 1.5rem 0;
+    }
+  }
+}
+.container-banner .text-error span {
+  color: $error-color;
+  font-weight: 500;
+}
+.container-banner .text-error p {
+  font-size: 1.4rem;
+}
+
+.img-error {
+  animation: computerDead 3s infinite alternate;
+}
+
+/* error drops */
+
+.drop {
+  width: 70px;
+  height: 70px;
+  background: $error-color;
+  position: absolute;
+  border-radius: 50%;
+  left: 5%;
+  bottom: -20%;
+  opacity: 0.3;
+  animation: drops 3s linear infinite;
+}
+.drop:nth-child(1) {
+  width: 90px;
+  height: 90px;
+  left: 10%;
+  animation-duration: 4s;
+  animation-delay: 3s;
+}
+.drop:nth-child(2) {
+  width: 100px;
+  height: 100px;
+  left: 30%;
+  animation-duration: 4s;
+  animation-delay: 5s;
+}
+.drop:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  left: 55%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+.drop:nth-child(4) {
+  width: 90px;
+  height: 90px;
+  left: 70%;
+  animation-duration: 5s;
+  animation-delay: 5s;
+}
+.drop:nth-child(5) {
+  width: 70px;
+  height: 80px;
+  left: 90%;
+  animation-duration: 3s;
+  animation-delay: 3s;
+}
+.drop:nth-child(6) {
+  width: 120px;
+  height: 120px;
+  left: 40%;
+  animation-duration: 6s;
+  animation-delay: 3s;
+}
+@keyframes drops {
+  0% {
+    bottom: 100vh;
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(40px);
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    bottom: 0vh;
+    opacity: 0;
+  }
+}
+@keyframes computerDead {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+
+/* error api */
+.error-api {
+  text-align: center;
+  width: 100%;
+  img {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .container-banner {
+    text-align: center;
+    flex-direction: column;
+    margin: 2rem auto;
+  }
+  .drop:nth-child(5) {
+    left: 60%;
+  }
+}

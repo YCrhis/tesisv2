@@ -1,0 +1,32 @@
+@import "../stylesGeneral/general.scss";
+/* footer */
+footer {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 1.5rem;
+}
+.footer__container {
+  width: 80%;
+  margin: 4rem auto;
+  text-align: center;
+  p {
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    padding-bottom: 1.5rem;
+  }
+  i {
+    font-size: 26px;
+  }
+  a {
+    color: rgb(100, 100, 100);
+    text-decoration: none;
+  }
+}
+
+.footer__container .footer__social__media {
+  display: flex;
+  width: 50%;
+  margin: 3rem auto -1rem;
+  justify-content: space-evenly;
+}

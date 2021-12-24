@@ -1,0 +1,115 @@
+@import "../../stylesGeneral/general.scss";
+.card {
+  width: 80%;
+  display: grid;
+  grid-template-rows: 250px 150px 50px;
+  grid-template-areas: "image" "text" "stats";
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.103);
+  font-family: roboto;
+  text-align: center;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: 1rem auto;
+  z-index: 10;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.171);
+  }
+  .card-text {
+    grid-area: text;
+    margin: 25px;
+    .product-info {
+      color: grey;
+      font-size: 12px;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-weight: 400;
+      margin-top: 6px;
+      margin-bottom: 7px;
+      font-size: 22px;
+    }
+    .date {
+      color: $color-third;
+      font-size: 13px;
+    }
+    .price-card {
+      display: flex;
+      width: 90%;
+      margin: auto;
+      align-items: center;
+      justify-content: space-evenly;
+      p {
+        color: $color-second;
+        font-size: 20px;
+      }
+    }
+  }
+  .card-stats {
+    grid-area: stats;
+    .stat {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 5px;
+      a {
+        padding: 0.5rem 1rem;
+        border: solid 1px transparent;
+        font-size: 15px;
+        text-decoration: none;
+        border-radius: 1rem;
+        border: solid 1px #5d7bff;
+        color: #5d7bff;
+      }
+    }
+  }
+  .card-image {
+    overflow: hidden;
+    grid-area: image;
+    figure {
+      position: relative;
+      width: 500%;
+      margin: 0;
+      left: 0;
+      animation: 20s slider infinite;
+    }
+    img {
+      float: left;
+      width: 20%;
+      height: 250px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+  }
+}
+/* slide animation */
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: 0;
+  }
+  25% {
+    left: -100%;
+  }
+  50% {
+    left: -100%;
+  }
+  55% {
+    left: -200%;
+  }
+  75% {
+    left: -200%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 100%;
+  }
+}

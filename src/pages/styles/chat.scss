@@ -1,0 +1,43 @@
+.chat {
+  width: 65%;
+  margin-top: 8rem;
+  padding-bottom: 6rem;
+  display: flex;
+  margin: auto;
+  position: relative;
+}
+.chat__option {
+  position: fixed;
+  top: 15%;
+  right: 10%;
+  width: 30%;
+}
+.chat__rules {
+  margin-left: 2rem;
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .chat {
+    width: 80%;
+  }
+}
+@media (max-width: 700px) {
+  .chat {
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+  .chat__option {
+    display: none;
+  }
+}
+/* 
+.chat__body{
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-top: 35px;
+    max-width: 1300px;
+    margin-left: 20px;
+    margin-right: 20px;
+} */

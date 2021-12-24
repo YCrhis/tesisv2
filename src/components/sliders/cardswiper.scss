@@ -1,0 +1,37 @@
+.container-swiper-card {
+  width: 80%;
+  margin: 5rem auto;
+}
+.swiper-container {
+  width: 100% !important;
+}
+.swiper-slide {
+  background: none;
+}
+.swiper-button-prev::after {
+  color: #292cff;
+  font-weight: bolder;
+  margin-right: 1rem;
+}
+.swiper-button-next::after {
+  color: #292cff;
+  font-weight: bolder;
+  margin-left: 1rem;
+}
+
+.container-swiper-card-opinion {
+  width: 90%;
+  margin: 5rem auto 7rem;
+}
+.slider__opinion {
+  padding: 3rem;
+}
+.titles__card__opinion {
+  text-align: center;
+  h1 {
+    font-size: 50px;
+  }
+  h3 {
+    color: #292cff;
+  }
+}

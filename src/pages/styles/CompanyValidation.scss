@@ -1,0 +1,61 @@
+.company__validationInformacion {
+  margin: 6rem auto 0;
+  text-align: center;
+  .company__validationInformacionTitle {
+    text-align: center;
+    font-size: calc(1rem + 2.5vw);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .company__validationInformacionTitle2 {
+    font-size: calc(1rem + 1.5vw);
+  }
+  p {
+    margin-bottom: 2rem;
+  }
+  .company__validationEachList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8rem auto;
+    padding: 2rem;
+    text-align: center;
+    img {
+      width: 50%;
+    }
+    .company__validationStep2 {
+      text-align: right;
+    }
+    .company__validationStepper {
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+      width: calc(2rem + 3vw);
+      font-size: calc(1rem + 3vw);
+      background-color: #5d60ff;
+      margin: 1rem auto;
+    }
+  }
+  .company__validationEachList2 {
+    text-align: center;
+    margin: 7rem auto;
+    .company__validationStepper {
+      text-align: center;
+      border-radius: 50%;
+      color: #fff;
+      width: calc(2rem + 3vw);
+      font-size: calc(1rem + 3vw);
+      background-color: #5d60ff;
+      margin: 1rem auto;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .company__validationEachList {
+    flex-direction: column;
+    img {
+      width: 90% !important;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+@import "../../components/stylesGeneral/general.scss";
+@import "../../components/stylesGeneral/mixinButtons.scss";
+.app {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    $color-primary 50%,
+    $color-third 50%
+  );
+  overflow: hidden;
+  position: relative;
+
+  .container__app {
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .image__content__app {
+      width: 100%;
+      position: relative;
+      height: 100%;
+      img {
+        position: absolute;
+        width: 100%;
+        z-index: 300;
+        @include positionTheme;
+      }
+    }
+    .text__content__app {
+      position: relative;
+      margin-top: 4rem;
+      text-align: right;
+      z-index: 100;
+      h1 {
+        font-size: 50px;
+        color: $text-second;
+      }
+      p {
+        color: $text-bit-important;
+      }
+      /* &::before{
+                content:"";
+                position: absolute;
+                width: 1100px;
+                height: 1000px;
+                background: $color-second;
+                right: -25%;
+                bottom: -20%;
+                z-index: -1;
+                border-radius: 50%;
+            } */
+      .text__content__app__buttons {
+        display: flex;
+        width: 80%;
+        margin: 2rem auto;
+        float: right;
+        button {
+          @include special-button;
+        }
+      }
+      .social__media__app {
+        width: 80%;
+        float: right;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1rem 0 0 0;
+        i {
+          text-align: center;
+          width: 55px;
+          height: 55px;
+          font-size: 20px;
+          color: $text-second;
+          padding: 1rem;
+          border-radius: 50%;
+          border: $text-second solid 2px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1153px) {
+  .app {
+    background: linear-gradient($color-primary, $color-second);
+  }
+  .container__app {
+    flex-direction: column;
+    .image__content__app {
+      width: 40%;
+      height: 700px;
+    }
+    .text__content__app {
+      text-align: center !important;
+      .social__media__app {
+        margin: 0.5rem auto !important;
+        float: unset !important;
+      }
+    }
+    .text__content__app__buttons {
+      float: unset !important;
+      flex-direction: column;
+      button {
+        margin: 1rem auto !important;
+        width: 80% !important;
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .image__content__app {
+    margin-top: 5rem;
+    img {
+      width: 60% !important;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .image__content__app {
+    margin-top: 5rem;
+    img {
+      width: 80% !important;
+    }
+  }
+  .text__content__app h1 {
+    font-size: 35px !important;
+  }
+}

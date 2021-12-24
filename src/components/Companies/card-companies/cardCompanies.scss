@@ -1,0 +1,107 @@
+/* new style */
+.bussines-card {
+  width: 85%;
+  margin: auto;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.089);
+  padding: 2rem 2rem 3.5rem;
+  border-radius: 10px;
+}
+.business-head {
+  text-align: center;
+  width: 100%;
+}
+.business-head .bussines-head-image {
+  position: relative;
+}
+.business-head .bussines-head-image img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.business-head .bussines-head-image .business-head-check {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.26);
+  left: 57%;
+  top: 50%;
+  transform: translate(50%, 50%);
+}
+.business-head .bussines-head-image .business-head-check i {
+  text-align: center;
+  padding-top: 0.5rem;
+  color: #fff;
+  font-size: 13px;
+}
+.business-head h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+.business-head p {
+  font-size: 12px;
+  color: rgb(87, 87, 87);
+  margin-bottom: 1rem;
+}
+
+/* buttons card */
+.bussines-buttons {
+  padding: 0.5rem;
+}
+.bussines-buttons a {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 10px auto 30px;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background: linear-gradient(to right, #3a7bd5, #00d2ff);
+  border-radius: 2rem;
+  color: #fff;
+}
+.bussines-about {
+  color: rgb(51, 51, 51);
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.bussines-about .each-about-staff i {
+  font-size: 22px;
+  background: linear-gradient(to right, #5b86e5, #36d1dc);
+
+  padding: 1.2rem;
+  border-radius: 50%;
+  margin: auto 1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.bussines-about .each-about-product i {
+  font-size: 22px;
+  background: linear-gradient(to right, #fc6767, #ec008c);
+  padding: 1.2rem;
+  border-radius: 50%;
+  margin: auto 1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.bussines-about .each-about-another i {
+  font-size: 22px;
+  background: linear-gradient(to right, #9733ee, #da22ff);
+  padding: 1.2rem;
+  border-radius: 50%;
+  margin: auto 1rem;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.bussines-about .each-about h4 {
+  font-weight: 600;
+  font-size: 20px;
+}
+.bussines-about .each-about p {
+  color: rgb(51, 51, 51);
+  font-size: 12px;
+}
