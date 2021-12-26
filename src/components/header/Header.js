@@ -3,40 +3,20 @@ import React from 'react'
 import './header.scss'
 import Avatar from '@material-ui/core/Avatar'
 /* router */
-import { Link, useHistory } from 'react-router-dom'
-/* firebase */
-import { auth } from '../../firebase'
+import { Link } from 'react-router-dom'
 /* redux */
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUserPhoto, setSignOutState, selectUserType } from '../../features/user/userSlice'
-
+import { selectUser, logoutUser } from '../../features/userSlice'
 
 const Header = () => {
 
-    /* const history = new useHistory();
-    const dispatch = new useDispatch();
+    const dispatch = useDispatch();
+    const user = useSelector(selectUser);
 
-    const user = useSelector(selectUserPhoto);
-    const type = useSelector(selectUserType);
-
-    const id = window.localStorage.getItem('idEnterprice')
-
-    const enterprise = window.localStorage.getItem('hasEnterprise')
-    console.log(enterprise)
-
-    const handleAuth = () => {
-        if (user) {
-            auth.signOut().then(() => {
-                dispatch(setSignOutState())
-                history.push('/');
-            }).catch(err => {
-                alert(err.message)
-            })
-        }
-
-        window.localStorage.removeItem('id');
-        window.localStorage.removeItem('idEnterprice')
-    } */
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(logoutUser())
+    }
 
     return (
         <>
@@ -158,6 +138,15 @@ const Header = () => {
                                 </>
                             )
                         } */}
+                        {user ?
+                            <li>
+                                <button className="close__user" onClick={handleLogout}>Cerrar Sesión</button>
+                            </li>
+                            :
+                            <li>
+                                <Link className="login__user" to="/login/usuario">Iniciar Sesion</Link>
+                            </li>
+                        }
                     </ul>
                     <label for="menu-btn" className="btn menu-btn"><i className="fas fa-bars"></i></label>
                 </div>

@@ -1,6 +1,5 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import userReducer from '../features/user/userSlice';
-
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from '../features/userSlice';
 import {
     persistReducer,
     FLUSH,
@@ -21,8 +20,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, userReducer)
 
-
-
 const store = configureStore({
     reducer: { user: persistedReducer },
     middleware: (getDefaultMiddleware) =>
@@ -34,13 +31,3 @@ const store = configureStore({
 })
 
 export default store
-
-
-/* export default configureStore({
-    reducer: {
-        user: userReducer
-    },
-    middelware: getDefaultMiddleware({
-        serializableCheck: false,
-    })
-}) */

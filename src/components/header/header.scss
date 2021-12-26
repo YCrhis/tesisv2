@@ -1,4 +1,5 @@
 @import "../stylesGeneral/general.scss";
+@import "../stylesGeneral//mixinButtons.scss";
 nav {
   position: fixed;
   z-index: 1000;
@@ -147,6 +148,22 @@ nav .wrapper {
 .user__header {
   cursor: pointer;
   margin-top: 14px;
+}
+.login__user {
+  color: #fff !important;
+  @include special-button;
+}
+.close__user {
+  border: none;
+  background: #5d60ff;
+  padding: 0.5rem 1.3rem;
+  color: #fff;
+  border-radius: 10px;
+  transition: all 500ms;
+  cursor: pointer;
+  &:hover {
+    background: #1115ff;
+  }
 }
 
 @media screen and (max-width: 970px) {

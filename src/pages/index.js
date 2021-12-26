@@ -1,35 +1,28 @@
 import { useEffect, useState } from 'react';
 /* style */
 import './styles/home.scss'
-import Alert from '@material-ui/lab/Alert';
-/* import Snackbar from '@material-ui/core/Snackbar'; */
 /* components */
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
 import SwiperHome from '../components/sliders/SwiperHome'
 import CardOpinion from '../components/sliders/Opinion'
+import ModalMessage from '../components/modal';
 /* images */
 
 import workingteam from '../images/workingteam.png'
 import community from '../images/community.svg'
+
+/* redux */
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 /* links */
 import { Link } from 'react-router-dom'
 
 const Index = () => {
 
-    const id = window.localStorage.getItem('id')
-    const [message, setMessage] = useState(null)
-
-    const validate = () => {
-        if (id) {
-            setMessage(true)
-        }
-    }
-
-    useEffect(() => {
-        validate()
-    }, [])
+    const user = useSelector(selectUser)
+    console.log(user)
 
     return (
         <>
@@ -47,13 +40,7 @@ const Index = () => {
                     </div>
                 </div>
             </section>
-            {
-                message &&
-                <Alert severity="success" color="info" onClose={() => setMessage(null)} className="success">
-                    Has iniciado sesión corréctamente
-                </Alert>
 
-            }
 
             <section className="about__us wow animate__animated animate__fadeInLeft animate__delay-1s">
                 <div className="about__us__container">
@@ -136,6 +123,12 @@ const Index = () => {
                     </div>
                 </div>
             </section>
+
+            {/* message successed */}
+            {user &&
+                <ModalMessage />
+            }
+
             <Footer />
         </>
     )

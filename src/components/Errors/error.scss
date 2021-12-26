@@ -43,7 +43,7 @@
 .drop {
   width: 70px;
   height: 70px;
-  background: $error-color;
+  background: #5d60ff;
   position: absolute;
   border-radius: 50%;
   left: 5%;
@@ -56,42 +56,42 @@
   height: 90px;
   left: 10%;
   animation-duration: 4s;
-  animation-delay: 3s;
+  animation-delay: 1s;
 }
 .drop:nth-child(2) {
   width: 100px;
   height: 100px;
   left: 30%;
   animation-duration: 4s;
-  animation-delay: 5s;
+  animation-delay: 2s;
 }
 .drop:nth-child(3) {
   width: 30px;
   height: 30px;
   left: 55%;
   animation-duration: 7s;
-  animation-delay: 4s;
+  animation-delay: 3s;
 }
 .drop:nth-child(4) {
   width: 90px;
   height: 90px;
   left: 70%;
   animation-duration: 5s;
-  animation-delay: 5s;
+  animation-delay: 4s;
 }
 .drop:nth-child(5) {
   width: 70px;
   height: 80px;
   left: 90%;
   animation-duration: 3s;
-  animation-delay: 3s;
+  animation-delay: 2s;
 }
 .drop:nth-child(6) {
   width: 120px;
   height: 120px;
   left: 40%;
   animation-duration: 6s;
-  animation-delay: 3s;
+  animation-delay: 4s;
 }
 @keyframes drops {
   0% {

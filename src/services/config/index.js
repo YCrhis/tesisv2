@@ -1,2 +1,2 @@
-const baseURL = `https://termoconfort-test1.herokuapp.com/`;
+const baseURL = `https://termoconfort-v2.herokuapp.com/`;
 export { baseURL };

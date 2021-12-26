@@ -3,7 +3,7 @@ import { baseURL } from '../config';
 
 const URL = `${baseURL}api/v1/user`;
 
-export const loginUser = async (body) => {
+export const loginUserNormal = async (body) => {
     try {
         const response = await fetch(`${URL}/sign-in`, METHODS.POST(body));
         const data = await response.json();

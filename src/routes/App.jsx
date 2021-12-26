@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { useHistory } from 'react-router'
 
 /* pages */
 import Index from '../pages/index'
@@ -10,7 +9,6 @@ import Error from '../pages/Error'
 import Companies from '../pages/Companies'
 import productInfo from '../pages/productInfo'
 import LoginUser from '../components/login/Login'
-import LoginCompany from '../components/login/LoginCompany'
 import CompyInfo from '../pages/CompyInfo'
 import RegisterProd from '../pages/RegisterProd'
 import CompanyRegister from '../pages/CompanyRegister'
@@ -18,7 +16,6 @@ import UserRegister from '../pages/UserRegister'
 import CompanyValidation from '../pages/CompanyValidation'
 import UserActions from '../pages/UserActions'
 import CompanyActions from '../pages/CompanyActions'
-
 
 import HomeAdmin from '../pages/HomeAdmin'
 
@@ -39,29 +36,6 @@ import MyCompany from '../pages/MyCompany'
 
 const App = () => {
 
-    /* const dispatch = useDispatch();
-    const history = useHistory();
-
-    const type = useSelector(selectUserType)
-
-    const user = useSelector(selectUserName)
-    useEffect(() => {
-        auth.onAuthStateChanged((authUser) => {
-            if (authUser) {
-                dispatch(setUserLoginDetails({
-                    name: authUser.displayName,
-                    email: authUser.email,
-                    photo: authUser.photoURL,
-                    type: type,
-                    googleId: authUser.uid,
-                    phoneNumber: authUser.phoneNumber
-                }));
-            } else {
-            }
-        })
-    }, [user]) */
-
-
     const [theme, toggleTheme] = useDarkMore();
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
@@ -78,7 +52,6 @@ const App = () => {
                     <Route exact path="/business/go/:id" component={CompyInfo}></Route>
                     <Route exact path="/product/information/:id" component={productInfo}></Route>
                     <Route exact path="/login/usuario" component={LoginUser}></Route>
-                    <Route exact path="/login/empresa" component={LoginCompany}></Route>
                     <Route exact path="/registro/usuario" component={UserRegister}></Route>
                     <Route exact path="/registro/empresa" component={CompanyRegister}></Route>
                     <Route exact path="/registrarse" component={Register}></Route>
