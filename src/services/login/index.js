@@ -22,3 +22,16 @@ export const registerUser = async (body) => {
         return e.message
     }
 }
+
+/* this is for update with token */
+export const updateUser = async (body, token, id) => {
+    try {
+        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(body, token));
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        return e.message
+    }
+}
+
+

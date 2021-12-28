@@ -125,8 +125,19 @@ const Index = () => {
             </section>
 
             {/* message successed */}
-            {user &&
-                <ModalMessage />
+            {user ?
+                <ModalMessage
+                    title='TODO ESTA BIEN !!!'
+                    message='Inició sesión exitósamente'
+                    img="https://www.syl.cl/wp-content/themes/syl/img/wrapper-img.gif"
+                />
+                :
+                <ModalMessage
+                    title="DA TUS PRIMEROS PASOS"
+                    message='Crea tu cuenta para tener una funcionalidad completa'
+                    link="/registro/usuario"
+                    img="https://cdn.dribbble.com/users/1001687/screenshots/2356993/media/7f4496bc0b92905ab70198777dac3df3.gif"
+                />
             }
 
             <Footer />

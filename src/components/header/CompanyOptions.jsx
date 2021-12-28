@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import BusinessIcon from '@material-ui/icons/Business';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CompanyOptions() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
 
 
     return (
@@ -67,7 +67,18 @@ export default function CompanyOptions() {
             }
             className={classes.root}
         >
-            <Link to="/" className={classes.link}>
+            <Link to="/administrador" className={classes.link}>
+                <ListItem button>
+                    <ListItemIcon>
+                        <HomeIcon className={classes.icon} />
+                    </ListItemIcon>
+
+                    <ListItemText primary="Inicio" />
+
+                </ListItem>
+            </Link>
+
+            <Link to="/administrador/usuarios" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
                         <PeopleAltIcon className={classes.icon} />

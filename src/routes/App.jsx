@@ -32,6 +32,9 @@ import Post from '../pages/Post'
 import MyPost from '../pages/MyPost'
 import EachPost from '../pages/EachPost'
 import MyCompany from '../pages/MyCompany'
+import Profile from '../pages/Profile'
+import LoginAdmin from '../components/login/LoginAdmin'
+import UserList from '../pages/UserList'
 
 
 const App = () => {
@@ -52,7 +55,9 @@ const App = () => {
                     <Route exact path="/business/go/:id" component={CompyInfo}></Route>
                     <Route exact path="/product/information/:id" component={productInfo}></Route>
                     <Route exact path="/login/usuario" component={LoginUser}></Route>
+                    <Route exact path="/login/administrador" component={LoginAdmin}></Route>
                     <Route exact path="/registro/usuario" component={UserRegister}></Route>
+                    <Route exact path="/mi-perfil" component={Profile}></Route>
                     <Route exact path="/registro/empresa" component={CompanyRegister}></Route>
                     <Route exact path="/registrarse" component={Register}></Route>
                     <Route exact path="/producto/nuevo" component={RegisterProd}></Route>
@@ -65,6 +70,7 @@ const App = () => {
                     <Route exact path="/mis/posts" component={MyPost}></Route>
                     <Route exact path="/posts/:id" component={EachPost}></Route>
                     <Route exact path="/administrador" component={HomeAdmin}></Route>
+                    <Route exact path="/administrador/usuarios" component={UserList}></Route>
                     <Route component={Error}></Route>
                 </Switch>
             </BrowserRouter>

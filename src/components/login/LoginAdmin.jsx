@@ -12,7 +12,7 @@ import { loginUserNormal } from '../../services/login'
 /* style */
 import './login.scss'
 
-function LoginUser() {
+function LoginAdmin() {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -55,9 +55,9 @@ function LoginUser() {
                 !load ?
                     <div className="login__container">
                         <div className="login__form">
-                            <img src="https://cdn.discordapp.com/attachments/761675275451760710/924704758076411934/termoconfort-logo-2-aire-acondicionado-instalacion.png" alt="" />
+                            <img src="https://cdni.iconscout.com/illustration/premium/thumb/admin-manage-dashboard-online-with-laptop-1886524-1597935.png" alt="" />
                             <h3>Iniciar Sesión</h3>
-                            <p>Ingrese su información</p>
+                            <p>Administrador</p>
                             <div className="container__inputs">
                                 <TextField
                                     label="Usuario"
@@ -76,7 +76,6 @@ function LoginUser() {
                                     onChange={handleChange}
                                 />
                                 <button onClick={handleSubmit}>Ingresar</button>
-                                <Link to="/registro/usuario" className="crear__cuenta">Crear cuenta</Link>
                                 {error &&
                                     <p className='error_loginMessage'><i class="fas fa-exclamation-triangle"></i> Cuenta no encontrada</p>
                                 }
@@ -91,4 +90,4 @@ function LoginUser() {
     )
 }
 
-export default LoginUser
+export default LoginAdmin
