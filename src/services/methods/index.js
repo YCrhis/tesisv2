@@ -50,6 +50,13 @@ const PUT_FORM_DATA = body => {
 };
 
 
+const DELETE = () => {
+    return {
+        method: 'DELETE'
+    };
+};
+
+
 /* for token */
 const PUT_TOKEN = (body, token) => {
     return {
@@ -63,11 +70,16 @@ const PUT_TOKEN = (body, token) => {
     };
 };
 
-
-const DELETE = () => {
+const GET_TOKEN = body => {
     return {
-        method: 'DELETE'
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'Application/json',
+            'Authorization': 'Bearer' + body,
+        },
     };
 };
 
-export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN };
+
+export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN };

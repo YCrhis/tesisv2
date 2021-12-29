@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom'
 
 import community2 from '../images/community2.svg'
 import { makeStyles } from '@material-ui/core/styles';
-import { sendPost, list } from '../services/posts'
+import { sendPost, getAll } from '../services/posts'
 
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/userSlice'
 
 import './styles/post.scss'
 import { useEffect } from 'react'
@@ -28,18 +30,6 @@ const useStyles = makeStyles((theme) => ({
         height: '50vh',
         textAlign: 'center'
     },
-    button: {
-        position: 'fixed',
-        left: '4%',
-        top: '20%',
-        padding: '.5rem 2rem',
-        border: 'none',
-        background: '#5d60ff',
-        color: '#fff',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        zIndex: '10'
-    },
     button2: {
         padding: '.5rem 2rem',
         border: 'none',
@@ -58,17 +48,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Post = () => {
+
+
     const classes = useStyles();
+
+    const user = useSelector(selectUser)
 
     const [info, setInfo] = useState()
     const [open, setOpen] = useState(false);
 
     const loadData = async () => {
-        const response = await list();
-        if (response.ok) {
-            setInfo(response.data);
-            console.log(response.data)
-        }
+        const response = await getAll();
+        setInfo(response.data);
     }
 
     const handleOpen = () => {
@@ -78,12 +69,11 @@ const Post = () => {
     const handleClose = () => {
         setOpen(false);
     };
-    const myId = window.localStorage.getItem('id')
 
     const [fields, setFields] = useState({
         title: '',
         content: '',
-        userId: myId
+        userId: user.loginInformation.id
     })
 
     const handleChange = (e) => {
@@ -97,30 +87,40 @@ const Post = () => {
 
     const submit = async () => {
         const response = await sendPost(fields)
-        console.log(response)
-        if (response.ok) {
-            setOpen(false);
-            window.location.reload()
-        }
-        if (!response.ok) {
-            alert('ocurrio algo mal, vuelva a intentarlo')
-        }
+        setOpen(false)
     }
 
     useEffect(() => {
         loadData()
-    }, [])
+    }, [info])
 
 
     return (
         <>
             <Header />
-            <Container maxWitdh="lg" className="post__containerAll">
-                <h1>Posts de la comunidad</h1>
-                <img src={community2} alt="" />
-                <button type="button" onClick={handleOpen} className={classes.button}>
-                    Subir mi publicación
-                </button>
+            <Container className="post__containerAll">
+
+                <div className="post__containerInitial">
+                    <img src={community2} alt="" className='post__containerInitialImage' />
+                    <div className="post__containerInitialInformation">
+                        <h1>Posts de la comunidad</h1>
+                        <p>Aqui puedes encontrar todas las preguntas realizadas por nuestros usuarios. Puedes responder las preguntas que encuentres, además puedes crear tus propias preguntas, solo recurda seguir nuestras reglas, de lo contrario tu cuenta puede ser eliminada.</p>
+                        <ul>
+                            <li><i class="fas fa-eye"></i> Ser respetuso con tus respuestas</li>
+                            <li><i class="fas fa-eye"></i> Tus preguntas deben ser bien formuladas</li>
+                            <li><i class="fas fa-eye"></i> Respeta las opiniones de todos los usuarios</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div className="post__containerComment animate__animated animate__bounce animate__infinite" onClick={handleOpen}>
+                    <i class="fas fa-pencil-alt"></i><br />
+                    <button type="button">
+                        Comenzar Pregunta
+                    </button>
+                </div>
+
                 <Grid
                     container
                     direction="row"
@@ -130,19 +130,18 @@ const Post = () => {
                     className="post__eachContainer"
                 >
                     {info &&
-                        info.map((post) => (
-                            <Link to='/'>
-                                <Grid item lg={5} xs={12}>
-                                    <CardPost
-                                        key={post._id}
-                                        title={post.title}
-                                        description={post.content}
-                                        myId={post._id}
-                                    />
-                                </Grid>
-                            </Link>
-                        ))
-                    }
+                        info.map(i => (
+                            <Grid item lg={5} xs={12}>
+                                <CardPost
+                                    title={i.title}
+                                    name={i.userName}
+                                    date={i.createdAt}
+                                    comments={i.comments}
+                                    content={i.content}
+                                    userImage={i.userImage}
+                                />
+                            </Grid>
+                        ))}
                 </Grid>
             </Container>
 

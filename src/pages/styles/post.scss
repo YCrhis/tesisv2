@@ -1,15 +1,70 @@
 .post__containerAll {
-  margin-top: 6rem;
   text-align: center;
-  img {
-    width: 30%;
+  width: 80% !important;
+  margin: 8rem auto 0.1rem;
+  .post__containerInitial {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    text-align: left;
+    .post__containerInitialInformation {
+      margin-left: 1.5rem;
+      h1 {
+        font-size: 3rem;
+        color: #5d60ff;
+      }
+      p {
+        font-size: 15px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-left: 1rem;
+        font-size: 15px;
+        list-style: none;
+        i {
+          color: #5d60ff;
+        }
+      }
+    }
+  }
+  .post__containerInitialImage {
+    width: 35%;
     margin: 2rem auto;
   }
   .post__eachContainer {
     margin-top: 3rem;
     margin-bottom: 3rem;
   }
+  .post__containerComment {
+    background: #5d60ff;
+    padding: 5px;
+    border-radius: 10px;
+    width: 200px;
+    height: 62px;
+    box-shadow: 0px 0px 7px 3px rgba(0, 0, 0, 0.24);
+    position: fixed;
+    bottom: 5%;
+    left: 3%;
+    cursor: pointer;
+    z-index: 2;
+    i {
+      color: #fff;
+      font-size: 1.6rem;
+    }
+    button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
 }
 .container__postForm {
   padding: 2rem;
+}
+
+@media (max-width: 700px) {
+  .post__containerInitial {
+    flex-direction: column;
+  }
 }

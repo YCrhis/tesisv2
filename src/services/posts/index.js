@@ -13,15 +13,17 @@ export const sendPost = async (body) => {
     }
 }
 
-export const list = async () => {
+export const getAll = async (body) => {
     try {
-        const response = await fetch(`${URL}/post/all?limit=10&page=0`, METHODS.GET());
+        const response = await fetch(`${URL}/post/search`, METHODS.POST(body));
         const data = await response.json();
         return data;
     } catch (e) {
         return e.message
     }
 }
+
+
 
 export const myList = async (id) => {
     try {

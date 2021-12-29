@@ -34,4 +34,15 @@ export const updateUser = async (body, token, id) => {
     }
 }
 
+export const hasEnterprise = async (id, token) => {
+    try {
+        const response = await fetch(`${URL}/has-enterprise/${id}`, METHODS.GET_TOKEN(token));
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        return e.message
+    }
+}
+
+
 

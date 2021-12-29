@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 /* styles */
 import './header.scss'
 import { useHistory } from 'react-router-dom'
@@ -9,19 +9,34 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectUser, logoutUser } from '../../features/userSlice'
 import { Avatar } from '@material-ui/core'
 
+import { hasEnterprise } from '../../services/login'
+
 const Header = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(selectUser);
+    const newUser = useSelector(selectUser);
+    const user = newUser.loginInformation;
 
-
+    const [enterprise, setEnterprise] = useState(null)
 
     const handleLogout = (e) => {
         e.preventDefault()
         dispatch(logoutUser())
         history.push('/')
     }
+
+    const isEnterprise = async () => {
+        const response = await hasEnterprise(user.id, user.token);
+        console.log(await response)
+        if (response.data == true) {
+            setEnterprise(true)
+        }
+    }
+
+    useEffect(() => {
+        isEnterprise()
+    }, [])
 
     return (
         <>
@@ -69,7 +84,12 @@ const Header = () => {
                                         <div className="row">
                                             <header>Empresa</header>
                                             <ul className="mega-links">
-                                                <li><a href="/registro/empresa">Crear Empresa</a></li>
+                                                {!enterprise ?
+                                                    <li><a href="/registro/empresa">Crear Empresa</a></li>
+                                                    :
+                                                    <li><a href="/registro/empresa">Ver mi empresa</a></li>
+                                                }
+
                                             </ul>
                                         </div>
 
