@@ -23,10 +23,20 @@ export const registerUser = async (body) => {
     }
 }
 
-/* this is for update with token */
-export const updateUser = async (body, token, id) => {
+export const getEnterprise = async (id) => {
     try {
-        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(body, token));
+        const response = await fetch(`${URL}/get-enterprise/${id}`, METHODS.GET_TOKEN());
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        return e.message
+    }
+}
+
+/* this is for update with token -> backend */
+export const updateUser = async (id, newData, token) => {
+    try {
+        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(newData, token));
         const data = await response.json();
         return data;
     } catch (e) {
@@ -43,6 +53,7 @@ export const hasEnterprise = async (id, token) => {
         return e.message
     }
 }
+
 
 
 

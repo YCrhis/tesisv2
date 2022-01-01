@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 /* style */
 import './styles/home.scss'
 /* components */
@@ -36,7 +35,7 @@ const Index = () => {
                         <button>Ver Productos</button>
                     </div>
                     <div className="text__section__image">
-                        <img src={workingteam} alt="" />
+                        <img src={workingteam} alt="work" />
                     </div>
                 </div>
             </section>
@@ -72,7 +71,7 @@ const Index = () => {
             <div className="community">
                 <div className="community__container">
                     <div className="community__leftSection">
-                        <img src={community} />
+                        <img src={community} alt="comunity" />
                     </div>
                     <div className="community__rightSection">
                         <h2>Únete a Nuestra Comunidad</h2>

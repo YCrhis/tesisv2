@@ -4,6 +4,11 @@ import './card.scss'
 
 const CardPost = ({ title, name, date, content, comments, userImage }) => {
 
+    const cutText = () => {
+        const newString = content.substring(0, 170) + ' ......'
+        return newString
+    }
+
     const myDate = () => {
         var fecha = new Date();
         var day = date;
@@ -23,7 +28,7 @@ const CardPost = ({ title, name, date, content, comments, userImage }) => {
             </div>
             <div className="card__postBody">
                 <h3>{title}</h3>
-                <p>{content}</p>
+                <p>{cutText()}</p>
             </div>
             <div className="card__postCommets">
                 <p>Comentarios: <span>{comments}</span></p>

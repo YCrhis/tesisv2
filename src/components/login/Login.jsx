@@ -35,9 +35,11 @@ function LoginUser() {
         e.preventDefault();
         setLoad(true)
         const response = await loginUserNormal(fields);
+
         if (response.ok == false) {
             setLoad(false)
             setError(true)
+
         }
         if (response.ok == true) {
             dispatch(

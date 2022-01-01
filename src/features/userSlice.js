@@ -12,13 +12,11 @@ export const userSlice = createSlice({
             state.user = action.payload;
         },
         logoutUser: (state) => {
-            state.user = null
+            state.user = null;
+            state.company = null;
         },
         loginCompany: (state, action) => {
             state.company = action.payload;
-        },
-        logoutCompany: (state) => {
-            state.company = null
         },
         loginAdmin: (state, action) => {
             state.admin = action.payload;
@@ -28,7 +26,7 @@ export const userSlice = createSlice({
         }
     }
 })
-export const { loginUser, logoutUser, loginCompany, logoutCompany, loginAdmin, logoutAdmin } = userSlice.actions;
+export const { loginUser, logoutUser, loginCompany, loginAdmin, logoutAdmin } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user
 

@@ -3,7 +3,8 @@ import { Container, Grid, Modal, Backdrop, Fade, TextField, TextareaAutosize } f
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import CardPost from "../components/Post/card"
-import { Link } from 'react-router-dom'
+import ViewColumnIcon from '@material-ui/icons/ViewColumn';
+import ViewStreamIcon from '@material-ui/icons/ViewStream';
 
 import community2 from '../images/community2.svg'
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,6 +46,18 @@ const useStyles = makeStyles((theme) => ({
         height: 'calc(10vh + 5rem) !important',
         border: 'solid 1px #c5c5c5'
     },
+    viewOption: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'center'
+    },
+    buttonColumn: {
+        margin: '1px 10px 0px 10px',
+        border: 'none',
+        background: 'none',
+        cursor: 'pointer'
+    },
 }));
 
 const Post = () => {
@@ -56,6 +69,8 @@ const Post = () => {
 
     const [info, setInfo] = useState()
     const [open, setOpen] = useState(false);
+
+    const [view, setView] = useState(5);
 
     const loadData = async () => {
         const response = await getAll();
@@ -73,7 +88,7 @@ const Post = () => {
     const [fields, setFields] = useState({
         title: '',
         content: '',
-        userId: user.loginInformation.id
+        userId: user?.id
     })
 
     const handleChange = (e) => {
@@ -121,6 +136,22 @@ const Post = () => {
                     </button>
                 </div>
 
+                <div className={classes.viewOption}>
+                    <h4>Vista</h4>
+                    <button onClick={() => setView(12)} className={classes.buttonColumn}>
+                        <ViewStreamIcon
+                            fontSize="large"
+                            color="disabled"
+                        />
+                    </button>
+                    <button onClick={() => setView(5)} className={classes.buttonColumn}>
+                        <ViewColumnIcon
+                            fontSize="large"
+                            color="disabled"
+                        />
+                    </button>
+                </div>
+
                 <Grid
                     container
                     direction="row"
@@ -131,7 +162,7 @@ const Post = () => {
                 >
                     {info &&
                         info.map(i => (
-                            <Grid item lg={5} xs={12}>
+                            <Grid item lg={view} xs={12}>
                                 <CardPost
                                     title={i.title}
                                     name={i.userName}

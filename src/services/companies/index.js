@@ -13,9 +13,19 @@ export const list = async () => {
     }
 }
 
-export const creatingCompany = async (body) => {
+export const listCompanies = async () => {
     try {
-        const response = await fetch(`${URL}/store`, METHODS.POST(body));
+        const response = await fetch(`${URL}/all`, METHODS.GET());
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+export const newCompany = async (token, body) => {
+    try {
+        const response = await fetch(`${URL}/store`, METHODS.POST_TOKEN(token, body));
         const data = await response.json();
         return data;
     } catch (error) {

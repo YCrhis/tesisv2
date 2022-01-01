@@ -12,7 +12,7 @@ import ApiLoader from '../components/loader/ApiLoader';
 
 import { useDispatch } from 'react-redux';
 
-import { loginUser, logoutUser } from '../features/userSlice';
+import { loginUser } from '../features/userSlice';
 
 import { useHistory } from 'react-router-dom';
 
@@ -30,8 +30,7 @@ const UserRegister = () => {
         setLoader(true)
         const response = await registerUser(data);
         if (response.ok === true) {
-            const loginInformation = response.data
-            dispatch(loginUser({ loginInformation }))
+            dispatch(loginUser(response.data))
             setLoader(false)
             history.push('/')
         }
@@ -126,9 +125,8 @@ const UserRegister = () => {
 
                                     <Grid item xs={12}>
                                         <TextField
-                                            label="URL de imagen de perfil"
-                                            variant="outlined"
-                                            fullWidth
+                                            className='input__hidden'
+                                            defaultValue="https://www.kindpng.com/picc/m/269-2697881_computer-icons-user-clip-art-transparent-png-icon.png"
                                             {...register('profileImage', {
                                                 required: {
                                                     value: false,
@@ -136,7 +134,6 @@ const UserRegister = () => {
                                                 },
                                             })}
                                         />
-                                        {errors.profileImage && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.profileImage.message}</p>}
                                     </Grid>
 
                                     <button>Crear Usuario</button>

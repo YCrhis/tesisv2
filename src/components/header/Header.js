@@ -6,19 +6,18 @@ import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 /* redux */
 import { useSelector, useDispatch } from 'react-redux'
-import { selectUser, logoutUser } from '../../features/userSlice'
+import { selectUser, logoutUser, loginCompany } from '../../features/userSlice'
 import { Avatar } from '@material-ui/core'
 
-import { hasEnterprise } from '../../services/login'
+import { getEnterprise } from '../../services/login'
 
 const Header = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
     const newUser = useSelector(selectUser);
-    const user = newUser.loginInformation;
 
-    const [enterprise, setEnterprise] = useState(null)
+    const [enterprise, setEnterprise] = useState(false)
 
     const handleLogout = (e) => {
         e.preventDefault()
@@ -27,16 +26,19 @@ const Header = () => {
     }
 
     const isEnterprise = async () => {
-        const response = await hasEnterprise(user.id, user.token);
-        console.log(await response)
-        if (response.data == true) {
+        const response = await getEnterprise(newUser?.id);
+        console.log(response, 'has enterprise')
+        if (response.ok == true) {
+            dispatch(
+                loginCompany(response.data)
+            )
             setEnterprise(true)
         }
     }
 
     useEffect(() => {
         isEnterprise()
-    }, [])
+    }, [enterprise])
 
     return (
         <>
@@ -63,7 +65,7 @@ const Header = () => {
                         </li> */}
                         <li><Link to="/business">Empresas</Link></li>
 
-                        {user &&
+                        {newUser &&
                             <li>
                                 <a href="#" className="desktop-item">Opciones <i class="fas fa-chevron-down"></i></a>
                                 <input type="checkbox" id="showMega" />
@@ -76,7 +78,7 @@ const Header = () => {
                                         <div className="row">
                                             <header>Sobre Mi</header>
                                             <ul className="mega-links">
-                                                <li><a href="/mi-perfil">Ver mi perfil</a></li>
+                                                <li><Link to="/mi-perfil">Ver mi perfil</Link></li>
                                                 {/* <li><a href="/login/usuario">Iniciar Sesión</a></li> */}
                                             </ul>
                                         </div>
@@ -85,9 +87,9 @@ const Header = () => {
                                             <header>Empresa</header>
                                             <ul className="mega-links">
                                                 {!enterprise ?
-                                                    <li><a href="/registro/empresa">Crear Empresa</a></li>
+                                                    <li><Link to="/registro/empresa">Crear Empresa</Link></li>
                                                     :
-                                                    <li><a href="/registro/empresa">Ver mi empresa</a></li>
+                                                    <li><Link to="/registro/empresa">Ver mi empresa</Link></li>
                                                 }
 
                                             </ul>
@@ -97,8 +99,8 @@ const Header = () => {
                                             <header>Comunidad</header>
                                             <ul className="mega-links">
                                                 {/* <li><a href="/chat">Chat</a></li> */}
-                                                <li><a href="/posts">Publicaciones</a></li>
-                                                <li><a href="/mis/posts">Mis Publicaciones</a></li>
+                                                <li><Link to="/posts">Publicaciones</Link></li>
+                                                <li><Link to="/mis/posts">Mis Publicaciones</Link></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -106,14 +108,14 @@ const Header = () => {
                             </li>
                         }
 
-                        {user ?
+                        {newUser ?
                             <>
                                 <li>
                                     <button className="close__user" onClick={handleLogout}>Cerrar Sesión</button>
                                 </li>
                                 <li>
                                     <Avatar
-                                        src={user.profileImage}
+                                        src={newUser?.profileImage}
                                         className="avatar"
                                     />
                                 </li>

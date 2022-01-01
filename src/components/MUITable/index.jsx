@@ -44,27 +44,56 @@ const tableIcons = {
 const useStyles = makeStyles((theme) => ({
     text: {
         fontSize: '14px',
-        padding: '2rem'
-    }
+        padding: '2rem',
+        position: 'relative',
+        zIndex: 30,
+    },
 }));
 
 
-const MUITable = ({ columns, data }) => {
+const MUITable = ({ columns, data, option }) => {
     const classes = useStyles();
     return (
         <div className={classes.text}>
-            <MaterialTable
-                columns={columns}
-                data={data}
-                title={null}
-                icons={tableIcons}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#5d60ff',
-                        color: '#FFF'
-                    }
-                }}
-            />
+            {option ?
+                <MaterialTable
+                    columns={columns}
+                    data={data}
+                    title={null}
+                    icons={tableIcons}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: '#5d60ff',
+                            color: '#FFF'
+                        }
+                    }}
+                />
+                :
+                <MaterialTable
+                    columns={columns}
+                    data={data}
+                    title={null}
+                    icons={tableIcons}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: '#5d60ff',
+                            color: '#FFF'
+                        },
+                        actionsColumnIndex: -1
+                    }}
+                    actions={[
+                        {
+                            icon: Check,
+                            tooltip: 'Aceptar Empresa',
+                            onClick: (event, rowData) => alert("¿Desea aceptar empresa? " + rowData.name)
+                        }, {
+                            icon: DeleteOutline,
+                            tooltip: 'Delete User',
+                            onClick: (event, rowData) => alert("¿Desea rechazar a la empresa? " + rowData.name)
+                        }
+                    ]}
+                />
+            }
         </div>
     )
 }

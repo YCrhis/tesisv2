@@ -89,7 +89,7 @@ export default function CompanyOptions() {
                 </ListItem>
             </Link>
 
-            <Link to="/" className={classes.link}>
+            <Link to="/administrador/empresas/espera" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
                         <BusinessIcon className={classes.icon} />

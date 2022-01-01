@@ -16,6 +16,7 @@ import UserRegister from '../pages/UserRegister'
 import CompanyValidation from '../pages/CompanyValidation'
 import UserActions from '../pages/UserActions'
 import CompanyActions from '../pages/CompanyActions'
+import EnterpriseList from '../pages/EnterpriseList'
 
 import HomeAdmin from '../pages/HomeAdmin'
 
@@ -71,6 +72,7 @@ const App = () => {
                     <Route exact path="/posts/:id" component={EachPost}></Route>
                     <Route exact path="/administrador" component={HomeAdmin}></Route>
                     <Route exact path="/administrador/usuarios" component={UserList}></Route>
+                    <Route exact path="/administrador/empresas/espera" component={EnterpriseList}></Route>
                     <Route component={Error}></Route>
                 </Switch>
             </BrowserRouter>

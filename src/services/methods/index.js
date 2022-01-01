@@ -58,15 +58,13 @@ const DELETE = () => {
 
 
 /* for token */
-const PUT_TOKEN = (body, token) => {
+const PUT_TOKEN = (newData, token) => {
     return {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
-            Accept: 'Application/json',
             'Authorization': 'Bearer' + token,
         },
-        body: body
+        body: newData
     };
 };
 
@@ -82,4 +80,15 @@ const GET_TOKEN = body => {
 };
 
 
-export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN };
+const POST_TOKEN = (token, body) => {
+    return {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer' + token,
+        },
+        body: body
+    };
+};
+
+
+export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN, POST_TOKEN };

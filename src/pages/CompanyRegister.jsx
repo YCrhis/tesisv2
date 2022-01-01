@@ -4,10 +4,15 @@ import Header from '../components/header/Header'
 import User from '../images/user.svg'
 import './styles/registerCompany.scss'
 import { TextField, Grid } from '@material-ui/core';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import ApiLoader from '../components/loader/ApiLoader'
 
 import { useForm } from 'react-hook-form'
 import MyStepper from '../components/Steper';
-/* import FormCompany from '../components/Companies/FormCompany' */
+import { newCompany } from '../services/companies';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, loginCompany } from '../features/userSlice';
 
 const CompanyRegister = () => {
 
@@ -15,15 +20,50 @@ const CompanyRegister = () => {
 
     const [activeStep, setActiveStep] = useState(0)
 
+    const [load, setLoad] = useState(false)
+
+    const dispatch = useDispatch()
+
+    const user = useSelector(selectUser)
+
     const password = useRef({});
 
     password.current = watch("password", "");
 
 
-    const onSubmit = (e) => {
-        setActiveStep((currentStep) => currentStep + 1)
-        console.log(e)
+    const onSubmit = async (data) => {
+        setLoad(true)
+        const newData = new FormData();
+        newData.append('userId', user.id)
+        newData.append('description', data.description)
+        newData.append('name', data.name)
+        newData.append('workers', data.workers)
+        newData.append('email', data.email)
+        newData.append('ruc', data.ruc)
+        newData.append('linkedin', data.linkedin)
+        newData.append('facebook', data.facebook)
+        newData.append('twitter', data.twitter)
+        newData.append('youtube', data.youtube)
+        newData.append('instagram', data.instagram)
+        newData.append('webPage', data.webPage)
+        newData.append('image', data.image)
+
+        console.log(newData)
+        const response = await newCompany(user.token, newData)
+        console.log(response, ':) result')
+        if (response.ok == true) {
+            dispatch(
+                loginCompany(response.data)
+            )
+            setLoad(false)
+            setActiveStep((currentStep) => currentStep + 1)
+        }
     }
+
+    if (load == true) {
+        return (<ApiLoader />)
+    }
+
 
     return (
         <div>
@@ -84,21 +124,7 @@ const CompanyRegister = () => {
                                             />
                                             {errors.email && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
                                         </Grid>
-                                        <Grid item lg={6} xs={12}>
-                                            <TextField
-                                                label="Contraseña"
-                                                variant="outlined"
-                                                fullWidth
-                                                {...register('password', {
-                                                    required: {
-                                                        value: true,
-                                                        message: "Ingrese Contraseña"
-                                                    }
-                                                })}
-                                            />
-                                            {errors.password && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.password.message}</p>}
-                                        </Grid>
-                                        <Grid item lg={6} xs={12}>
+                                        <Grid item xs={12}>
                                             <TextField
                                                 label="Número de celular"
                                                 variant="outlined"
@@ -120,6 +146,15 @@ const CompanyRegister = () => {
                                                 })}
                                             />
                                             {errors.phone_number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.phone_number.message}</p>}
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <TextareaAutosize
+                                                className='areaLabel__company'
+                                                placeholder='Descripción de tu empresa'
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <p className='optinal__textForm'>* Las redes sociales son opcionales</p>
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -191,20 +226,7 @@ const CompanyRegister = () => {
                                             />
                                             {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                label="Link de tu pagina web"
-                                                variant="outlined"
-                                                fullWidth
-                                                {...register('web', {
-                                                    required: {
-                                                        value: false,
-                                                        message: "este campo no es obligatorio, pero te recomendamos ponerlo"
-                                                    },
-                                                })}
-                                            />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
-                                        </Grid>
+
                                         <Grid item xs={12} lg={6}>
                                             <TextField
                                                 label="Numero de trabajadores"
@@ -235,19 +257,34 @@ const CompanyRegister = () => {
                                             {errors.ruc && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.ruc.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
+                                            <TextField
+                                                label="Link de tu pagina web"
+                                                variant="outlined"
+                                                fullWidth
+                                                {...register('webPage', {
+                                                    required: {
+                                                        value: false,
+                                                        message: "este campo no es obligatorio, pero te recomendamos ponerlo"
+                                                    },
+                                                })}
+                                            />
+                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        </Grid>
+
+                                        <Grid item xs={12}>
                                             <div id="foto">
                                                 <p>Foto de Perfil <i class="fas fa-file-image"></i></p>
                                                 <input
                                                     type="file"
                                                     id="file"
-                                                    {...register("file", {
+                                                    {...register("image", {
                                                         required: {
                                                             value: true,
                                                             message: 'Ingrese una imagen'
                                                         }
                                                     })}
                                                 />
-                                                {errors.file && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.file.message}</p>}
+                                                {errors.imageUrl && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.imageUrl.message}</p>}
                                             </div>
 
                                         </Grid>

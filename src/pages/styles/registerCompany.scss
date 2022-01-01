@@ -9,9 +9,10 @@
     top: 13%;
     justify-content: center;
     flex-direction: column;
+    width: 30%;
     img {
       margin-top: 2rem;
-      width: 40%;
+      width: 100%;
     }
     h2 {
       font-size: calc(1rem + 3vw);
@@ -49,6 +50,7 @@
   width: 100%;
   border-radius: 7px;
   position: relative;
+  z-index: -1;
   p {
     text-align: center;
     color: #000;
@@ -77,8 +79,11 @@
 @media screen and (max-width: 970px) {
   .register__leftSectionCompany {
     position: relative !important;
-    width: 100%;
+    width: 100% !important;
     text-align: center;
+    img {
+      width: 60% !important;
+    }
   }
   .register__rightSectionCompany {
     width: 100% !important;
@@ -88,4 +93,15 @@
 .error__message {
   color: rgb(255, 77, 77);
   font-size: 13px;
+}
+.optinal__textForm {
+  font-size: 14px;
+  color: #5d60ff;
+}
+.areaLabel__company {
+  width: 100% !important;
+  height: 75px !important;
+  padding: 10px;
+  overflow: visible !important;
+  border: solid 1px rgb(189, 189, 189);
 }
