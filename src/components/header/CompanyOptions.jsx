@@ -10,7 +10,12 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import BusinessIcon from '@material-ui/icons/Business';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import HomeIcon from '@material-ui/icons/Home';
-import { Link } from 'react-router-dom'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
+import { Link, useHistory } from 'react-router-dom'
+
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../features/userSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,7 +59,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CompanyOptions() {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(logoutUser())
+        history.push('/')
+    }
 
     return (
         <List
@@ -98,7 +110,7 @@ export default function CompanyOptions() {
                 </ListItem>
             </Link>
 
-            <Link to="/" className={classes.link}>
+            <Link to="/administrador/empresas/aceptados" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
                         <DoneAllIcon className={classes.icon} />
@@ -107,7 +119,16 @@ export default function CompanyOptions() {
                 </ListItem>
             </Link>
 
-            <button className={classes.button}>Cerrar Sesión</button>
+            <Link to="/administrador/empresas/desabilitadas" className={classes.link}>
+                <ListItem button>
+                    <ListItemIcon>
+                        <HighlightOffIcon className={classes.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Empresas Desabilitadas" />
+                </ListItem>
+            </Link>
+
+            <button className={classes.button} onClick={handleLogout}>Cerrar Sesión</button>
 
         </List>
     );

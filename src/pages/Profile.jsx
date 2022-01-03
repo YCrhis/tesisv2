@@ -114,8 +114,6 @@ const Profile = () => {
 
     const classes = useStyles();
 
-    const [inputs, setInputs] = useState(newUser)
-
     const [file, setFile] = useState([])
 
     const [open, setOpen] = useState(false);
@@ -128,15 +126,6 @@ const Profile = () => {
         setOpen(false);
     };
 
-
-    const handleInputChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setInputs({
-            ...inputs,
-            [name]: value
-        })
-    }
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -160,8 +149,6 @@ const Profile = () => {
         newData.append('image', file)
 
         const response = await updateUser(newUser.id, newData, newUser.token)
-
-        /* const response = await updateUser(newUser.id, newUser.token, newData);*/
 
         if (response.ok == true) {
             dispatch(

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EnterpriseList = () => {
+const EnterpriseDisable = () => {
 
     const classes = useStyles();
 
@@ -58,7 +58,7 @@ const EnterpriseList = () => {
     const [companies, setCompanies] = useState([])
 
     const loadUsers = async () => {
-        const response = await listCompaniesAll({ state: 0 })
+        const response = await listCompaniesAll({ state: 2 })
         setCompanies(response.data)
     }
 
@@ -70,14 +70,14 @@ const EnterpriseList = () => {
         <>
             <CompanyOptions />
             <Container className={classes.container}>
-                <h1 className={classes.title}>Listado de todas las empresas <br /> (sin aceptar)</h1>
+                <h1 className={classes.title}>Listado de todas las empresas desabilidatas</h1>
                 <MUITable
                     columns={columns}
                     data={companies}
-                    option="company0"
+                    option="company2"
                 />
             </Container>
         </>
     )
 }
-export default EnterpriseList
+export default EnterpriseDisable

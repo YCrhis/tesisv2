@@ -43,6 +43,26 @@ export const showCompany = async (id) => {
     }
 }
 
+export const listCompaniesAll = async (state) => {
+    try {
+        const response = await fetch(`${URL}/search`, METHODS.POST(state));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+export const acceptCompany = async (id, newData, token) => {
+    try {
+        const response = await fetch(`${URL}/update-state/${id}`, METHODS.PUT_TOKEN(newData, token));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 export const isEnterprise = async (id) => {
     try {
         const response = await fetch(`${URL}/has-enterprise/${id}`, METHODS.GET());

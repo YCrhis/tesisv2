@@ -21,7 +21,6 @@ import { Link } from 'react-router-dom'
 const Index = () => {
 
     const user = useSelector(selectUser)
-    console.log(user)
 
     return (
         <>

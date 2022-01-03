@@ -8,7 +8,7 @@ import Loader from '../components/loader/Loader'
 import Search from '../components/search/Searh'
 import Footer from '../components/footer/Footer'
 
-import { list } from '../services/companies'
+import { listCompaniesAll } from '../services/companies'
 
 
 const Companies = () => {
@@ -21,7 +21,7 @@ const Companies = () => {
     }, []);
 
     const getCompanies = async () => {
-        const response = await list()
+        const response = await listCompaniesAll({ state: 1 })
         console.log(response.data)
         setData(response.data)
         console.log(response.data)

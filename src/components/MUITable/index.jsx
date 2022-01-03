@@ -1,9 +1,12 @@
 import MaterialTable from "material-table"
 
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
+import { acceptCompany } from "../../services/companies";
 
-
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
+import ModalMessage from "../modal";
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -53,47 +56,198 @@ const useStyles = makeStyles((theme) => ({
 
 const MUITable = ({ columns, data, option }) => {
     const classes = useStyles();
+
+    const user = useSelector(selectUser)
+
+    const [accept, setAccept] = useState(null)
+
+    const handleAccept = async (rowData) => {
+
+        const answer = window.confirm('¿Desea aceptar empresa?');
+
+        if (answer == true) {
+            const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
+            if (response.ok == true) {
+                setAccept(true)
+            }
+        }
+    }
+
+    const handleDisable = async (rowData) => {
+
+        const answer = window.confirm('¿Desea desabilitar Empresa?');
+        if (answer == true) {
+            const response = await acceptCompany(rowData.id, JSON.stringify({ state: 2 }), user.token);
+            if (response.ok == true) {
+                setAccept(true)
+            }
+        }
+
+    }
+
+    const handleEnabled = async (rowData) => {
+
+        const answer = window.confirm('¿Desea desabilitar Empresa?');
+        if (answer == true) {
+            const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
+            if (response.ok == true) {
+                setAccept(true)
+            }
+        }
+
+    }
+
+
+    const renderTable = () => {
+        if (option == 'user') {
+            return (
+                <>
+                    <MaterialTable
+                        columns={columns}
+                        data={data}
+                        title={null}
+                        icons={tableIcons}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: '#5d60ff',
+                                color: '#FFF'
+                            },
+                            actionsColumnIndex: -1
+                        }}
+                        actions={[
+                            {
+                                icon: DeleteOutline,
+                                tooltip: 'Desabilitar empresa',
+                                onClick: (_, rowData) => {
+                                    handleDisable(rowData);
+                                }
+                            }
+                        ]}
+                    />
+                    {accept &&
+                        <ModalMessage
+                            img="https://i.gifer.com/DLAN.gif"
+                            title="Acción realizada con éxito"
+                            message="La empresa se volvio técnicamente 'fantasma' (desabilitada)"
+                        />
+                    }
+                </>
+            )
+        }
+        if (option == 'company0') {
+            return (
+                <>
+                    <MaterialTable
+                        columns={columns}
+                        data={data}
+                        title={null}
+                        icons={tableIcons}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: '#5d60ff',
+                                color: '#FFF'
+                            },
+                            actionsColumnIndex: -1
+                        }}
+                        actions={[
+                            {
+                                icon: Check,
+                                tooltip: 'Aceptar Empresa',
+                                onClick: (_, rowData) => {
+                                    handleAccept(rowData);
+                                }
+                            }, {
+                                icon: DeleteOutline,
+                                tooltip: 'Delete User',
+                                onClick: (event, rowData) => alert("¿Desea rechazar a la empresa? " + rowData.name)
+                            }
+                        ]}
+                    />
+                    {accept &&
+                        <ModalMessage
+                            img="https://i.gifer.com/DLAN.gif"
+                            title="Acción realizada con éxito"
+                            message="La empresa se volvio técnicamente {}"
+                        />
+                    }
+                </>
+            )
+        }
+        if (option == 'company1') {
+            return (
+                <>
+                    <MaterialTable
+                        columns={columns}
+                        data={data}
+                        title={null}
+                        icons={tableIcons}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: '#5d60ff',
+                                color: '#FFF'
+                            },
+                            actionsColumnIndex: -1
+                        }}
+                        actions={[
+                            {
+                                icon: DeleteOutline,
+                                tooltip: 'Desabilitar empresa',
+                                onClick: (_, rowData) => {
+                                    handleDisable(rowData);
+                                }
+                            }
+                        ]}
+                    />
+                    {accept &&
+                        <ModalMessage
+                            img="https://i.gifer.com/DLAN.gif"
+                            title="Acción realizada con éxito"
+                            message="La empresa se volvio técnicamente 'fantasma' (desabilitada)"
+                        />
+                    }
+                </>
+            )
+        }
+        if (option == 'company2') {
+            return (
+                <>
+                    <MaterialTable
+                        columns={columns}
+                        data={data}
+                        title={null}
+                        icons={tableIcons}
+                        options={{
+                            headerStyle: {
+                                backgroundColor: '#5d60ff',
+                                color: '#FFF'
+                            },
+                            actionsColumnIndex: -1
+                        }}
+                        actions={[
+                            {
+                                icon: Remove,
+                                tooltip: '¿Desea volver habilitar la empresa?',
+                                onClick: (_, rowData) => {
+                                    handleEnabled(rowData);
+                                }
+                            }
+                        ]}
+                    />
+                    {accept &&
+                        <ModalMessage
+                            img="https://c.tenor.com/RnzjhOMS0NMAAAAC/friday-happy.gif"
+                            title="Acción realizada con éxito"
+                            message="En estos momentos la empresa ya esta habilitada"
+                        />
+                    }
+                </>
+            )
+        }
+    }
+
     return (
         <div className={classes.text}>
-            {option ?
-                <MaterialTable
-                    columns={columns}
-                    data={data}
-                    title={null}
-                    icons={tableIcons}
-                    options={{
-                        headerStyle: {
-                            backgroundColor: '#5d60ff',
-                            color: '#FFF'
-                        }
-                    }}
-                />
-                :
-                <MaterialTable
-                    columns={columns}
-                    data={data}
-                    title={null}
-                    icons={tableIcons}
-                    options={{
-                        headerStyle: {
-                            backgroundColor: '#5d60ff',
-                            color: '#FFF'
-                        },
-                        actionsColumnIndex: -1
-                    }}
-                    actions={[
-                        {
-                            icon: Check,
-                            tooltip: 'Aceptar Empresa',
-                            onClick: (event, rowData) => alert("¿Desea aceptar empresa? " + rowData.name)
-                        }, {
-                            icon: DeleteOutline,
-                            tooltip: 'Delete User',
-                            onClick: (event, rowData) => alert("¿Desea rechazar a la empresa? " + rowData.name)
-                        }
-                    ]}
-                />
-            }
+            {renderTable()}
         </div>
     )
 }

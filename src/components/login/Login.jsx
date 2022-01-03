@@ -46,7 +46,14 @@ function LoginUser() {
                 loginUser(response.data)
             )
             setLoad(false)
-            history.push('/')
+            /* if (response.data.role == 'ADMIN') {
+                history.push('/administrador')
+            } */
+            if (response.data.role == "ADMIN") {
+                history.push('/administrador')
+            } else {
+                history.push('/')
+            }
         }
     }
 

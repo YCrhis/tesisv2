@@ -62,6 +62,7 @@ const UserList = () => {
                 <MUITable
                     columns={columns}
                     data={users}
+                    option="user"
                 />
             </Container>
         </>
