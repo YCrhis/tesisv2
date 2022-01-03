@@ -24,15 +24,8 @@ const Companies = () => {
         const response = await listCompaniesAll({ state: 1 })
         console.log(response.data)
         setData(response.data)
-        console.log(response.data)
         setLoad(null)
-
     }
-
-    /* const getSearch = e => {
-        e.preventDefault();
-        setQuery(inputText)
-    } */
 
 
     if (load) {
@@ -43,19 +36,17 @@ const Companies = () => {
             <Header />
             <div class="container-workers">
                 <Search
-                /* setInputText={setInputText}
-                getSearch={getSearch} */
                 />
                 <div class="each-worker">
                     {data ? (
                         data.map((infos) => (
                             <CardCompanies
-                                key={infos._id}
+                                key={infos.id}
                                 name={infos.name}
                                 description={infos.description}
                                 workers={infos.workers}
-                                img={infos.image}
-                                id={infos._id}
+                                img={infos.imageUrl}
+                                id={infos.id}
                             />
                         ))
                     ) : (

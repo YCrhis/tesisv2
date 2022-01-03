@@ -35,7 +35,7 @@ export const newCompany = async (token, body) => {
 
 export const showCompany = async (id) => {
     try {
-        const response = await fetch(`${URL}/show/${id}`, METHODS.GET());
+        const response = await fetch(`${URL}/search`, METHODS.POST(id));
         const data = await response.json();
         return data;
     } catch (error) {

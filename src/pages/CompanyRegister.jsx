@@ -46,7 +46,7 @@ const CompanyRegister = () => {
         newData.append('youtube', data.youtube)
         newData.append('instagram', data.instagram)
         newData.append('webPage', data.webPage)
-        newData.append('image', data.image)
+        newData.append('image', data.image[0])
 
         console.log(newData)
         const response = await newCompany(user.token, newData)
@@ -151,7 +151,14 @@ const CompanyRegister = () => {
                                             <TextareaAutosize
                                                 className='areaLabel__company'
                                                 placeholder='Descripción de tu empresa'
+                                                {...register('description', {
+                                                    required: {
+                                                        value: true,
+                                                        message: "El campo es obligatorio"
+                                                    }
+                                                })}
                                             />
+                                            {errors.description && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.description.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <p className='optinal__textForm'>* Las redes sociales son opcionales</p>
@@ -284,7 +291,7 @@ const CompanyRegister = () => {
                                                         }
                                                     })}
                                                 />
-                                                {errors.imageUrl && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.imageUrl.message}</p>}
+                                                {errors.image && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
                                             </div>
 
                                         </Grid>

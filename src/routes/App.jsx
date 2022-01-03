@@ -68,8 +68,8 @@ const App = () => {
                     <PrivatesRoutesUser exact path="/registro/empresa" component={CompanyRegister} />
                     {/* others */}
                     <Route exact path="/product" component={Product}></Route>
-                    <Route exact path="/business" component={Companies}></Route>
-                    <Route exact path="/business/go/:id" component={CompyInfo}></Route>
+                    <Route exact path="/empresas" component={Companies}></Route>
+                    <Route exact path="/empresa/perfil/:id" component={CompyInfo}></Route>
                     <Route exact path="/product/information/:id" component={productInfo}></Route>
 
                     <Route exact path="/producto/nuevo" component={RegisterProd}></Route>

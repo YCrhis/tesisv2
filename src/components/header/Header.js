@@ -63,7 +63,7 @@ const Header = () => {
                                 <li><a href="#">Drop menu 4</a></li>
                             </ul>
                         </li> */}
-                        <li><Link to="/business">Empresas</Link></li>
+                        <li><Link to="/empresas">Empresas</Link></li>
 
                         {newUser &&
                             <li>
@@ -89,7 +89,7 @@ const Header = () => {
                                                 {!enterprise ?
                                                     <li><Link to="/registro/empresa">Crear Empresa</Link></li>
                                                     :
-                                                    <li><Link to="/registro/empresa">Ver mi empresa</Link></li>
+                                                    <li><Link to="/empresa/perfil/:id">Ver mi empresa</Link></li>
                                                 }
 
                                             </ul>

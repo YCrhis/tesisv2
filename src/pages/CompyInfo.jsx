@@ -11,14 +11,15 @@ import { useState } from 'react'
 
 function CompyInfo(props) {
 
-    const id = props.match.params.id;
+    const companyId = props.match.params.id;
+
+    const id = parseInt(companyId)
 
     const [data, setData] = useState();
 
     const loadData = async () => {
-        const response = await showCompany(id)
-        setData(response.data)
-        console.log(response)
+        const response = await showCompany({ id: id })
+        setData(response.data[0])
     }
 
     useState(() => {
@@ -35,7 +36,7 @@ function CompyInfo(props) {
                 <h1>Dale un Vistazo a los Productos</h1>
             </ContainerCompany>
 
-            <ProductCompany />
+            {/* <ProductCompany /> */}
             <Footer />
         </div>
     )

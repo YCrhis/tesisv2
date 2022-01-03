@@ -21,7 +21,7 @@ const cardCompanies = ({ name, img, description, workers, id }) => {
                     <p>{description}</p>
                 </div>
                 <div class="bussines-buttons">
-                    <Link to={`/business/go/${id}`}>Más información</Link>
+                    <Link to={`/empresa/perfil/${id}`}>Más información</Link>
                 </div>
                 <div class="bussines-about">
                     {/* <div class="each-about-staff">

@@ -10,11 +10,12 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import ChatIcon from '@material-ui/icons/Chat';
 function CompanyInformation({ data }) {
+    console.log(data)
     return (
         <div className="company__information">
             {data &&
                 <div className="company__information__container">
-                    <img src={data.image} alt="" />
+                    <img src={data.imageUrl} alt="" />
                     <div className="company__information__text">
                         <h2>{data.name}</h2>
                         {/* {data.webPage
