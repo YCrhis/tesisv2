@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import TextField from '@material-ui/core/TextField';
 import ApiLoader from '../loader/ApiLoader';
@@ -35,11 +35,11 @@ function LoginAdmin() {
         e.preventDefault();
         setLoad(true)
         const response = await loginUserNormal(fields);
-        if (response.ok == false) {
+        if (response.ok === false) {
             setLoad(false)
             setError(true)
         }
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginUser(response.data)
             )

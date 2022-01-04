@@ -40,7 +40,7 @@ function ProductCompany() {
 
     return (
         <ProductCompanyContainer>
-            {info == [] ?
+            {info === [] ?
                 <h3>Aun no hay productos en la empresa :(</h3>
                 :
                 info.map(infos => (

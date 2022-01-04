@@ -65,9 +65,9 @@ const MUITable = ({ columns, data, option }) => {
 
         const answer = window.confirm('¿Desea aceptar empresa?');
 
-        if (answer == true) {
+        if (answer === true) {
             const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
-            if (response.ok == true) {
+            if (response.ok === true) {
                 setAccept(true)
             }
         }
@@ -76,9 +76,9 @@ const MUITable = ({ columns, data, option }) => {
     const handleDisable = async (rowData) => {
 
         const answer = window.confirm('¿Desea desabilitar Empresa?');
-        if (answer == true) {
+        if (answer === true) {
             const response = await acceptCompany(rowData.id, JSON.stringify({ state: 2 }), user.token);
-            if (response.ok == true) {
+            if (response.ok === true) {
                 setAccept(true)
             }
         }
@@ -88,9 +88,9 @@ const MUITable = ({ columns, data, option }) => {
     const handleEnabled = async (rowData) => {
 
         const answer = window.confirm('¿Desea desabilitar Empresa?');
-        if (answer == true) {
+        if (answer === true) {
             const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
-            if (response.ok == true) {
+            if (response.ok === true) {
                 setAccept(true)
             }
         }
@@ -99,7 +99,7 @@ const MUITable = ({ columns, data, option }) => {
 
 
     const renderTable = () => {
-        if (option == 'user') {
+        if (option === 'user') {
             return (
                 <>
                     <MaterialTable
@@ -134,7 +134,7 @@ const MUITable = ({ columns, data, option }) => {
                 </>
             )
         }
-        if (option == 'company0') {
+        if (option === 'company0') {
             return (
                 <>
                     <MaterialTable
@@ -173,7 +173,7 @@ const MUITable = ({ columns, data, option }) => {
                 </>
             )
         }
-        if (option == 'company1') {
+        if (option === 'company1') {
             return (
                 <>
                     <MaterialTable
@@ -208,7 +208,7 @@ const MUITable = ({ columns, data, option }) => {
                 </>
             )
         }
-        if (option == 'company2') {
+        if (option === 'company2') {
             return (
                 <>
                     <MaterialTable

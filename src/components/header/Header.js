@@ -28,7 +28,7 @@ const Header = () => {
     const isEnterprise = async () => {
         const response = await getEnterprise(newUser?.id);
         console.log(response, 'has enterprise')
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginCompany(response.data)
             )
@@ -67,9 +67,9 @@ const Header = () => {
 
                         {newUser &&
                             <li>
-                                <a href="#" className="desktop-item">Opciones <i class="fas fa-chevron-down"></i></a>
+                                <a href="#" className="desktop-item">Opciones <i className="fas fa-chevron-down"></i></a>
                                 <input type="checkbox" id="showMega" />
-                                <label for="showMega" className="mobile-item">Optiones</label>
+                                <label htmlFor="showMega" className="mobile-item">Optiones</label>
                                 <div className="mega-box">
                                     <div className="content">
                                         <div className="row">
@@ -89,7 +89,7 @@ const Header = () => {
                                                 {!enterprise ?
                                                     <li><Link to="/registro/empresa">Crear Empresa</Link></li>
                                                     :
-                                                    <li><Link to="/empresa/perfil/:id">Ver mi empresa</Link></li>
+                                                    <li><Link to="/perfil/empresa/:id">Ver mi empresa</Link></li>
                                                 }
 
                                             </ul>
@@ -126,7 +126,7 @@ const Header = () => {
                             </li>
                         }
                     </ul>
-                    <label for="menu-btn" className="btn menu-btn"><i className="fas fa-bars"></i></label>
+                    <label htmlFor="menu-btn" className="btn menu-btn"><i className="fas fa-bars"></i></label>
                 </div>
             </nav>
         </>

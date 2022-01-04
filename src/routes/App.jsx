@@ -70,10 +70,10 @@ const App = () => {
                     <Route exact path="/product" component={Product}></Route>
                     <Route exact path="/empresas" component={Companies}></Route>
                     <Route exact path="/empresa/perfil/:id" component={CompyInfo}></Route>
+                    <Route exact path="/perfil/empresa/:id" component={MyCompany}></Route>
                     <Route exact path="/product/information/:id" component={productInfo}></Route>
 
                     <Route exact path="/producto/nuevo" component={RegisterProd}></Route>
-                    <Route exact path="/mi/empresa/:id" component={MyCompany}></Route>
 
                     <Route exact path="/empresa/informacion" component={CompanyValidation}></Route>
 

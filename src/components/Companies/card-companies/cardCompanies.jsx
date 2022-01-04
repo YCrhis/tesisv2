@@ -7,18 +7,23 @@ import { Link } from 'react-router-dom'
 
 const cardCompanies = ({ name, img, description, workers, id }) => {
 
+    const cutText = () => {
+        const newString = description.substring(0, 60) + ' ......'
+        return newString
+    }
+
     return (
         <>
             <div class="bussines-card wow animate__animated animate__fadeIn animate__slow">
                 <div class="business-head">
                     <div class="bussines-head-image">
-                        <img src={img} />
+                        <img src={img} alt="imagen" />
                         <div class="business-head-check">
                             <i class="fas fa-check"></i>
                         </div>
                     </div>
                     <h3>{name}</h3>
-                    <p>{description}</p>
+                    <p>{cutText()}</p>
                 </div>
                 <div class="bussines-buttons">
                     <Link to={`/empresa/perfil/${id}`}>Más información</Link>

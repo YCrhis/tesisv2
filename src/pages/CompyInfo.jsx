@@ -33,7 +33,7 @@ function CompyInfo(props) {
                 data={data}
             />
             <ContainerCompany>
-                <h1>Dale un Vistazo a los Productos</h1>
+                <h1>Productos de {data?.name}</h1>
             </ContainerCompany>
 
             {/* <ProductCompany /> */}

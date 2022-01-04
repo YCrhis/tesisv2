@@ -36,12 +36,12 @@ function LoginUser() {
         setLoad(true)
         const response = await loginUserNormal(fields);
 
-        if (response.ok == false) {
+        if (response.ok === false) {
             setLoad(false)
             setError(true)
 
         }
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginUser(response.data)
             )
@@ -49,7 +49,7 @@ function LoginUser() {
             /* if (response.data.role == 'ADMIN') {
                 history.push('/administrador')
             } */
-            if (response.data.role == "ADMIN") {
+            if (response.data.role === "ADMIN") {
                 history.push('/administrador')
             } else {
                 history.push('/')

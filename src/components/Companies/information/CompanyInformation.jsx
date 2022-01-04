@@ -4,46 +4,83 @@ import React from 'react'
 import './companyInformation.scss'
 /* icons */
 import FacebookIcon from '@material-ui/icons/Facebook';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
-import ChatIcon from '@material-ui/icons/Chat';
+import CameraIcon from '@material-ui/icons/Camera';
+import TwitterIcon from '@material-ui/icons/Twitter';
+
+import { Grid } from '@material-ui/core'
+
 function CompanyInformation({ data }) {
-    console.log(data)
+
     return (
-        <div className="company__information">
-            {data &&
-                <div className="company__information__container">
-                    <img src={data.imageUrl} alt="" />
-                    <div className="company__information__text">
-                        <h2>{data.name}</h2>
-                        {/* {data.webPage
-                            <a href=""></a>
-                        } */}
+        <div maxWidth="lg" className="companyInformation__container">
+            <div className="companyInformation__image">
+                <img src={data?.imageUrl} alt={data?.name} />
+            </div>
+            <div className="companyInformation__information">
+                <h1>{data?.name}</h1>
+                <p className="companyInformation__gmail"><span >{data?.email}</span></p>
+                <p className="companyInformation__description">{data?.description}</p>
+                <div className="companyInformation__socialMedia">
+                    <Grid
+                        container
+                        spacing={1}
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
 
-                        <p>{data.description}</p>
-                        <div className="company-social-medias">
-                            {/* <button>Iniciar Converzacion <ChatIcon /></button> */}
-                            {data.linkedin &&
-                                <LinkedInIcon className="icon-social" />
-                            }
-                            {data.facebook &&
-                                <FacebookIcon className="icon-social" />
-                            }
-                            {data.instagram &&
-                                <InstagramIcon className="icon-social" />
-                            }
-                            {data.youtube &&
-                                <YouTubeIcon className="icon-social" />
-                            }
-
+                        {data?.youtube &&
+                            <Grid item lg={2}>
+                                <YouTubeIcon />
+                            </Grid>
+                        }
+                        {data?.twitter &&
+                            <Grid item lg={2}>
+                                <TwitterIcon />
+                            </Grid>
+                        }
+                        {data?.facebook &&
+                            <Grid item lg={2}>
+                                <FacebookIcon />
+                            </Grid>
+                        }
+                        {data?.instagram &&
+                            <Grid item lg={2}>
+                                <InstagramIcon />
+                            </Grid>
+                        }
+                        {data?.linkedin &&
+                            <Grid item lg={2}>
+                                <LinkedInIcon />
+                            </Grid>
+                        }
+                        {data?.webPage &&
+                            <Grid item lg={2}>
+                                <CameraIcon />
+                            </Grid>
+                        }
+                    </Grid>
+                </div>
+                <div className="companyInformation__extraInformation">
+                    <div className="companyInformation__extraInformationEach">
+                        <i class="far fa-user"></i>
+                        <div>
+                            <p>Trabajadores</p>
+                            <p>{data?.workers}</p>
+                        </div>
+                    </div>
+                    <div className="companyInformation__extraInformationEach">
+                        <i class="far fa-thumbs-up"></i>
+                        <div>
+                            <p>Verificado</p>
                         </div>
                     </div>
                 </div>
-            }
-
-        </div >
+            </div>
+        </div>
     )
 }
 

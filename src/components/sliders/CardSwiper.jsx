@@ -5,7 +5,7 @@ import Loader from '../loader/Loader'
 
 /* swiper dependencies*/
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, EffectFade } from 'swiper';
+import SwiperCore, { Navigation } from 'swiper';
 
 import { list } from '../../services/products'
 

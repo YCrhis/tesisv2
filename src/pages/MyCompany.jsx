@@ -6,6 +6,9 @@ import './styles/mycompany.scss';
 
 import { deleteEnterprise } from "../services/companies";
 
+import { useSelector } from "react-redux";
+import { selectCompany } from "../features/userSlice";
+
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -13,25 +16,28 @@ const MyCompany = (props) => {
 
     const history = useHistory();
 
-    const id = props.match.params.id;
+    const user = useSelector(selectCompany);
+    console.log(user.id)
+
+    const id = user.id;
 
     const [data, setData] = useState();
 
     const deleteEnterprice = async () => {
         var option = window.confirm("¿Desea eliminar la empresa?");
-        if (option == true) {
+        /* if (option == true) {
             const data = await deleteEnterprise(id);
             console.log(data)
             window.localStorage.removeItem('idEnterprice')
             window.localStorage.setItem('hasEnterprise', false)
             history.push('/')
-        }
+        } */
     }
 
     const loadData = async () => {
-        const response = await showCompany(id);
-        console.log(response.data)
-        setData(response.data)
+        const response = await showCompany({ id: id })
+        console.log(response.data[0], 'este es mi king')
+        setData(response.data[0])
     }
 
     useEffect(() => {
@@ -56,17 +62,17 @@ const MyCompany = (props) => {
                             <div className="right__info">
                                 <h4>Redes Sociales</h4>
                                 <ul>
-                                    <li><i class="fab fa-facebook-f"></i>Facebook: <span> {data.facebook}</span></li>
-                                    <li><i class="fab fa-instagram"></i>Instagram: <span> {data.instagram} </span></li>
-                                    <li><i class="fab fa-youtube"></i>Youtube: <span>{data.youtube}</span></li>
-                                    <li><i class="fab fa-linkedin"></i>Linkedin: <span>{data.linkedin}</span></li>
+                                    <li><i className="fab fa-facebook-f"></i>Facebook: <span> {data.facebook}</span></li>
+                                    <li><i className="fab fa-instagram"></i>Instagram: <span> {data.instagram} </span></li>
+                                    <li><i className="fab fa-youtube"></i>Youtube: <span>{data.youtube}</span></li>
+                                    <li><i className="fab fa-linkedin"></i>Linkedin: <span>{data.linkedin}</span></li>
                                 </ul>
                             </div>
                             <div className="right__info">
                                 <h4>Información General</h4>
                                 <ul>
-                                    <li><i class="fas fa-briefcase"></i>Trabajadores: <span> {data.workers}</span></li>
-                                    <li><i class="fas fa-wifi"></i>Link de tu sitio web: <span> {data.webPage} </span></li>
+                                    <li><i className="fas fa-briefcase"></i>Trabajadores: <span> {data.workers}</span></li>
+                                    <li><i className="fas fa-wifi"></i>Link de tu sitio web: <span> {data.webPage} </span></li>
                                 </ul>
                             </div>
                             <button className="button__eliminar" onClick={deleteEnterprice}>Eliminar empresa</button>
