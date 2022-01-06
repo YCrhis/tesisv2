@@ -67,6 +67,7 @@ const MUITable = ({ columns, data, option }) => {
 
         if (answer === true) {
             const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
+            console.log(response)
             if (response.ok === true) {
                 setAccept(true)
             }

@@ -55,7 +55,7 @@ export const listCompaniesAll = async (state) => {
 
 export const acceptCompany = async (id, newData, token) => {
     try {
-        const response = await fetch(`${URL}/update-state/${id}`, METHODS.PUT_TOKEN(newData, token));
+        const response = await fetch(`${URL}/update-state/${id}`, METHODS.PUT_TOKEN_JSON(newData, token));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -76,6 +76,17 @@ export const isEnterprise = async (id) => {
 export const deleteEnterprise = async (id) => {
     try {
         const response = await fetch(`${URL}/remove/${id}`, METHODS.DELETE());
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+
+export const updateEnterprise = async (id, newData, token) => {
+    try {
+        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(newData, token));
         const data = await response.json();
         return data;
     } catch (error) {

@@ -114,7 +114,7 @@ const Profile = () => {
 
     const classes = useStyles();
 
-    const [file, setFile] = useState([])
+    const [file, setFile] = useState([]);
 
     const [open, setOpen] = useState(false);
 
@@ -138,9 +138,11 @@ const Profile = () => {
     }
 
     const onSubmit = async (data) => {
-        if (file === []) {
+
+        if (file.length === 0) {
             setFile(newUser?.profileKey)
         }
+
         const newData = new FormData();
         newData.append('name', data.name)
         newData.append('email', data.email)
@@ -150,13 +152,15 @@ const Profile = () => {
 
         const response = await updateUser(newUser.id, newData, newUser.token)
 
+        console.log(response, ' este memsmo es')
+
         if (response.ok == true) {
             dispatch(
                 loginUser(response.data)
             )
         }
         if (response.ok == false) {
-            alert('Algo salio mal, intentalo despues')
+            alert('Intenta poner otros datos')
         }
         setOpen(false)
     }
@@ -306,7 +310,7 @@ const Profile = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div>
-                                            <p>Foto de Perfil <i class="fas fa-file-image"></i></p>
+                                            <p>Foto de Perfil <i className="fas fa-file-image"></i></p>
                                             <input
                                                 type="file"
                                                 id="file"

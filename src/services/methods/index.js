@@ -61,7 +61,7 @@ const PUT_TOKEN = (newData, token) => {
     return {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
+            /* 'Content-Type': 'application/json', */
             'Authorization': 'Bearer' + token,
         },
         body: newData
@@ -90,5 +90,16 @@ const POST_TOKEN = (token, body) => {
     };
 };
 
+const PUT_TOKEN_JSON = (newData, token) => {
+    return {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer' + token,
+        },
+        body: newData
+    };
+};
 
-export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN, POST_TOKEN };
+
+export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN, POST_TOKEN, PUT_TOKEN_JSON };

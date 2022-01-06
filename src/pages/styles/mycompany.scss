@@ -11,7 +11,7 @@
     animation: imageAnimated 10s infinite alternate-reverse;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.137) !important;
+    box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.082) !important;
   }
   .right__sectionLoadCompany {
     padding: 2rem;
@@ -35,19 +35,26 @@
         margin-right: 12px;
         width: 14px;
       }
+      li {
+        color: rgb(49, 49, 49);
+      }
+      span {
+        color: #666666 !important;
+      }
     }
     .right__info {
       margin: 1rem auto;
     }
     .button__eliminar {
       padding: 0.5rem 3.6rem;
-      background: rgb(255, 66, 66);
+      background: #5d60ff;
       border: none;
       color: #fff;
       position: absolute;
       right: 4%;
       top: 20%;
       cursor: pointer;
+      border-radius: 10px;
     }
   }
 }

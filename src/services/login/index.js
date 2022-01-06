@@ -33,7 +33,6 @@ export const getEnterprise = async (id) => {
     }
 }
 
-/* this is for update with token -> backend */
 export const updateUser = async (id, newData, token) => {
     try {
         const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(newData, token));

@@ -27,7 +27,6 @@ const Header = () => {
 
     const isEnterprise = async () => {
         const response = await getEnterprise(newUser?.id);
-        console.log(response, 'has enterprise')
         if (response.ok === true) {
             dispatch(
                 loginCompany(response.data)
