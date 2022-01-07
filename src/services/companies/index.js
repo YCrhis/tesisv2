@@ -3,15 +3,6 @@ import { baseURL } from '../config';
 
 const URL = `${baseURL}api/v1/enterprise`;
 
-export const list = async () => {
-    try {
-        const response = await fetch(`${URL}/all?limit=50&page=0`, METHODS.GET());
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return error.message;
-    }
-}
 
 export const listCompanies = async () => {
     try {
@@ -35,7 +26,7 @@ export const newCompany = async (token, body) => {
 
 export const showCompany = async (id) => {
     try {
-        const response = await fetch(`${URL}/search`, METHODS.POST(id));
+        const response = await fetch(`${URL}/by-user/${id}`, METHODS.GET());
         const data = await response.json();
         return data;
     } catch (error) {
@@ -45,7 +36,17 @@ export const showCompany = async (id) => {
 
 export const listCompaniesAll = async (state) => {
     try {
-        const response = await fetch(`${URL}/search`, METHODS.POST(state));
+        const response = await fetch(`${URL}/search?limit=9&page=0`, METHODS.POST(state));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+export const listCompaniesPagination = async (state, page) => {
+    try {
+        const response = await fetch(`${URL}/search?limit=9&page=${page}`, METHODS.POST(state));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -72,17 +73,6 @@ export const isEnterprise = async (id) => {
         return error.message;
     }
 }
-
-export const deleteEnterprise = async (id) => {
-    try {
-        const response = await fetch(`${URL}/remove/${id}`, METHODS.DELETE());
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        return error.message;
-    }
-}
-
 
 export const updateEnterprise = async (id, newData, token) => {
     try {

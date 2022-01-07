@@ -7,26 +7,35 @@ import CardCompanies from '../components/Companies/card-companies/cardCompanies'
 import Loader from '../components/loader/Loader'
 import Search from '../components/search/Searh'
 import Footer from '../components/footer/Footer'
+import NoResults from '../components/Errors/NoResults'
 
-import { listCompaniesAll } from '../services/companies'
+import { listCompaniesPagination } from '../services/companies'
+import PaginationPage from '../components/pagination/Pagination'
 
 
 const Companies = () => {
 
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     const [load, setLoad] = useState(true)
+    const [page, setPage] = useState(0)
+    const [pageNumber, setPageNumber] = useState()
+    const [searchName, setSearchName] = useState('')
 
     useEffect(() => {
         getCompanies();
-    }, []);
+    }, [page, searchName]);
 
     const getCompanies = async () => {
-        const response = await listCompaniesAll({ state: 1 })
-        console.log(response.data)
-        setData(response.data)
+        const response = await listCompaniesPagination({ state: 1, name: searchName }, page)
+        setData(response.data.enterprises)
+        console.log(await response.data.enterprises)
+        setPageNumber(await response.data.pages)
         setLoad(null)
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+    }
 
     if (load) {
         return <Loader />
@@ -36,9 +45,14 @@ const Companies = () => {
             <Header />
             <div class="container-workers">
                 <Search
+                    handleSearch={handleSearch}
+                    setSearchName={setSearchName}
+                    setPage={setPage}
                 />
                 <div class="each-worker">
-                    {data ? (
+                    {data.length == 0 ? (
+                        <NoResults />
+                    ) : (
                         data.map((infos) => (
                             <CardCompanies
                                 key={infos.id}
@@ -46,13 +60,18 @@ const Companies = () => {
                                 description={infos.description}
                                 workers={infos.workers}
                                 img={infos.imageUrl}
-                                id={infos.id}
+                                id={infos.userId}
                             />
                         ))
-                    ) : (
-                        <p>Sin Datos :(!</p>
                     )}
                 </div>
+                <div className="container__pagination">
+                    <PaginationPage
+                        pageNumber={pageNumber}
+                        setPage={setPage}
+                    />
+                </div>
+
             </div>
             <Footer />
         </>

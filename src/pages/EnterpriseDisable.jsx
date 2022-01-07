@@ -59,12 +59,12 @@ const EnterpriseDisable = () => {
 
     const loadUsers = async () => {
         const response = await listCompaniesAll({ state: 2 })
-        setCompanies(response.data)
+        setCompanies(response.data.enterprises)
     }
 
     useEffect(() => {
         loadUsers()
-    }, [companies])
+    }, [])
 
     return (
         <>

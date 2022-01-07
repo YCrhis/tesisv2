@@ -57,14 +57,16 @@ const EnterprisePassed = () => {
 
     const [companies, setCompanies] = useState([])
 
+    let mounted = true
+
     const loadUsers = async () => {
         const response = await listCompaniesAll({ state: 1 })
-        setCompanies(response.data)
+        setCompanies(response.data.enterprises)
     }
 
     useEffect(() => {
         loadUsers()
-    }, [companies])
+    }, [])
 
     return (
         <>

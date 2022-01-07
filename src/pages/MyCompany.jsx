@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { loginCompany } from '../features/userSlice'
 import { useDispatch } from "react-redux";
 import { updateEnterprise } from "../services/companies";
+import Waiting from "../components/waiting";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -126,7 +127,7 @@ const MyCompany = (props) => {
 
     const id = user.id;
 
-    const [isCompany, setIsCompany] = useState()
+    const [isCompany, setIsCompany] = useState(true)
     const [data, setData] = useState();
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState([]);
@@ -134,8 +135,11 @@ const MyCompany = (props) => {
     const isEnterprise = async () => {
         const response = await getEnterprise(newUser?.id);
         console.log(response, 'has enterprise')
-        if (response.data.state == 0) {
+        if (response.data.state == 0 && response.data.state == 2) {
             setIsCompany(true)
+        }
+        if (response.data.state == 1) {
+            setIsCompany(false)
         }
 
     }
@@ -209,7 +213,11 @@ const MyCompany = (props) => {
     }, [])
 
     if (isCompany) {
-        return (<h1>Falta validar</h1>)
+        return (
+            <Waiting
+                name={user.name}
+            />
+        )
     }
 
     return (
