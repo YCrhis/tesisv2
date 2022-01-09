@@ -1,4 +1,5 @@
 import Footer from "../components/footer/Footer"
+import { motion } from "framer-motion"
 import Header from "../components/header/Header"
 
 import Question from '../images/question.svg'
@@ -8,7 +9,11 @@ import './styles/question.scss'
 
 const Questions = () => {
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <Header />
 
             <div className="questions">
@@ -39,7 +44,7 @@ const Questions = () => {
 
             <Footer />
 
-        </>
+        </motion.div>
     )
 }
 export default Questions

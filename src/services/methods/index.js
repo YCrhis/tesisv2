@@ -90,6 +90,19 @@ const POST_TOKEN = (token, body) => {
     };
 };
 
+const POST_TOKEN_JSON = (body, token) => {
+    return {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'Application/json',
+            'Authorization': 'Bearer' + token,
+        },
+        body: JSON.stringify(body),
+    };
+};
+
+
 const PUT_TOKEN_JSON = (newData, token) => {
     return {
         method: 'PUT',
@@ -102,4 +115,4 @@ const PUT_TOKEN_JSON = (newData, token) => {
 };
 
 
-export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN, POST_TOKEN, PUT_TOKEN_JSON };
+export { GET, POST, POST_FORM_DATA, PUT, PUT_FORM_DATA, DELETE, PUT_TOKEN, GET_TOKEN, POST_TOKEN, PUT_TOKEN_JSON, POST_TOKEN_JSON };

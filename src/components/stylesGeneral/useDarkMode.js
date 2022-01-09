@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
 
-export const useDarkMore = () =>{
-    const [theme,setTheme] = useState('dark');
+export const useDarkMore = () => {
+    const [theme, setTheme] = useState('light');
 
-    const setMode = mode =>{
+    const setMode = mode => {
         window.localStorage.setItem('theme', mode);
         setTheme(mode);
     }
 
-    const toggleTheme = () =>{
+    const toggleTheme = () => {
         theme == 'dark' ? setMode('light') : setMode('dark');
-    } 
-    useEffect (() =>{
+    }
+    useEffect(() => {
         const localTheme = window.localStorage.getItem('theme')
         localTheme ? setMode(localTheme) : setTheme('dark')
-    },[])
+    }, [])
     return [theme, toggleTheme]
 }

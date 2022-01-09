@@ -1,84 +1,110 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
-import { lookPost, sendComment } from "../services/posts"
+import { searchPost, sendComment, loadComments } from "../services/posts"
 import TextField from '@material-ui/core/TextField';
+import { useSelector } from "react-redux";
+import Comments from '../components/Post/card/comments'
+import { selectUser } from "../features/userSlice";
 
 import './styles/eachpost.scss'
 
 const EachPost = (props) => {
 
-    const userId = window.localStorage.getItem('id')
+    const user = useSelector(selectUser);
+    const myUser = user.id
 
-    const loadData = async () => {
-        const response = await lookPost(postId);
-        setData(response.data)
-        console.log(data)
+    const [post, setPost] = useState([])
+    const [comments, setCommets] = useState([])
+
+    const companyId = props.match.params.id;
+
+    const id = parseInt(companyId)
+
+    const loadPost = async () => {
+        const response = await searchPost({ id: id })
+        const eachComments = {
+            postId: id,
+            userId: myUser
+        }
+        const commentsResponse = await loadComments(eachComments)
+        setPost(response.data[0])
+        setCommets(commentsResponse.data)
     }
-
-    const postId = props.match.params.id;
-    const [data, setData] = useState()
 
     const [content, setContent] = useState('')
 
-    console.log(postId)
-
-    const handleSubmitComment = async () => {
-        const response = await sendComment({
-            comment: {
-                content, userId
-            }, postId
-        });
-        console.log(response)
-        window.location.reload()
+    const postCreatedAt = () => {
+        var fecha = new Date();
+        var day = post?.createdAt;
+        return fecha.toLocaleDateString("es-ES", day)
     }
 
     const handleText = (e) => {
         setContent(e.target.value)
     }
 
+    const handleSubmitComment = async () => {
+        const comment = {
+            userId: myUser,
+            postId: id,
+            content: content
+        }
+        const response = await sendComment(comment)
+        console.log(response)
+    }
+
     useEffect(() => {
-        loadData()
-    }, [])
+        loadPost()
+    }, [comments])
 
     return (
         <>
             <Header />
-            {
-                data &&
-                <div className="container__myPost">
-                    <div className="left__postSite">
-                        <div className="content">
-                            <h3>{data.title}</h3>
-                            <p className="myPost__subtitle">Contenido del post: </p>
-                            <p>{data.content}</p>
+            <div className="container__myPost">
+                <div className="left__postSite">
+                    <div className="content">
+                        <div className="myPost__userInformation">
+                            <img src={post?.userImage} alt={post?.userName} className="myPost__imageCompany" />
+                            <div>
+                                <h4>{post?.userName}</h4>
+                                <p><span> Publicado en: {postCreatedAt()}</span></p>
+                            </div>
                         </div>
-                        <div className="form__comments">
-                            <TextField
-                                id="outlined-basic"
-                                label="Agregar Comentario"
-                                variant="outlined"
-                                fullWidth
-                                value={content}
-                                onChange={handleText}
-                            />
-                            <button className="button" onClick={handleSubmitComment}>Subir Comentario</button>
+                        <div className="myPost__questionPost">
+                            <h3>{post?.title}</h3>
+                            <p className="myPost__subtitle">Contenido del post: </p>
+                            <p>{post?.content}</p>
                         </div>
                     </div>
-                    <div className="right__comments">
-                        <h4>Comentarios</h4>
-                        {data &&
-                            data.comments.map((i) => (
-                                <div className="each__comment">
-                                    <p>{i.content}</p>
-                                </div>
-                            ))
-                        }
+                    <div className="form__comments">
+                        <TextField
+                            id="outlined-basic"
+                            label="Agregar Comentario"
+                            variant="outlined"
+                            fullWidth
+                            value={content}
+                            onChange={handleText}
+                        />
+                        <button className="button" onClick={handleSubmitComment}>Subir Comentario</button>
                     </div>
                 </div>
-
-            }
-
+                <div className="right__comments">
+                    <h4>Comentarios {post?.comments}</h4>
+                    {
+                        comments &&
+                        comments?.map((i) => (
+                            <div className="each__comment">
+                                <Comments
+                                    key={i.id}
+                                    content={i.content}
+                                    createdAt={i.createdAt}
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
 
             <Footer />
         </>

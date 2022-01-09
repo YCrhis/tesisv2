@@ -7,7 +7,7 @@ import Loader from '../loader/Loader'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 
-import { list } from '../../services/products'
+import { listProducts } from '../../services/products'
 
 // Import Swiper styles
 import 'swiper/swiper.scss';
@@ -33,7 +33,7 @@ const CardSwiper = () => {
     }, [])
 
     const getProducts = async () => {
-        const result = await list()
+        const result = await listProducts()
         console.log(result)
         setInfo(result.data)
         //setInfo(data.hits)

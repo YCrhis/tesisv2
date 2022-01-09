@@ -13,18 +13,6 @@ export const sendPost = async (body) => {
     }
 }
 
-export const getAll = async (body) => {
-    try {
-        const response = await fetch(`${URL}/post/search`, METHODS.POST(body));
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        return e.message
-    }
-}
-
-
-
 export const myList = async (id) => {
     try {
         const response = await fetch(`${URL}/post/by-user/${id}?limit=10&page=0`, METHODS.GET());
@@ -45,9 +33,9 @@ export const removePost = async (id) => {
     }
 }
 
-export const lookPost = async (id) => {
+export const searchPost = async (body) => {
     try {
-        const response = await fetch(`${URL}/post/comments/${id}?limit=1&page=0`, METHODS.GET());
+        const response = await fetch(`${URL}/post/search`, METHODS.POST(body));
         const data = await response.json();
         return data;
     } catch (e) {
@@ -55,9 +43,21 @@ export const lookPost = async (id) => {
     }
 }
 
+
 export const sendComment = async (body) => {
     try {
         const response = await fetch(`${URL}/comment/store`, METHODS.POST(body));
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        return e.message
+    }
+}
+
+
+export const loadComments = async (body) => {
+    try {
+        const response = await fetch(`${URL}/comment/by-user-post`, METHODS.POST(body));
         const data = await response.json();
         return data;
     } catch (e) {

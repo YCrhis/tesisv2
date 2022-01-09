@@ -8,16 +8,16 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './stylesRegister.scss';
-import error from '../../../images/error.svg'
 
 import Alert from '@material-ui/lab/Alert';
-
-import { isEnterprise } from '../../../services/companies'
-import { useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useSelector } from 'react-redux'
+import { selectCompany, selectUser } from '../../../features/userSlice'
+import { creatingProduct } from '../../../services/products';
 
 const useStyles = makeStyles((theme) => ({
     containerForm: {
-        width: '80%',
+        width: '100%',
         margin: '8rem auto 10px !important',
     },
     stylearea: {
@@ -27,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
         border: 'solid 1px #c5c5c5'
     },
     subtitle: {
-        marginBottom: '1rem'
+        marginBottom: '1rem',
+        fontSize: '2.6rem',
+        color: '#5d60ff'
     },
     infoExtra: {
         color: '#5d60ff',
@@ -36,114 +38,49 @@ const useStyles = makeStyles((theme) => ({
     warranty: {
         display: 'block',
         marginRight: '2rem'
-    }
+    },
 }));
 
 const RegisterProduct = () => {
+
     const classes = useStyles();
 
-    const [fields, setFields] = useState([])
+    const company = useSelector(selectCompany)
+    const user = useSelector(selectUser)
 
-    const [upload, setUpload] = useState(true)
-
-    const idEnterprise = window.localStorage.getItem('idEnterprice');
-
-    console.log(idEnterprise)
-
-    const id = window.localStorage.getItem('id')
-
-    const [enterprise, setEnterprise] = useState()
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [message, setMessage] = useState(null)
 
-    const [data, setData] = useState({
-        name: '',
-        brand: '',
-        price: '',
-        capacity: '',
-        model: '',
-        type: '',
-        energyConsume: '',
-        install: false,
-        warranty: false,
-        stock: ''
-    })
 
-    const handleInputChanges = (e) => {
-        const { name, type, checked, value } = e.target;
-        const val = type === 'checkbox' ? checked : value;
+    const { control } = useForm({
+        defaultValues: {
+            checkbox: false,
+        }
+    });
 
-        setData({
-            ...data,
-            [name]: val
-        })
-    }
 
-    const handleInputChange = (e) => {
-        setFields(e.target.files)
-    }
 
-    const sendInformation = async (e) => {
-
-        e.preventDefault();
-
-        setUpload(false)
-
+    const onSubmit = async (data) => {
         const formData = new FormData();
-        formData.append('images', fields[0]);
-        formData.append('images', fields[1]);
-        formData.append('images', fields[2]);
-        formData.append('name', data.name);
-        formData.append('brand', data.brand);
-        formData.append('price', data.price);
-        formData.append('capacity', data.capacity);
-        formData.append('description', data.description);
-        formData.append('model', data.model);
-        formData.append('type', data.type);
-        formData.append('energyConsume', data.energyConsume);
-        formData.append('install', data.install);
-        formData.append('warranty', data.warranty);
-        formData.append('stock', data.stock);
+        formData.append('enterpriseId', company.id)
+        formData.append('name', data.name)
+        formData.append('description', data.description)
+        formData.append('brand', data.brand)
+        formData.append('capacity', data.capacity)
+        formData.append('model', data.model)
+        formData.append('type', data.type)
+        formData.append('energyConsume', data.energyConsume)
+        formData.append('warranty', data.warranty)
+        formData.append('stock', data.stock)
+        formData.append('price', data.price)
+        formData.append('install', data.install)
+        formData.append('images', data.image[0])
+        formData.append('images', data.image[1])
+        formData.append('images', data.image[2])
 
-        formData.append('enterpriseId', window.localStorage.getItem('idEnterprice'));
-
-        if (fields.length == 0) {
-            alert('ingrese todos los campos')
-        }
-
-
-        const response = await fetch('https://termoconfort-test1.herokuapp.com/api/v1/product/store', {
-            method: 'post',
-            body: formData
-        });
-
-        const information = await response.json();
-        console.log(information)
-        if (information.ok == true) {
-            setMessage(true)
-            setUpload(true)
-        }
-    }
-
-    const loadEnterprise = async () => {
-        const response = await isEnterprise(id)
-        setEnterprise(response.data.hasEnterprise)
-    }
-
-    useEffect(() => {
-        loadEnterprise()
-    }, [])
-    if (idEnterprise == null || idEnterprise == false) {
-        return (
-            <>
-                <div className="container__denied">
-                    <h2>Upssss..., esta opción solo esta habilitada para las empresas</h2>
-                    <img src={error} alt="" />
-                    <h4>Si quieres ingresar un producto registra tu empresa</h4>
-                    <a href="/datos/empresa">Registrar Mi Empresa</a>
-                </div>
-            </>
-        )
+        const response = await creatingProduct(user.token, formData)
+        console.log(response)
     }
 
     return (
@@ -158,173 +95,265 @@ const RegisterProduct = () => {
                     </Alert>
 
                 }
-                <form encType="multipart/form-data" onSubmit={sendInformation}>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={5}
-                    >
-                        <Grid item sm={6} xs={12}>
-                            <h2 className={classes.subtitle}>Información del producto</h2>
-                            <Grid container spacing={3}>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Nombre del producto"
-                                        variant="outlined"
-                                        name="name"
-                                        value={data.name}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Precio del producto"
-                                        variant="outlined"
-                                        name="price"
-                                        value={data.price}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        type="number"
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Marca del producto"
-                                        variant="outlined"
-                                        name="brand"
-                                        value={data.brand}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Capacidad"
-                                        variant="outlined"
-                                        name="capacity"
-                                        value={data.capacity}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Modelo"
-                                        variant="outlined"
-                                        name="model"
-                                        value={data.model}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Tipo"
-                                        variant="outlined"
-                                        name="type"
-                                        value={data.type}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Consumo de energia"
-                                        variant="outlined"
-                                        name="energyConsume"
-                                        value={data.energyConsume}
-                                        className={classes.input}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <TextField
-                                        fullWidth
-                                        label="Cantidad de unidades"
-                                        variant="outlined"
-                                        name="stock"
-                                        value={data.stock}
-                                        className={classes.input}
-                                        type="number"
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextareaAutosize
-                                        className={classes.stylearea}
-                                        aria-label="maximum height"
-                                        placeholder="Descripcion del producto"
-                                        defaultValue="Mi producto ..."
-                                        name="description"
-                                        value={data.description}
-                                        onChange={handleInputChanges}
-                                        required
-                                    />
-                                </Grid>
-
-                                <FormControlLabel
-                                    name="warranty"
-                                    className={classes.warranty}
-                                    control={
-                                        <Checkbox
-                                            name="warranty"
-                                            onChange={handleInputChanges}
-                                            color="primary"
-                                        />
-                                    }
-                                    label="Garantia"
-                                />
-                                <FormControlLabel
-                                    name="install"
-                                    className={classes.install}
-                                    control={
-                                        <Checkbox
-                                            name="install"
-                                            onChange={handleInputChanges}
-                                            color="primary"
-                                        />
-                                    }
-                                    label="Instalación"
-                                />
-                                <Grid item xs={12}>
-                                    <h5>Seleccione 3 imagenes</h5>
-                                    <input
-                                        type="file"
-                                        name="images"
-                                        multiple
-                                        id="fields"
-                                        onChange={handleInputChange}
-                                        required
-                                    />
-                                </Grid>
-
-                            </Grid>
-
-                            <button className="sendButton" disabled={!upload} type="submit">Publicar Producto</button>
-
+                <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+                    <h2 className={classes.subtitle}>Ingrese información del producto</h2>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Nombre del producto"
+                                variant="outlined"
+                                className={classes.input}
+                                {...register("name", { required: true })}
+                            />
+                            {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
                         </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Precio del producto"
+                                variant="outlined"
+                                type="number"
+                                {...register('price', {
+                                    required: {
+                                        value: true,
+                                        message: "Este campo es requerido"
+                                    },
+                                    minLength: {
+                                        value: 0,
+                                        message: 'Ingrese un valor válido'
+                                    }
+                                })}
+                            />
+                            {errors.price && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Cantidad de unidades"
+                                variant="outlined"
+                                type="number"
+                                {...register('stock', {
+                                    required: {
+                                        value: true,
+                                        message: "Este campo es requerido"
+                                    },
+                                    minLength: {
+                                        value: 0,
+                                        message: 'Ingrese un valor válido'
+                                    }
+                                })}
+                            />
+                            {errors.stock && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.stock.message}</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Marca del producto"
+                                variant="outlined"
+                                className={classes.input}
+                                {...register("brand", { required: true })}
+                            />
+                            {errors.brand?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> La marca es requerida</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Capacidad"
+                                variant="outlined"
+                                className={classes.input}
+                                type="number"
+                                {...register('capacity', {
+                                    required: {
+                                        value: true,
+                                        message: "Este campo es requerido"
+                                    },
+                                    minLength: {
+                                        value: 0,
+                                        message: 'Ingrese un valor válido'
+                                    }
+                                })}
+                            />
+                            {errors.capacity && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Modelo"
+                                variant="outlined"
+                                className={classes.input}
+                                {...register("model", { required: true })}
+                            />
+                            {errors.model?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El modelo es requerido</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Tipo"
+                                variant="outlined"
+                                className={classes.input}
+                                {...register("type", { required: true })}
+                            />
+                            {errors.type?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El tipo es requerido</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Consumo de energia (en watts)"
+                                variant="outlined"
+                                className={classes.input}
+                                type="number"
+                                {...register('energyConsume', {
+                                    required: {
+                                        value: true,
+                                        message: "Este campo es requerido"
+                                    },
+                                    minLength: {
+                                        value: 0,
+                                        message: 'Ingrese un valor válido'
+                                    }
+                                })}
+                            />
+                            {errors.energyConsume && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.energyConsume.message}</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <TextField
+                                fullWidth
+                                label="Precio del producto"
+                                variant="outlined"
+                                className={classes.input}
+                                type="number"
+                                {...register('price', {
+                                    required: {
+                                        value: true,
+                                        message: "Este campo es requerido"
+                                    },
+                                    minLength: {
+                                        value: 0,
+                                        message: 'Ingrese un valor válido'
+                                    }
+                                })}
+                            />
+                            {errors.price && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <TextareaAutosize
+                                className={classes.stylearea}
+                                placeholder="Descripcion del producto"
+                                {...register("description", { required: true })}
+                            />
+                            {errors.description?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> La descripción es requerida</p>}
+                        </Grid>
+
+                        <FormControlLabel
+                            name="warranty"
+                            className={classes.warranty}
+                            control={
+                                <Controller
+                                    name="warranty"
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field }) => <Checkbox {...field} />}
+                                />
+                            }
+                            label="¿Tiene Garantía?"
+                            {...register("warranty")}
+                        />
+
+                        <FormControlLabel
+                            name="install"
+                            className={classes.install}
+                            control={
+                                <Controller
+                                    name="install"
+                                    control={control}
+                                    rules={{ required: true }}
+                                    render={({ field }) => <Checkbox {...field} />}
+                                />
+                            }
+                            label="¿Tiene instalación?"
+                            {...register("install")}
+                        />
+                        <Grid item xs={12}>
+                            <h5>Seleccione 3 imagenes</h5>
+                            <input
+                                type="file"
+                                multiple
+                                {...register("image", {
+                                    required: {
+                                        value: true,
+                                        message: 'Ingrese imagenes del producto'
+                                    }
+                                })}
+                            />
+                            {errors.image && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
+                        </Grid>
+
                     </Grid>
+                    <button className="sendButton">Publicar Producto</button>
                 </form>
             </div>
         </div>
     )
 }
 export default RegisterProduct
+
+/* 
+
+
+
+e.preventDefault();
+
+setUpload(false)
+
+const formData = new FormData();
+formData.append('images', fields[0]);
+formData.append('images', fields[1]);
+formData.append('images', fields[2]);
+formData.append('name', data.name);
+formData.append('brand', data.brand);
+formData.append('price', data.price);
+formData.append('capacity', data.capacity);
+formData.append('description', data.description);
+formData.append('model', data.model);
+formData.append('type', data.type);
+formData.append('energyConsume', data.energyConsume);
+formData.append('install', data.install);
+formData.append('warranty', data.warranty);
+formData.append('stock', data.stock);
+
+formData.append('enterpriseId', window.localStorage.getItem('idEnterprice'));
+
+if (fields.length == 0) {
+    alert('ingrese todos los campos')
+}
+
+
+const response = await fetch('https://termoconfort-test1.herokuapp.com/api/v1/product/store', {
+    method: 'post',
+    body: formData
+});
+
+const information = await response.json();
+console.log(information)
+if (information.ok == true) {
+    setMessage(true)
+    setUpload(true)
+}
+
+
+const handleInputChanges = (e) => {
+    const { name, type, checked, value } = e.target;
+    const val = type === 'checkbox' ? checked : value;
+
+    setData({
+        ...data,
+        [name]: val
+    })
+}
+
+const handleInputChange = (e) => {
+    setFields(e.target.files)
+}
+*/

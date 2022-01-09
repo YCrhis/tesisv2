@@ -3,9 +3,9 @@ import { baseURL } from '../config';
 
 const URL = `${baseURL}api/v1/product`;
 
-export const list = async () => {
+export const listProducts = async (page, name) => {
     try {
-        const response = await fetch(`${URL}/filter?limit=100&page=0`, METHODS.GET());
+        const response = await fetch(`${URL}/search?limit=9&page=${page}`, METHODS.POST(name));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -14,9 +14,9 @@ export const list = async () => {
 }
 
 
-export const creatingProduct = async (body) => {
+export const creatingProduct = async (token, body) => {
     try {
-        const response = await fetch(`${URL}/store`, METHODS.POST(body));
+        const response = await fetch(`${URL}/store`, METHODS.POST_TOKEN(token, body));
         const data = await response.json();
         return data;
     }

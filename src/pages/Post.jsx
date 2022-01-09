@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { Container, Grid, Modal, Backdrop, Fade, TextField, TextareaAutosize } from "@material-ui/core"
 import Footer from "../components/footer/Footer"
@@ -8,7 +9,7 @@ import ViewStreamIcon from '@material-ui/icons/ViewStream';
 
 import community2 from '../images/community2.svg'
 import { makeStyles } from '@material-ui/core/styles';
-import { sendPost, getAll } from '../services/posts'
+import { sendPost, searchPost } from '../services/posts'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
@@ -62,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Post = () => {
 
-
     const classes = useStyles();
 
     const user = useSelector(selectUser)
@@ -73,8 +73,9 @@ const Post = () => {
     const [view, setView] = useState(5);
 
     const loadData = async () => {
-        const response = await getAll();
+        const response = await searchPost();
         setInfo(response.data);
+        console.log(response)
     }
 
     const handleOpen = () => {
@@ -151,29 +152,33 @@ const Post = () => {
                         />
                     </button>
                 </div>
+                <div className={classes.cards}>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                        spacing={5}
+                        className="post__eachContainer"
+                    >
+                        {info &&
+                            info.map(i => (
 
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    spacing={5}
-                    className="post__eachContainer"
-                >
-                    {info &&
-                        info.map(i => (
-                            <Grid item lg={view} xs={12}>
-                                <CardPost
-                                    title={i.title}
-                                    name={i.userName}
-                                    date={i.createdAt}
-                                    comments={i.comments}
-                                    content={i.content}
-                                    userImage={i.userImage}
-                                />
-                            </Grid>
-                        ))}
-                </Grid>
+                                <Grid item lg={view} xs={12}>
+                                    <Link to={`/posts/${i.id}`}>
+                                        <CardPost
+                                            title={i.title}
+                                            name={i.userName}
+                                            date={i.createdAt}
+                                            comments={i.comments}
+                                            content={i.content}
+                                            userImage={i.userImage}
+                                        />
+                                    </Link>
+                                </Grid>
+                            ))}
+                    </Grid>
+                </div>
             </Container>
 
             <Modal

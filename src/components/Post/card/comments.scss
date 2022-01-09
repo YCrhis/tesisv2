@@ -1,0 +1,17 @@
+.user__informationComments {
+  display: flex;
+  .user__informationComments__title {
+    font-size: 15px !important;
+  }
+  .user__informationCommentsDate {
+    margin-top: -2rem;
+  }
+}
+
+.user__informationCommentsAll {
+  margin-left: 12px;
+}
+.comments {
+  margin-top: 0.5rem;
+  padding: 10px;
+}

@@ -12,7 +12,9 @@ import NoResults from '../components/Errors/NoResults'
 /* styles */
 import './styles/product.scss'
 /* api */
-import { list } from '../services/products'
+import { listProducts } from '../services/products'
+import Search from '../components/search/Searh'
+import PaginationPage from '../components/pagination/Pagination'
 
 
 
@@ -20,32 +22,26 @@ import { list } from '../services/products'
 
 const Product = () => {
 
-
-
     const [load, setLoad] = useState(true);
-
     const [filter, setFilter] = useState('')
-
     const [info, setInfo] = useState()
-
-    const [text, setText] = useState('')
+    const [page, setPage] = useState(0)
+    const [pageNumber, setPageNumber] = useState()
+    const [searchName, setSearchName] = useState('')
 
 
     const getProducts = async () => {
-        const response = await list();
-
-        setInfo(response.data)
+        const response = await listProducts(page, { name: searchName });
+        setInfo(response.data.products)
+        setPageNumber(response.data.pages)
+        console.log(response)
         setLoad(false)
     }
 
-    /* const loadData = async () => {
-        const response = await list(info)
-        console.log(response)
-    } */
 
     useEffect(() => {
         getProducts();
-    }, []);
+    }, [page, searchName]);
 
 
 
@@ -54,23 +50,9 @@ const Product = () => {
         console.log(e.target.value)
     }
 
-    const getSearch = async (e) => {
+    const handleSearch = (e) => {
         e.preventDefault();
-        const response = await fetch('https://termoconfort-test1.herokuapp.com/api/v1/product/filter-post?limit=100&page=0', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Accept: 'Application/json',
-            },
-            body: JSON.stringify({ name: text })
-        })
-
-        const data = await response.json();
-        setInfo(data.data)
     }
-
-
-
 
     if (load) {
         return <Loader />
@@ -85,16 +67,11 @@ const Product = () => {
 
             {/* Items - Product */}
             <div className="container__items">
-                {/* <Search
-                    setInputText={setInputText}
-                    getSearch={getSearch}
-                /> */}
-                <form onSubmit={getSearch} className="search__form">
-                    <div className="search__box">
-                        <input type="text" className="search__bar" value={text} onChange={(e) => setText(e.target.value)} placeholder="Buscar..." />
-                        <button type="submit" className="searh__button"><i class="fas fa-search"></i></button>
-                    </div>
-                </form>
+                <Search
+                    handleSearch={handleSearch}
+                    setSearchName={setSearchName}
+                    setPage={setPage}
+                />
 
                 <div className="product-and-filter">
                     {/* Filter */}
@@ -103,17 +80,18 @@ const Product = () => {
                             <h2>FILTROS</h2>
                             <Selected
                                 setInfo={setInfo}
-                            /* filterProducts={filterProducts} */
-                            /*  newvalue={query} */
                             />
                         </div>
                     </div>
                     {/* products list*/}
                     <div className="container__products">
-                        {info === [] ?
-                            info.map(infos => (
+                        {info.length == 0 ?
+                            <NoResults />
+                            :
+                            info?.map(infos => (
                                 <ProductCard
-                                    key={infos._id}
+                                    key={infos.id}
+                                    created={infos.createdAt}
                                     name={infos.name}
                                     description={infos.description}
                                     img={infos.images}
@@ -121,9 +99,14 @@ const Product = () => {
                                     price={infos.price}
                                 />
                             ))
-                            : <NoResults />
                         }
                     </div>
+                </div>
+                <div className="container__pagination">
+                    <PaginationPage
+                        pageNumber={pageNumber}
+                        setPage={setPage}
+                    />
                 </div>
             </div>
             <Footer />

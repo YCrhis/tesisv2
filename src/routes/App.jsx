@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 
 /* private Routes */
 import PrivatesRoutesUser from './PrivatesRoutesUser'
@@ -53,42 +54,45 @@ const App = () => {
             <GlobalStyle />
             <Toggle theme={theme} toggleTheme={toggleTheme} />
             <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={Index}></Route>
-                    <Route exact path="/usuario/acciones" component={UserActions}></Route>
-                    <Route exact path="/login/usuario" component={LoginUser}></Route>
-                    <Route exact path="/login/administrador" component={LoginAdmin}></Route>
-                    <Route exact path="/registro/usuario" component={UserRegister}></Route>
-                    <Route exact path="/registrarse" component={Register}></Route>
-                    <Route exact path="/preguntas" component={Questions}></Route>
-                    {/* routes with user */}
-                    <PrivatesRoutesUser exact path="/posts" component={Post} />
-                    <PrivatesRoutesUser exact path="/mis/posts" component={MyPost} />
-                    <PrivatesRoutesUser exact path="/mi-perfil" component={Profile} />
-                    <PrivatesRoutesUser exact path="/registro/empresa" component={CompanyRegister} />
-                    {/* others */}
-                    <Route exact path="/product" component={Product}></Route>
-                    <Route exact path="/empresas" component={Companies}></Route>
-                    <Route exact path="/empresa/perfil/:id" component={CompyInfo}></Route>
-                    <Route exact path="/perfil/empresa/:id" component={MyCompany}></Route>
-                    <Route exact path="/product/information/:id" component={productInfo}></Route>
+                <AnimatePresence>
+                    <Switch>
+                        <Route exact path="/" component={Index}></Route>
+                        <Route exact path="/usuario/acciones" component={UserActions}></Route>
+                        <Route exact path="/login/usuario" component={LoginUser}></Route>
+                        <Route exact path="/login/administrador" component={LoginAdmin}></Route>
+                        <Route exact path="/registro/usuario" component={UserRegister}></Route>
+                        <Route exact path="/registrarse" component={Register}></Route>
+                        <Route exact path="/preguntas" component={Questions}></Route>
+                        {/* routes with user */}
+                        <PrivatesRoutesUser exact path="/posts" component={Post} />
+                        <PrivatesRoutesUser exact path="/mis/posts" component={MyPost} />
+                        <PrivatesRoutesUser exact path="/mi-perfil" component={Profile} />
+                        <PrivatesRoutesUser exact path="/registro/empresa" component={CompanyRegister} />
+                        <PrivatesRoutesUser exact path="/perfil/empresa/:id" component={MyCompany} />
+                        <PrivatesRoutesUser exact path="/producto/nuevo" component={RegisterProd} />
+                        {/* others */}
+                        <Route exact path="/product" component={Product}></Route>
+                        <Route exact path="/empresas" component={Companies}></Route>
+                        <Route exact path="/empresa/perfil/:id" component={CompyInfo}></Route>
 
-                    <Route exact path="/producto/nuevo" component={RegisterProd}></Route>
+                        <Route exact path="/product/information/:id" component={productInfo}></Route>
 
-                    <Route exact path="/empresa/informacion" component={CompanyValidation}></Route>
+                        <Route exact path="/empresa/informacion" component={CompanyValidation}></Route>
 
-                    <Route exact path="/empresa/acciones" component={CompanyActions}></Route>
+                        <Route exact path="/empresa/acciones" component={CompanyActions}></Route>
 
-                    <Route exact path="/posts/:id" component={EachPost}></Route>
+                        <Route exact path="/posts/:id" component={EachPost}></Route>
 
-                    {/* administrador */}
-                    <PrivatesRoutesAdmin exact path="/administrador" component={HomeAdmin} />
-                    <PrivatesRoutesAdmin exact path="/administrador/usuarios" component={UserList} />
-                    <PrivatesRoutesAdmin exact path="/administrador/empresas/espera" component={EnterpriseList} />
-                    <PrivatesRoutesAdmin exact path="/administrador/empresas/aceptados" component={EnterprisePassed} />
-                    <PrivatesRoutesAdmin exact path="/administrador/empresas/desabilitadas" component={EnterpriseDisable} />
-                    <Route component={Error} />
-                </Switch>
+                        {/* administrador */}
+                        <PrivatesRoutesAdmin exact path="/administrador" component={HomeAdmin} />
+                        <PrivatesRoutesAdmin exact path="/administrador/usuarios" component={UserList} />
+                        <PrivatesRoutesAdmin exact path="/administrador/empresas/espera" component={EnterpriseList} />
+                        <PrivatesRoutesAdmin exact path="/administrador/empresas/aceptados" component={EnterprisePassed} />
+                        <PrivatesRoutesAdmin exact path="/administrador/empresas/desabilitadas" component={EnterpriseDisable} />
+                        <Route component={Error} />
+                    </Switch>
+                </AnimatePresence>
+
             </BrowserRouter>
         </ThemeProvider>
     )

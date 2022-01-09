@@ -1,5 +1,6 @@
 @import "../../stylesGeneral/general.scss";
 .card {
+  position: relative;
   width: 80%;
   display: grid;
   grid-template-rows: 250px 150px 50px;
@@ -17,6 +18,17 @@
     transform: scale(1.05);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.171);
   }
+  .card__productNew {
+    background: linear-gradient(to right, #5b86e5, #7636dc);
+    font-size: 13px;
+    position: absolute;
+    right: -2%;
+    top: -1%;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    z-index: 1;
+  }
   .card-text {
     grid-area: text;
     margin: 25px;
@@ -27,7 +39,7 @@
       margin-bottom: 1rem;
     }
     h2 {
-      font-weight: 400;
+      font-weight: 600;
       margin-top: 6px;
       margin-bottom: 7px;
       font-size: 22px;

@@ -28,8 +28,8 @@ const Companies = () => {
     const getCompanies = async () => {
         const response = await listCompaniesPagination({ state: 1, name: searchName }, page)
         setData(response.data.enterprises)
-        console.log(await response.data.enterprises)
-        setPageNumber(await response.data.pages)
+        console.log(response.data.enterprises)
+        setPageNumber(response.data.pages)
         setLoad(null)
     }
 

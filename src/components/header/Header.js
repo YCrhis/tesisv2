@@ -88,7 +88,11 @@ const Header = () => {
                                                 {!enterprise ?
                                                     <li><Link to="/registro/empresa">Crear Empresa</Link></li>
                                                     :
-                                                    <li><Link to="/perfil/empresa/:id">Ver mi empresa</Link></li>
+                                                    <>
+                                                        <li><Link to="/perfil/empresa/:id">Ver mi empresa</Link></li>
+                                                        <li><Link to="/producto/nuevo">Publicar Productos</Link></li>
+                                                        <li><Link to="/perfil/empresa/:id">Ver mis Productos</Link></li>
+                                                    </>
                                                 }
 
                                             </ul>

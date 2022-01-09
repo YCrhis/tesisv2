@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "firebase": "^8.8.1",
     "firebase-tools": "^9.17.0",
+    "framer-motion": "^3.2.1",
     "material-table": "^1.69.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

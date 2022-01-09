@@ -1,5 +1,6 @@
 /* style */
 import './styles/home.scss'
+import { motion } from 'framer-motion'
 /* components */
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
@@ -23,7 +24,11 @@ const Index = () => {
     const user = useSelector(selectUser)
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
             <Header />
 
             <section className="section__home">
@@ -131,15 +136,15 @@ const Index = () => {
                 />
                 :
                 <ModalMessage
-                    title="DA TUS PRIMEROS PASOS"
-                    message='Crea tu cuenta para tener una funcionalidad completa'
+                    title="EMPIEZA A DAR TUS PRIMEROS PASOS"
+                    message='Crea tu cuenta para tener una funcional completa en nuestra aplicación'
                     link="/registro/usuario"
                     img="https://cdn.dribbble.com/users/1001687/screenshots/2356993/media/7f4496bc0b92905ab70198777dac3df3.gif"
                 />
             }
 
             <Footer />
-        </>
+        </motion.div>
     )
 
 }

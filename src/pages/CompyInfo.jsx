@@ -15,7 +15,6 @@ function CompyInfo(props) {
 
     const id = parseInt(companyId)
 
-    console.log(id, ' el id')
     const [data, setData] = useState();
 
     const loadData = async () => {
