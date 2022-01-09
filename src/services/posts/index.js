@@ -13,19 +13,9 @@ export const sendPost = async (body) => {
     }
 }
 
-export const myList = async (id) => {
-    try {
-        const response = await fetch(`${URL}/post/by-user/${id}?limit=10&page=0`, METHODS.GET());
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        return e.message
-    }
-}
-
 export const removePost = async (id) => {
     try {
-        const response = await fetch(`${URL}/post/remove/${id}`, METHODS.DELETE());
+        const response = await fetch(`${URL}/post/deactivate/${id}`, METHODS.PUT());
         const data = await response.json();
         return data;
     } catch (e) {
@@ -36,6 +26,16 @@ export const removePost = async (id) => {
 export const searchPost = async (body) => {
     try {
         const response = await fetch(`${URL}/post/search`, METHODS.POST(body));
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        return e.message
+    }
+}
+
+export const editPost = async (id, body) => {
+    try {
+        const response = await fetch(`${URL}/post/update/${id}`, METHODS.PUT(body));
         const data = await response.json();
         return data;
     } catch (e) {

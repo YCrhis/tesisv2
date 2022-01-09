@@ -4,7 +4,7 @@ import './comments.scss'
 
 import { AnimatePresence, motion } from 'framer-motion'
 
-const Comments = ({ content, createdAt }) => {
+const Comments = ({ comment, createdAt, name, image }) => {
 
     const myDate = () => {
         var fecha = new Date();
@@ -21,13 +21,15 @@ const Comments = ({ content, createdAt }) => {
                 exit={{ opacity: 0 }}
             >
                 <div className="user__informationComments">
-                    <Avatar />
+                    <Avatar
+                        src={image}
+                    />
                     <div className="user__informationCommentsAll">
-                        <h4 className="user__informationComments__title">Yeridi Crhis Huaman</h4>
+                        <h4 className="user__informationComments__title">{name}</h4>
                         <p className="user__informationCommentsDate">Publicado en: {myDate()}</p>
                     </div>
                 </div>
-                <p className="comments">{content}</p>
+                <p className="comments">{comment}</p>
             </motion.div>
         </AnimatePresence>
     )

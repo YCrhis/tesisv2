@@ -167,6 +167,7 @@ const Post = () => {
                                 <Grid item lg={view} xs={12}>
                                     <Link to={`/posts/${i.id}`}>
                                         <CardPost
+                                            key={i.id}
                                             title={i.title}
                                             name={i.userName}
                                             date={i.createdAt}

@@ -2,39 +2,32 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import { Container, Grid } from "@material-ui/core"
 import community2 from '../images/community2.svg'
-import { myList } from '../services/posts'
+import { searchPost, removePost } from '../services/posts'
 import { useEffect, useState } from "react"
 import CardPost from "../components/Post/card"
 
+import { useSelector } from "react-redux"
+import { selectUser } from "../features/userSlice"
+
 const MyPost = () => {
 
-    const id = window.localStorage.getItem('id')
-
-    const [data, setData] = useState()
+    const user = useSelector(selectUser);
+    const [info, setInfo] = useState([])
 
     const loadData = async () => {
-        const response = await myList(id)
-        if (response.ok) {
-            setData(response.data)
-        }
-        if (!response.ok) {
-            return (
-                <p>Data not found</p>
-            )
-        }
-        console.log(response)
+        const response = await searchPost({ userId: user.id });
+        setInfo(response.data);
     }
 
     useEffect(() => {
-        loadData();
-    }, [])
+        loadData()
+    }, [info])
 
     return (
         <>
             <Header />
             <Container maxWitdh="lg" className="post__containerAll">
-                <h1>Mis Posts</h1>
-                <img src={community2} alt="" />
+                <h1>Mis publicaciones</h1>
                 <Grid
                     container
                     direction="row"
@@ -43,18 +36,25 @@ const MyPost = () => {
                     spacing={5}
                     className="post__eachContainer"
                 >
-                    {data &&
-                        data.map((post) => (
+                    {info?.length === 0 ?
+                        <img src={community2} alt="" width={500} />
+                        :
+                        info?.map((i) => (
                             <Grid item lg={5} xs={12}>
                                 <CardPost
-                                    key={post._id}
-                                    id={post._id}
-                                    title={post.title}
-                                    description={post.content}
-                                    important={post._id}
+                                    key={i.id}
+                                    id={i.id}
+                                    title={i.title}
+                                    name={i.userName}
+                                    date={i.createdAt}
+                                    comments={i.comments}
+                                    content={i.content}
+                                    userImage={i.userImage}
+                                    deletePost={true}
                                 />
                             </Grid>
                         ))
+
                     }
                 </Grid>
             </Container>

@@ -14,11 +14,12 @@ const EachPost = (props) => {
     const user = useSelector(selectUser);
     const myUser = user.id
 
+    console.log(myUser)
+
     const [post, setPost] = useState([])
     const [comments, setCommets] = useState([])
 
     const companyId = props.match.params.id;
-
     const id = parseInt(companyId)
 
     const loadPost = async () => {
@@ -30,6 +31,7 @@ const EachPost = (props) => {
         const commentsResponse = await loadComments(eachComments)
         setPost(response.data[0])
         setCommets(commentsResponse.data)
+        console.log(commentsResponse.data)
     }
 
     const [content, setContent] = useState('')
@@ -97,8 +99,10 @@ const EachPost = (props) => {
                             <div className="each__comment">
                                 <Comments
                                     key={i.id}
-                                    content={i.content}
+                                    comment={i.comment}
                                     createdAt={i.createdAt}
+                                    name={i.name}
+                                    image={i.image}
                                 />
                             </div>
                         ))
