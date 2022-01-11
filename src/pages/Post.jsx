@@ -7,6 +7,7 @@ import CardPost from "../components/Post/card"
 import ViewColumnIcon from '@material-ui/icons/ViewColumn';
 import ViewStreamIcon from '@material-ui/icons/ViewStream';
 import Loader from '../components/loader/Loader'
+import PaginationPage from '../components/pagination/Pagination'
 
 import community2 from '../images/community2.svg'
 import { makeStyles } from '@material-ui/core/styles';
@@ -73,14 +74,16 @@ const Post = () => {
     const [open, setOpen] = useState(false);
     const [searchName, setSearchName] = useState('')
     const [page, setPage] = useState(0)
+    const [pageNumber, setPageNumber] = useState()
     const [loadInformation, setLoadInformation] = useState(true)
 
     const [view, setView] = useState(5);
 
     const loadData = async () => {
-        const response = await searchPost({ title: searchName }, page);
-        setInfo(response.data);
-        setLoadInformation(null)
+        const response = await searchPost(page, { title: searchName });
+        setInfo(response.data.posts);
+        setPageNumber(response.data.pages);
+        setLoadInformation(null);
     }
 
     const handleOpen = () => {
@@ -118,6 +121,7 @@ const Post = () => {
 
     useEffect(() => {
         loadData()
+        /* eslint-disable */
     }, [searchName, page])
 
     if (loadInformation) {
@@ -137,9 +141,9 @@ const Post = () => {
                         <h1>Posts de la comunidad</h1>
                         <p>Aqui puedes encontrar todas las preguntas realizadas por nuestros usuarios. Puedes responder las preguntas que encuentres, además puedes crear tus propias preguntas, solo recurda seguir nuestras reglas, de lo contrario tu cuenta puede ser eliminada.</p>
                         <ul>
-                            <li><i class="fas fa-eye"></i> Ser respetuso con tus respuestas</li>
-                            <li><i class="fas fa-eye"></i> Tus preguntas deben ser bien formuladas</li>
-                            <li><i class="fas fa-eye"></i> Respeta las opiniones de todos los usuarios</li>
+                            <li><i className="fas fa-eye"></i> Ser respetuso con tus respuestas</li>
+                            <li><i className="fas fa-eye"></i> Tus preguntas deben ser bien formuladas</li>
+                            <li><i className="fas fa-eye"></i> Respeta las opiniones de todos los usuarios</li>
                         </ul>
                     </div>
 
@@ -152,7 +156,7 @@ const Post = () => {
                 />
 
                 <div className="post__containerComment animate__animated animate__bounce animate__infinite" onClick={handleOpen}>
-                    <i class="fas fa-pencil-alt"></i><br />
+                    <i className="fas fa-pencil-alt"></i><br />
                     <button type="button">
                         Comenzar Pregunta
                     </button>
@@ -182,8 +186,8 @@ const Post = () => {
                         spacing={5}
                         className="post__eachContainer"
                     >
-                        {info &&
-                            info.map(i => (
+                        {
+                            info?.map(i => (
 
                                 <Grid item lg={view} xs={12} key={i.id}>
                                     <Link to={`/posts/${i.id}`}>
@@ -197,8 +201,16 @@ const Post = () => {
                                         />
                                     </Link>
                                 </Grid>
-                            ))}
+                            ))
+                        }
                     </Grid>
+                </div>
+
+                <div className="container__pagination">
+                    <PaginationPage
+                        pageNumber={pageNumber}
+                        setPage={setPage}
+                    />
                 </div>
             </Container>
 
@@ -231,7 +243,6 @@ const Post = () => {
                                 className={classes.stylearea}
                                 aria-label="maximum height"
                                 placeholder="Ingresa descripcion"
-                                defaultValue="Me gustaria ..."
                                 name="content"
                                 value={fields.content}
                                 onChange={handleChange}

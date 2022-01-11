@@ -37,6 +37,7 @@ const Myproduct = () => {
 
     useEffect(() => {
         getProducts();
+        /* eslint-disable */
     }, [page, searchName]);
 
     const handleSearch = (e) => {
@@ -67,7 +68,7 @@ const Myproduct = () => {
 
                     {/* products list*/}
                     <div className="container__products">
-                        {info?.length == 0 ?
+                        {info?.length === 0 ?
                             <NoResults />
                             :
                             info?.map(infos => (

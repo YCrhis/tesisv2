@@ -5,7 +5,6 @@ import { selectUser } from '../features/userSlice'
 const PrivatesRoutesAdmin = ({ component: Component, ...rest }) => {
 
     const user = useSelector(selectUser)
-    console.log(user, 'private route')
 
     return (
         <Route {...rest}>

@@ -43,7 +43,7 @@ const UserRegister = () => {
     return (
         <>
             <Header />
-            {loader == false ?
+            {loader === false ?
                 <div className="register__user">
                     <div className="register__leftSection">
                         <h2>Creación <br />de Usuario</h2>

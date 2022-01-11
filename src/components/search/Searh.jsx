@@ -14,6 +14,7 @@ const Search = ({ setSearchName, setPage }) => {
             <form className="search__form wow animate__animated animate__jackInTheBox animate__slow">
                 <div className="search__box">
                     <input type="text" className="search__bar" placeholder="Buscar..." onChange={handleChange} />
+                    {/* eslint-disable */}
                     <button type="submit" className="searh__button" type="submit"><i className="fas fa-search"></i></button>
                 </div>
             </form>

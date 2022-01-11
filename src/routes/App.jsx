@@ -76,7 +76,7 @@ const App = () => {
                         <Route exact path="/empresas" component={Companies}></Route>
                         <Route exact path="/empresa/perfil/:id" component={CompyInfo}></Route>
 
-                        <Route exact path="/product/information/:id" component={productInfo}></Route>
+                        <Route path="/product/information/:id" component={productInfo}></Route>
 
                         <Route exact path="/empresa/informacion" component={CompanyValidation}></Route>
 

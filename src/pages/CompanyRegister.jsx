@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Header from '../components/header/Header'
 
 import User from '../images/user.svg'
@@ -16,7 +16,7 @@ import { selectUser, loginCompany } from '../features/userSlice';
 
 const CompanyRegister = () => {
 
-    const { register, formState: { errors }, handleSubmit, watch } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [activeStep, setActiveStep] = useState(0)
 
@@ -25,11 +25,6 @@ const CompanyRegister = () => {
     const dispatch = useDispatch()
 
     const user = useSelector(selectUser)
-
-    const password = useRef({});
-
-    password.current = watch("password", "");
-
 
     const onSubmit = async (data) => {
         setLoad(true)
@@ -104,7 +99,7 @@ const CompanyRegister = () => {
                                                 fullWidth
                                                 {...register("name", { required: true })}
                                             />
-                                            {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
+                                            {errors.name?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
                                         </Grid>
                                         <Grid item lg={6} xs={12}>
                                             <TextField
@@ -123,7 +118,7 @@ const CompanyRegister = () => {
                                                     }
                                                 })}
                                             />
-                                            {errors.email && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
+                                            {errors.email && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -146,7 +141,7 @@ const CompanyRegister = () => {
                                                     }
                                                 })}
                                             />
-                                            {errors.phone_number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.phone_number.message}</p>}
+                                            {errors.phone_number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.phone_number.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextareaAutosize
@@ -159,7 +154,7 @@ const CompanyRegister = () => {
                                                     }
                                                 })}
                                             />
-                                            {errors.description && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.description.message}</p>}
+                                            {errors.description && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.description.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <p className='optinal__textForm'>* Las redes sociales son opcionales</p>
@@ -176,7 +171,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -190,7 +185,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -204,7 +199,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -218,7 +213,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -232,7 +227,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
 
                                         <Grid item xs={12} lg={6}>
@@ -248,7 +243,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.workers && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.workers.message}</p>}
+                                            {errors.workers && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.workers.message}</p>}
                                         </Grid>
                                         <Grid item xs={12} lg={6}>
                                             <TextField
@@ -262,7 +257,7 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.ruc && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.ruc.message}</p>}
+                                            {errors.ruc && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.ruc.message}</p>}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
@@ -276,12 +271,12 @@ const CompanyRegister = () => {
                                                     },
                                                 })}
                                             />
-                                            {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                            {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                         </Grid>
 
                                         <Grid item xs={12}>
                                             <div id="foto">
-                                                <p>Foto de Perfil <i class="fas fa-file-image"></i></p>
+                                                <p>Foto de Perfil <i className="fas fa-file-image"></i></p>
                                                 <input
                                                     type="file"
                                                     id="file"
@@ -292,7 +287,7 @@ const CompanyRegister = () => {
                                                         }
                                                     })}
                                                 />
-                                                {errors.image && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
+                                                {errors.image && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
                                             </div>
 
                                         </Grid>

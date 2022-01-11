@@ -61,6 +61,7 @@ const EachPost = (props) => {
 
     useEffect(() => {
         loadPost()
+        /* eslint-disable */
     }, [comments])
 
     if (loadingPost) {
