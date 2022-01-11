@@ -8,7 +8,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './stylesRegister.scss';
+import Loader from '../../loader/Loader';
 
+import { useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux'
@@ -47,10 +49,12 @@ const RegisterProduct = () => {
 
     const company = useSelector(selectCompany)
     const user = useSelector(selectUser)
+    const history = useHistory()
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const [message, setMessage] = useState(null)
+    const [load, setLoad] = useState(false)
 
 
     const { control } = useForm({
@@ -62,6 +66,7 @@ const RegisterProduct = () => {
 
 
     const onSubmit = async (data) => {
+        setLoad(true)
         const formData = new FormData();
         formData.append('enterpriseId', company.id)
         formData.append('name', data.name)
@@ -80,7 +85,18 @@ const RegisterProduct = () => {
         formData.append('images', data.image[2])
 
         const response = await creatingProduct(user.token, formData)
-        console.log(response)
+        if (response.ok === false) {
+            alert('Algo salio mal, vuelve a intentarlo')
+        }
+        if (response.ok === true) {
+            history.push('/empresa/productos')
+        }
+    }
+
+    if (load) {
+        return (
+            <Loader />
+        )
     }
 
     return (
@@ -98,7 +114,7 @@ const RegisterProduct = () => {
                 <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
                     <h2 className={classes.subtitle}>Ingrese información del producto</h2>
                     <Grid container spacing={3}>
-                        <Grid item xs={12}>
+                        <Grid item lg={6} xs={12}>
                             <TextField
                                 fullWidth
                                 label="Nombre del producto"
@@ -107,25 +123,6 @@ const RegisterProduct = () => {
                                 {...register("name", { required: true })}
                             />
                             {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
-                        </Grid>
-                        <Grid item sm={6} xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Precio del producto"
-                                variant="outlined"
-                                type="number"
-                                {...register('price', {
-                                    required: {
-                                        value: true,
-                                        message: "Este campo es requerido"
-                                    },
-                                    minLength: {
-                                        value: 0,
-                                        message: 'Ingrese un valor válido'
-                                    }
-                                })}
-                            />
-                            {errors.price && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField

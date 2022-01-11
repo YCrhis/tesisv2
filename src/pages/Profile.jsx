@@ -152,14 +152,12 @@ const Profile = () => {
 
         const response = await updateUser(newUser.id, newData, newUser.token)
 
-        console.log(response, ' este memsmo es')
-
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginUser(response.data)
             )
         }
-        if (response.ok == false) {
+        if (response.ok === false) {
             alert('Intenta poner otros datos')
         }
         setOpen(false)
@@ -175,7 +173,7 @@ const Profile = () => {
                         src={newUser?.profileImage}
                     />
                     <h1 className={classes.name}>{newUser?.name}</h1>
-                    <p className={classes.phone}><i class="fas fa-phone-volume"></i> {newUser?.phoneNumber}</p>
+                    <p className={classes.phone}><i className="fas fa-phone-volume"></i> {newUser?.phoneNumber}</p>
                 </div>
                 <div className={classes.information}>
                     <Grid
@@ -249,7 +247,7 @@ const Profile = () => {
                                             defaultValue={newUser?.name}
                                             {...register("name", { required: true })}
                                         />
-                                        {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
+                                        {errors.name?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -273,7 +271,7 @@ const Profile = () => {
                                                 }
                                             })}
                                         />
-                                        {errors.phoneNumber && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.phoneNumber.message}</p>}
+                                        {errors.phoneNumber && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.phoneNumber.message}</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -287,12 +285,13 @@ const Profile = () => {
                                                     message: "El campo es obligatorio"
                                                 },
                                                 pattern: {
+                                                    /* eslint-disable */
                                                     value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                                                     message: 'El formato de email no es correcto'
                                                 }
                                             })}
                                         />
-                                        {errors.email && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
+                                        {errors.email && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -306,7 +305,7 @@ const Profile = () => {
                                                 }
                                             })}
                                         />
-                                        {errors.password && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.password.message}</p>}
+                                        {errors.password && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.password.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div>

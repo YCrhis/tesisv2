@@ -57,8 +57,6 @@ const EnterprisePassed = () => {
 
     const [companies, setCompanies] = useState([])
 
-    let mounted = true
-
     const loadUsers = async () => {
         const response = await listCompaniesAll({ state: 1 })
         setCompanies(response.data.enterprises)

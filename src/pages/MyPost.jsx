@@ -2,9 +2,10 @@ import Footer from "../components/footer/Footer"
 import Header from "../components/header/Header"
 import { Container, Grid } from "@material-ui/core"
 import community2 from '../images/community2.svg'
-import { searchPost, removePost } from '../services/posts'
+import { searchPost } from '../services/posts'
 import { useEffect, useState } from "react"
 import CardPost from "../components/Post/card"
+import Loader from "../components/loader/Loader"
 
 import { useSelector } from "react-redux"
 import { selectUser } from "../features/userSlice"
@@ -13,15 +14,24 @@ const MyPost = () => {
 
     const user = useSelector(selectUser);
     const [info, setInfo] = useState([])
+    const [loadPost, setLoadPost] = useState(true)
 
     const loadData = async () => {
         const response = await searchPost({ userId: user.id });
         setInfo(response.data);
+        setLoadPost(null)
     }
 
     useEffect(() => {
         loadData()
-    }, [info])
+        /* eslint-disable */
+    }, [])
+
+    if (loadPost) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <>
@@ -51,6 +61,7 @@ const MyPost = () => {
                                     content={i.content}
                                     userImage={i.userImage}
                                     deletePost={true}
+                                    loadNewData={loadData}
                                 />
                             </Grid>
                         ))

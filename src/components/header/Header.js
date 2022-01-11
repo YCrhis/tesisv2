@@ -37,13 +37,19 @@ const Header = () => {
 
     useEffect(() => {
         isEnterprise()
+        /* eslint-disable */
     }, [enterprise])
 
     return (
         <>
             <nav>
                 <div className="wrapper">
-                    <div className="logo"><Link to="/">TermoConfort</Link></div>
+                    <div className="logo">
+                        <Link to="/">
+                            <img src="https://cdn.discordapp.com/attachments/761675275451760710/924704758076411934/termoconfort-logo-2-aire-acondicionado-instalacion.png" alt="Termoconfort" />
+                            TermoConfort
+                        </Link>
+                    </div>
                     <input type="radio" name="slider" id="menu-btn" />
                     <input type="radio" name="slider" id="close-btn" />
 
@@ -66,6 +72,7 @@ const Header = () => {
 
                         {newUser &&
                             <li>
+                                {/* eslint-disable */}
                                 <a href="#" className="desktop-item">Opciones <i className="fas fa-chevron-down"></i></a>
                                 <input type="checkbox" id="showMega" />
                                 <label htmlFor="showMega" className="mobile-item">Optiones</label>
@@ -89,9 +96,9 @@ const Header = () => {
                                                     <li><Link to="/registro/empresa">Crear Empresa</Link></li>
                                                     :
                                                     <>
-                                                        <li><Link to="/perfil/empresa/:id">Ver mi empresa</Link></li>
+                                                        <li><Link to="/perfil/empresa">Ver mi empresa</Link></li>
                                                         <li><Link to="/producto/nuevo">Publicar Productos</Link></li>
-                                                        <li><Link to="/perfil/empresa/:id">Ver mis Productos</Link></li>
+                                                        <li><Link to="/empresa/productos">Ver mis Productos</Link></li>
                                                     </>
                                                 }
 

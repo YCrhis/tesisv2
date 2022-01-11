@@ -1,15 +1,22 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 /* style */
 import './loader.scss'
 
 const Loader = () => {
     return (
-        <div className="loader-container">
-            <h2>TRABAJAMOS EN ELLO....</h2>
-            <img src="https://alianzadigital.com.ar/wp-content/uploads/2021/02/imagen-desarrollo-web.png" alt="" />
-            <div className="loader">Buscando...</div>
-            <i>Cargando Información</i>
-        </div>
+        <motion.div
+            className="loader__all"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <div className="loader__container">
+                <h2>Estamos trabajando en ello</h2>
+                <img src="https://cdn.dribbble.com/users/205347/screenshots/2440490/photograph-_-film-icon-v1.0.gif" alt="" />
+                <p>Cargando Información</p>
+            </div>
+        </motion.div>
     )
 }
 export default Loader

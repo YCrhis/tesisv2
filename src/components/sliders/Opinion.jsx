@@ -65,7 +65,7 @@ const CardOpinion = () => {
             >
 
                 {data.map((i) => (
-                    <SwiperSlide >
+                    <SwiperSlide key={i.name}>
                         <Opinion
                             id={i.name}
                             name={i.name}

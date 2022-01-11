@@ -1,6 +1,5 @@
 import { Avatar, Grid, TextField, TextareaAutosize } from '@material-ui/core';
 import ModalUpdate from '../../modal/update'
-import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { useRef } from 'react';
 import { editPost, removePost } from '../../../services/posts';
@@ -9,15 +8,13 @@ import { selectUser } from '../../../features/userSlice';
 
 import './card.scss'
 
-const CardPost = ({ title, name, date, content, comments, userImage, deletePost, id }) => {
+const CardPost = ({ title, name, date, content, comments, userImage, deletePost, id, loadNewData }) => {
 
     const childRef = useRef();
 
     const user = useSelector(selectUser)
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
-    const [update, setUpdate] = useState()
 
     const cutText = () => {
         const newString = content.substring(0, 170) + ' ......'
@@ -33,6 +30,7 @@ const CardPost = ({ title, name, date, content, comments, userImage, deletePost,
     const deleteMyPost = async () => {
         const response = await removePost(id)
         console.log(response)
+        loadNewData()
     }
 
     const onSubmit = async (data) => {
@@ -44,11 +42,11 @@ const CardPost = ({ title, name, date, content, comments, userImage, deletePost,
         const response = await editPost(id, updateInformation)
         console.log(response, ' este es')
         childRef.current.handleClose();
+        loadNewData()
     }
 
     const editPostNew = () => {
         childRef.current.handleOpen();
-
     }
 
     return (

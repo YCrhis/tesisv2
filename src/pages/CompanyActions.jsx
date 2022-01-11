@@ -58,7 +58,7 @@ const CompanyActions = () => {
                                 <li>Participar de nuestros foros</li>
                                 <li>Tener comunicación con posibles clientes</li>
                             </ul>
-                            <img src={Company} className={classes.imagen}></img>
+                            <img src={Company} className={classes.imagen} alt="company"></img>
                         </Grid>
                     </Grid>
                 </Container>

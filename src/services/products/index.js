@@ -26,18 +26,6 @@ export const creatingProduct = async (token, body) => {
 }
 
 
-export const showProduct = async (id) => {
-    try {
-        const response = await fetch(`${URL}/show/${id}`, METHODS.GET(id));
-        const data = await response.json();
-        return data;
-    }
-    catch (error) {
-        return error;
-    }
-}
-
-
 export const enterpriseProducts = async (id) => {
     try {
         const response = await fetch(`${URL}/by-enterprise/${id}?limit=50&page=0`, METHODS.GET(id));

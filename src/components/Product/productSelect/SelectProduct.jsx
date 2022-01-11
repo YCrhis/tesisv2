@@ -21,14 +21,6 @@ const SelectProduct = ({ data }) => {
         const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
         document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
     }
-    /* 
-
-    const renderImage = () => {
-        for (let i = 0; i < data.images.lenght; i++) {
-
-        }
-    } */
-
 
     return (
 
@@ -40,19 +32,20 @@ const SelectProduct = ({ data }) => {
                         <div className="img-display">
                             <div className="img-showcase">
                                 {
+                                    /* eslint-disable */
                                     data.images.map(i => (
-                                        <img src={i.url}
-                                            alt="product-image" />
+                                        <img src={i.url} key={i.url} />
                                     ))
                                 }
                             </div>
                         </div>
                         <div className="img-select">
                             {
+                                /* eslint-disable  */
                                 data.images.map((i, index) => (
                                     <div className="img-item">
-                                        <a href="" data-id={index + 1}>
-                                            <img src={i.url} />
+                                        <a href="#" data-id={index + 1} key={i.url}>
+                                            <img src={i.url} key={i.url} />
                                         </a>
                                     </div>
                                 ))
@@ -60,7 +53,7 @@ const SelectProduct = ({ data }) => {
                         </div>
                     </div>
                     {/* section-information */}
-                    <div class="product-content wow animate__animated animate__fadeInRight">
+                    <div className="product-content wow animate__animated animate__fadeInRight">
                         <div className="product-content-all">
 
                             <h2 className="product-title">{data.name}</h2>
@@ -69,7 +62,7 @@ const SelectProduct = ({ data }) => {
                                 <div className="name-price-product">
                                     <h2>Sobre el Producto </h2>
                                     <div className="product-price">
-                                        <h2><span>$/. </span>{data.price}</h2>
+                                        <h2><span>S/. </span>{data.price}</h2>
                                     </div>
                                 </div>
                                 <p>{data.description}</p>
@@ -86,9 +79,9 @@ const SelectProduct = ({ data }) => {
                             </div>
                             <div className="social-links">
                                 <p>Informacion del Vendedor</p>
-                                <a href=""><i className="fab fa-facebook-f"></i></a>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                                <a href=""><i class="fab fa-youtube"></i></a>
+                                <a href="/"><i className="fab fa-facebook-f"></i></a>
+                                <a href="/"><i className="fab fa-twitter"></i></a>
+                                <a href="/"><i className="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>

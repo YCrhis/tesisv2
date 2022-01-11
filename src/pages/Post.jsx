@@ -6,10 +6,12 @@ import Header from "../components/header/Header"
 import CardPost from "../components/Post/card"
 import ViewColumnIcon from '@material-ui/icons/ViewColumn';
 import ViewStreamIcon from '@material-ui/icons/ViewStream';
+import Loader from '../components/loader/Loader'
 
 import community2 from '../images/community2.svg'
 import { makeStyles } from '@material-ui/core/styles';
 import { sendPost, searchPost } from '../services/posts'
+import Search from '../components/search/Searh'
 
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/userSlice'
@@ -69,13 +71,16 @@ const Post = () => {
 
     const [info, setInfo] = useState()
     const [open, setOpen] = useState(false);
+    const [searchName, setSearchName] = useState('')
+    const [page, setPage] = useState(0)
+    const [loadInformation, setLoadInformation] = useState(true)
 
     const [view, setView] = useState(5);
 
     const loadData = async () => {
-        const response = await searchPost();
+        const response = await searchPost({ title: searchName }, page);
         setInfo(response.data);
-        console.log(response)
+        setLoadInformation(null)
     }
 
     const handleOpen = () => {
@@ -104,12 +109,22 @@ const Post = () => {
     const submit = async () => {
         const response = await sendPost(fields)
         setOpen(false)
+        loadData()
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault();
     }
 
     useEffect(() => {
         loadData()
-    }, [info])
+    }, [searchName, page])
 
+    if (loadInformation) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <>
@@ -129,6 +144,12 @@ const Post = () => {
                     </div>
 
                 </div>
+
+                <Search
+                    handleSearch={handleSearch}
+                    setSearchName={setSearchName}
+                    setPage={setPage}
+                />
 
                 <div className="post__containerComment animate__animated animate__bounce animate__infinite" onClick={handleOpen}>
                     <i class="fas fa-pencil-alt"></i><br />
@@ -164,10 +185,9 @@ const Post = () => {
                         {info &&
                             info.map(i => (
 
-                                <Grid item lg={view} xs={12}>
+                                <Grid item lg={view} xs={12} key={i.id}>
                                     <Link to={`/posts/${i.id}`}>
                                         <CardPost
-                                            key={i.id}
                                             title={i.title}
                                             name={i.userName}
                                             date={i.createdAt}

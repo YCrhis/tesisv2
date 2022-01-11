@@ -51,7 +51,7 @@ const CompanyRegister = () => {
         console.log(newData)
         const response = await newCompany(user.token, newData)
         console.log(response, ':) result')
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginCompany(response.data)
             )
@@ -60,7 +60,7 @@ const CompanyRegister = () => {
         }
     }
 
-    if (load == true) {
+    if (load === true) {
         return (<ApiLoader />)
     }
 
@@ -78,7 +78,7 @@ const CompanyRegister = () => {
                     <MyStepper
                         activeStep={activeStep}
                     />
-                    {activeStep == 1 ?
+                    {activeStep === 1 ?
 
                         <div className="succsess__message">
                             <h1>Tus datos fueron subidos exitósamente</h1>
@@ -117,6 +117,7 @@ const CompanyRegister = () => {
                                                         message: "El campo es obligatorio"
                                                     },
                                                     pattern: {
+                                                        /* eslint-disable */
                                                         value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                                                         message: 'El formato de email no es correcto'
                                                     }

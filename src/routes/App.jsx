@@ -7,7 +7,6 @@ import PrivatesRoutesUser from './PrivatesRoutesUser'
 import PrivatesRoutesAdmin from './PrivatesRoutesAdmin'
 /* pages */
 import Index from '../pages/index'
-import Application from '../pages/application'
 import Product from '../pages/products'
 import Error from '../pages/Error'
 import Companies from '../pages/Companies'
@@ -42,6 +41,7 @@ import Profile from '../pages/Profile'
 import LoginAdmin from '../components/login/LoginAdmin'
 import UserList from '../pages/UserList'
 import EnterpriseDisable from '../pages/EnterpriseDisable'
+import Myproduct from '../pages/Myproducts'
 
 
 const App = () => {
@@ -68,8 +68,9 @@ const App = () => {
                         <PrivatesRoutesUser exact path="/mis/posts" component={MyPost} />
                         <PrivatesRoutesUser exact path="/mi-perfil" component={Profile} />
                         <PrivatesRoutesUser exact path="/registro/empresa" component={CompanyRegister} />
-                        <PrivatesRoutesUser exact path="/perfil/empresa/:id" component={MyCompany} />
+                        <PrivatesRoutesUser exact path="/perfil/empresa" component={MyCompany} />
                         <PrivatesRoutesUser exact path="/producto/nuevo" component={RegisterProd} />
+                        <PrivatesRoutesUser exact path="/empresa/productos" component={Myproduct} />
                         {/* others */}
                         <Route exact path="/product" component={Product}></Route>
                         <Route exact path="/empresas" component={Companies}></Route>

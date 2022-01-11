@@ -8,6 +8,7 @@ import { getEnterprise } from '../services/login'
 
 import { useSelector } from "react-redux";
 import { selectCompany, selectUser } from "../features/userSlice";
+import Loader from '../components/loader/Loader'
 
 import { useState } from "react";
 import { useEffect } from "react";
@@ -131,17 +132,18 @@ const MyCompany = (props) => {
     const [data, setData] = useState();
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState([]);
+    const [loadCompany, setLoadCompany] = useState(true)
 
     const isEnterprise = async () => {
         const response = await getEnterprise(newUser?.id);
         console.log(response, 'has enterprise')
-        if (response.data.state == 0 && response.data.state == 2) {
+        if (response.data.state === 0 && response.data.state === 2) {
             setIsCompany(true)
         }
-        if (response.data.state == 1) {
+        if (response.data.state === 1) {
             setIsCompany(false)
         }
-
+        setLoadCompany(null)
     }
 
     const handleOpen = () => {
@@ -156,8 +158,6 @@ const MyCompany = (props) => {
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     }
-
-
 
     const onSubmit = async (data) => {
 
@@ -184,12 +184,12 @@ const MyCompany = (props) => {
 
         console.log(response, 'este memesmo ')
 
-        if (response.ok == true) {
+        if (response.ok === true) {
             dispatch(
                 loginCompany(response.data)
             )
         }
-        if (response.ok == false) {
+        if (response.ok === false) {
             alert('Intenta poner otros datos')
         }
 
@@ -209,8 +209,16 @@ const MyCompany = (props) => {
 
     useEffect(() => {
         loadData();
+        /* eslint-disable */
         isEnterprise();
     }, [])
+
+
+    if (loadCompany) {
+        return (
+            <Loader />
+        )
+    }
 
     if (isCompany) {
         return (
@@ -249,8 +257,8 @@ const MyCompany = (props) => {
                             <ul>
                                 <li><i className="fas fa-briefcase"></i>Trabajadores: <span> {user?.workers}</span></li>
                                 <li><i className="fas fa-wifi"></i>Link de tu sitio web: <span> {user?.webPage} </span></li>
-                                <li><i class="fas fa-user-tie"></i>Cantidad de trabajadores: <span> {user?.workers} </span></li>
-                                <li><i class="far fa-clock"></i>Fecha de creación: <span> {myDate()} </span></li>
+                                <li><i className="fas fa-user-tie"></i>Cantidad de trabajadores: <span> {user?.workers} </span></li>
+                                <li><i className="far fa-clock"></i>Fecha de creación: <span> {myDate()} </span></li>
                             </ul>
                         </div>
                         <button className="button__eliminar" onClick={handleOpen}><i className="fas fa-pencil-alt"></i> Actualizar datos</button>
@@ -290,7 +298,7 @@ const MyCompany = (props) => {
                                             defaultValue={user?.name}
                                             {...register("name", { required: true })}
                                         />
-                                        {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
+                                        {errors.name?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -305,7 +313,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.workers}
                                         />
-                                        {errors.email && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
+                                        {errors.email && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.email.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextareaAutosize
@@ -323,7 +331,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.description}
                                         />
-                                        {errors.description && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.description.message}</p>}
+                                        {errors.description && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.description.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <p className='optinal__textForm'>* Las redes sociales son opcionales</p>
@@ -341,7 +349,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.linkedin}
                                         />
-                                        {errors.number && <p><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.number && <p><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -356,7 +364,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.facebook}
                                         />
-                                        {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -371,7 +379,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.twitter}
                                         />
-                                        {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -386,7 +394,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.instagram}
                                         />
-                                        {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -401,7 +409,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.webPage}
                                         />
-                                        {errors.number && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -417,7 +425,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.workers}
                                         />
-                                        {errors.workers && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.workers.message}</p>}
+                                        {errors.workers && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.workers.message}</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
@@ -432,7 +440,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.ruc}
                                         />
-                                        {errors.ruc && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.ruc.message}</p>}
+                                        {errors.ruc && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.ruc.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <div>

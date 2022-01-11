@@ -9,7 +9,7 @@ const PrivatesRoutesAdmin = ({ component: Component, ...rest }) => {
 
     return (
         <Route {...rest}>
-            {user && user.role == 'ADMIN' ?
+            {user && user.role === 'ADMIN' ?
                 <Component />
                 :
                 <Redirect

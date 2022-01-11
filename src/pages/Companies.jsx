@@ -23,12 +23,12 @@ const Companies = () => {
 
     useEffect(() => {
         getCompanies();
+        /* eslint-disable */
     }, [page, searchName]);
 
     const getCompanies = async () => {
         const response = await listCompaniesPagination({ state: 1, name: searchName }, page)
         setData(response.data.enterprises)
-        console.log(response.data.enterprises)
         setPageNumber(response.data.pages)
         setLoad(null)
     }
@@ -43,14 +43,14 @@ const Companies = () => {
     return (
         <>
             <Header />
-            <div class="container-workers">
+            <div className="container-workers">
                 <Search
                     handleSearch={handleSearch}
                     setSearchName={setSearchName}
                     setPage={setPage}
                 />
-                <div class="each-worker">
-                    {data.length == 0 ? (
+                <div className="each-worker">
+                    {data.length === 0 ? (
                         <NoResults />
                     ) : (
                         data.map((infos) => (

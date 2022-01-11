@@ -77,6 +77,7 @@ const UserRegister = () => {
                                                     message: "El campo es obligatorio"
                                                 },
                                                 pattern: {
+                                                    /* eslint-disable */
                                                     value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                                                     message: 'El formato de email no es correcto'
                                                 }

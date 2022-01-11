@@ -56,7 +56,7 @@ const UserActions = () => {
                                 <li>Podras contactar con cualquier empresa</li>
                                 <li>Participar de nuestros foros</li>
                             </ul>
-                            <img src={User} className={classes.imagen}></img>
+                            <img src={User} className={classes.imagen} alt="Imagen"></img>
                         </Grid>
                     </Grid>
                 </Container>

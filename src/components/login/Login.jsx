@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import TextField from '@material-ui/core/TextField';
-import ApiLoader from '../loader/ApiLoader';
+import Loader from '../loader/Loader';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../features/userSlice';
 
@@ -72,6 +72,7 @@ function LoginUser() {
                                     label="Usuario"
                                     variant="outlined"
                                     fullWidth
+                                    type='email'
                                     margin="dense"
                                     name="email"
                                     onChange={handleChange}
@@ -80,6 +81,7 @@ function LoginUser() {
                                     label="Contraseña"
                                     variant="outlined"
                                     fullWidth
+                                    type='password'
                                     margin="dense"
                                     name='password'
                                     onChange={handleChange}
@@ -93,7 +95,7 @@ function LoginUser() {
                         </div>
                     </div>
                     :
-                    <ApiLoader />
+                    <Loader />
             }
 
         </div>

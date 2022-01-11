@@ -18,7 +18,7 @@ const ProductCard = ({ name, img, id, price, createdAt }) => {
 
     return (
         <div className="card wow animate__animated animate__fadeIn animate__slow">
-            {newDate == false &&
+            {newDate === false &&
                 <div className="card__productNew">
                     <p>Nuevo</p>
                 </div>

@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import { useSelector } from "react-redux";
 import Comments from '../components/Post/card/comments'
 import { selectUser } from "../features/userSlice";
+import Loader from "../components/loader/Loader";
+
 
 import './styles/eachpost.scss'
 
@@ -18,6 +20,7 @@ const EachPost = (props) => {
 
     const [post, setPost] = useState([])
     const [comments, setCommets] = useState([])
+    const [loadingPost, setLoadingPost] = useState(true)
 
     const companyId = props.match.params.id;
     const id = parseInt(companyId)
@@ -31,7 +34,7 @@ const EachPost = (props) => {
         const commentsResponse = await loadComments(eachComments)
         setPost(response.data[0])
         setCommets(commentsResponse.data)
-        console.log(commentsResponse.data)
+        setLoadingPost(null)
     }
 
     const [content, setContent] = useState('')
@@ -59,6 +62,12 @@ const EachPost = (props) => {
     useEffect(() => {
         loadPost()
     }, [comments])
+
+    if (loadingPost) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <>

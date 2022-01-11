@@ -34,9 +34,7 @@ const CardSwiper = () => {
 
     const getProducts = async () => {
         const result = await listProducts()
-        console.log(result)
-        setInfo(result.data)
-        //setInfo(data.hits)
+        setInfo(result.data.products)
         setLoader(false)
     }
 
@@ -68,13 +66,13 @@ const CardSwiper = () => {
                 {info &&
 
                     info.map(infos => (
-                        <SwiperSlide>
+                        <SwiperSlide key={infos.id}>
                             <ProductCard
-                                key={infos._id}
                                 name={infos.name}
                                 description={infos.description}
                                 img={infos.images}
-                                id={infos._id}
+                                price={infos.price}
+                                id={infos.id}
                             />
                         </SwiperSlide>
                     ))}
