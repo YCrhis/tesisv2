@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Header from '../components/header/Header'
+import ModalMessage from '../components/modal';
 
 import User from '../images/user.svg'
 import './styles/register.scss'
@@ -8,13 +9,15 @@ import { TextField, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form'
 
 import { registerUser } from '../services/login'
-import ApiLoader from '../components/loader/ApiLoader';
+import Loader from '../components/loader/Loader';
 
 import { useDispatch } from 'react-redux';
 
 import { loginUser } from '../features/userSlice';
 
 import { useHistory } from 'react-router-dom';
+
+import { auth, provider } from '../firebase'
 
 const UserRegister = () => {
 
@@ -24,7 +27,8 @@ const UserRegister = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const [loader, setLoader] = useState(false)
+    const [loader, setLoader] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const onSubmit = async (data) => {
         setLoader(true)
@@ -38,6 +42,27 @@ const UserRegister = () => {
             alert('salio algo mal :(')
             setLoader(false)
         }
+    }
+
+    const handleRegister = () => {
+        auth.signInWithPopup(provider)
+            .then(async (re) => {
+                const userGoogle = {
+                    name: re.user.displayName,
+                    email: re.user.email,
+                    phoneNumber: re.user.phoneNumber,
+                    googleId: re.user.uid
+                }
+                const response = await registerUser(userGoogle)
+                if (response.ok === false) {
+                    setErrorMessage(true)
+                }
+                if (response.ok === true) {
+                    dispatch(loginUser(response.data))
+                    history.push('/')
+                }
+            })
+            .catch((error) => alert(error))
     }
 
     return (
@@ -140,14 +165,21 @@ const UserRegister = () => {
                                     <button>Crear Usuario</button>
                                 </Grid>
                             </form>
+                            <button className="button__google" onClick={handleRegister}><i className="fab fa-google"></i> Registrarse con Google</button>
                         </div>
                     </div>
                 </div>
 
                 :
-                <ApiLoader />
+                <Loader />
             }
-
+            {errorMessage &&
+                <ModalMessage
+                    message="Esta cuenta ya se encuentra registrada, por favor ingrese otra"
+                    title="Upps! algo salió mal"
+                    img="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/cfa5b574625095.5c3594b370d4e.png"
+                />
+            }
 
         </>
     )

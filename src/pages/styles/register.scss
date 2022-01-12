@@ -69,6 +69,20 @@
   }
 }
 
+.button__google {
+  width: 80% !important;
+  margin: auto !important;
+  margin-top: -0.7rem !important;
+  background: #fff !important;
+  border: solid 1px #606060 !important;
+  color: #606060 !important;
+  transition: all 500ms;
+  &:hover {
+    background: #606060 !important;
+    color: #fff !important;
+  }
+}
+
 @media screen and (max-width: 970px) {
   .register__user {
     flex-direction: column;

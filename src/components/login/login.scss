@@ -8,6 +8,22 @@
   justify-content: center;
   color: rgb(41, 41, 41);
   overflow: hidden !important;
+  .button__login {
+    border-radius: 8px;
+    width: 90% !important;
+  }
+  .button__login2 {
+    border-radius: 8px;
+    width: 90% !important;
+    background: #fff !important;
+    color: #606060 !important;
+    transition: all 500ms;
+    border: solid 1px #606060 !important;
+    &:hover {
+      background: #606060 !important;
+      color: #fff !important;
+    }
+  }
 
   .login__container {
     width: 100% !important;

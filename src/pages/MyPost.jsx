@@ -17,8 +17,8 @@ const MyPost = () => {
     const [loadPost, setLoadPost] = useState(true)
 
     const loadData = async () => {
-        const response = await searchPost({ userId: user.id });
-        setInfo(response.data);
+        const response = await searchPost(0, { userId: user.id });
+        setInfo(response.data.posts);
         setLoadPost(null)
     }
 
@@ -46,10 +46,10 @@ const MyPost = () => {
                     spacing={5}
                     className="post__eachContainer"
                 >
-                    {info?.length === 0 ?
+                    {info.length === 0 ?
                         <img src={community2} alt="" width={500} />
                         :
-                        info?.map((i) => (
+                        info.map((i) => (
                             <Grid item lg={5} xs={12}>
                                 <CardPost
                                     key={i.id}

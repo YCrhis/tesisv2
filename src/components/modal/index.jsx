@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100% !important',
     },
     imageModal: {
-        width: '50%',
+        width: '55%',
         background: '#fff',
     },
     text: {

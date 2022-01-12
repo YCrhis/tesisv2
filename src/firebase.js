@@ -1,12 +1,13 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCku0KBkUJABdy8nWapiZT1OZrGD5bBzrM",
-    authDomain: "tesis-414ed.firebaseapp.com",
-    projectId: "tesis-414ed",
-    storageBucket: "tesis-414ed.appspot.com",
-    messagingSenderId: "60215674957",
-    appId: "1:60215674957:web:aa4064552604ca35173404"
+    apiKey: "AIzaSyDR9vdRFMLO0YQ46OViMKM-Anj29ya6WtU",
+    authDomain: "termoconfort-e276f.firebaseapp.com",
+    projectId: "termoconfort-e276f",
+    storageBucket: "termoconfort-e276f.appspot.com",
+    messagingSenderId: "636701416298",
+    appId: "1:636701416298:web:02dd783782e3c277e1e313",
+    measurementId: "G-4T2S4CFTX4"
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)

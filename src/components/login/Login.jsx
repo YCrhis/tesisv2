@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 
 import { Link, useHistory } from 'react-router-dom'
+import { auth, provider } from '../../firebase'
 
 import TextField from '@material-ui/core/TextField';
 import Loader from '../loader/Loader';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../features/userSlice';
+import ModalMessage from '../modal';
 
 import { loginUserNormal } from '../../services/login'
 
@@ -17,9 +19,10 @@ function LoginUser() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [fields, setFields] = useState({})
-    const [error, setError] = useState(false)
-    const [load, setLoad] = useState(false)
+    const [fields, setFields] = useState({});
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
+    const [load, setLoad] = useState(false);
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -46,15 +49,31 @@ function LoginUser() {
                 loginUser(response.data)
             )
             setLoad(false)
-            /* if (response.data.role == 'ADMIN') {
-                history.push('/administrador')
-            } */
             if (response.data.role === "ADMIN") {
                 history.push('/administrador')
             } else {
                 history.push('/')
             }
         }
+    }
+
+    const handleLogin = () => {
+        auth.signInWithPopup(provider)
+            .then(async (re) => {
+                const userGoogle = {
+                    email: re.user.email,
+                    googleId: re.user.uid
+                }
+                const response = await loginUserNormal(userGoogle)
+                if (response.ok === false) {
+                    setErrorMessage(true)
+                }
+                if (response.ok === true) {
+                    dispatch(loginUser(response.data))
+                    history.push('/')
+                }
+            })
+            .catch((error) => alert(error))
     }
 
     return (
@@ -86,16 +105,24 @@ function LoginUser() {
                                     name='password'
                                     onChange={handleChange}
                                 />
-                                <button onClick={handleSubmit}>Ingresar</button>
-                                <Link to="/registro/usuario" className="crear__cuenta">Crear cuenta</Link>
+                                <button onClick={handleSubmit} className='button__login'>Ingresar</button>
+                                <button onClick={handleLogin} className='button__login2'><i className="fab fa-google"></i> Ingresar con Google</button>
+                                <Link to="/registro/usuario" className="crear__cuenta">Crear una cuenta</Link>
                                 {error &&
-                                    <p className='error_loginMessage'><i class="fas fa-exclamation-triangle"></i> Cuenta no encontrada</p>
+                                    <p className='error_loginMessage'><i className="fas fa-exclamation-triangle"></i> Cuenta no encontrada</p>
                                 }
                             </div>
                         </div>
                     </div>
                     :
                     <Loader />
+            }
+            {errorMessage &&
+                <ModalMessage
+                    message="Esta cuenta no se encuentra registrada"
+                    title="Upps! algo salió mal"
+                    img="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/cfa5b574625095.5c3594b370d4e.png"
+                />
             }
 
         </div>

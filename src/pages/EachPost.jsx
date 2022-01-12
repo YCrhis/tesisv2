@@ -26,13 +26,13 @@ const EachPost = (props) => {
     const id = parseInt(companyId)
 
     const loadPost = async () => {
-        const response = await searchPost({ id: id })
+        const response = await searchPost(0, { id: id })
         const eachComments = {
             postId: id,
             userId: myUser
         }
         const commentsResponse = await loadComments(eachComments)
-        setPost(response.data[0])
+        setPost(response.data.posts[0])
         setCommets(commentsResponse.data)
         setLoadingPost(null)
     }
@@ -55,14 +55,14 @@ const EachPost = (props) => {
             postId: id,
             content: content
         }
-        const response = await sendComment(comment)
-        console.log(response)
+        await sendComment(comment)
+        loadPost()
     }
 
     useEffect(() => {
         loadPost()
         /* eslint-disable */
-    }, [comments])
+    }, [])
 
     if (loadingPost) {
         return (
