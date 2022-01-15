@@ -36,3 +36,14 @@ export const enterpriseProducts = async (id) => {
         return error;
     }
 }
+
+export const filterProducts = async (body) => {
+    try {
+        const response = await fetch(`${URL}/search?limit=90&page=0`, METHODS.POST(body));
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
