@@ -20,4 +20,36 @@
   cursor: pointer;
   background: #5d60ff;
   border: none;
+  border-radius: 10px;
+}
+
+.range__input {
+  display: flex;
+  align-items: center;
+  margin-top: 45px;
+  justify-content: center;
+  position: relative;
+  .range__value {
+    position: absolute;
+    top: -30px;
+    color: #fff;
+    background: #5d60ff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .value {
+    padding: 10px;
+  }
+  input {
+    width: 70%;
+  }
+}
+.range__label {
+  margin-top: 1rem;
+  font-size: 15px;
+}
+
+.filter__products {
+  margin: 0.5rem auto !important;
 }

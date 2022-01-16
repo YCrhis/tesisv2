@@ -25,7 +25,6 @@ const Myproduct = () => {
     const [searchName, setSearchName] = useState('')
 
     const company = useSelector(selectCompany)
-    console.table(company)
 
     const getProducts = async () => {
         const response = await listProducts(page, { name: searchName, enterpriseId: company.id });

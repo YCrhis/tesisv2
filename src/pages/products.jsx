@@ -19,7 +19,6 @@ import PaginationPage from '../components/pagination/Pagination'
 const Product = () => {
 
     const [load, setLoad] = useState(true);
-    const [filter, setFilter] = useState('')
     const [info, setInfo] = useState()
     const [page, setPage] = useState(0)
     const [pageNumber, setPageNumber] = useState()
@@ -39,12 +38,6 @@ const Product = () => {
         /* eslint-disable */
     }, [page, searchName]);
 
-
-
-    const filterProducts = (e) => {
-        setFilter(e.target.value)
-        console.log(e.target.value)
-    }
 
     const handleSearch = (e) => {
         e.preventDefault();

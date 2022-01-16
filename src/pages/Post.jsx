@@ -110,7 +110,7 @@ const Post = () => {
     }
 
     const submit = async () => {
-        const response = await sendPost(fields)
+        await sendPost(fields)
         setOpen(false)
         loadData()
     }

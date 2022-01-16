@@ -5,6 +5,10 @@ import {
     FormControlLabel,
     Checkbox,
     TextareaAutosize,
+    Select,
+    MenuItem,
+    InputLabel,
+    FormControl
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './stylesRegister.scss';
@@ -114,7 +118,7 @@ const RegisterProduct = () => {
                 <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
                     <h2 className={classes.subtitle}>Ingrese información del producto</h2>
                     <Grid container spacing={3}>
-                        <Grid item lg={6} xs={12}>
+                        <Grid item sm={6} xs={12}>
                             <TextField
                                 fullWidth
                                 label="Nombre del producto"
@@ -165,13 +169,34 @@ const RegisterProduct = () => {
                                         value: true,
                                         message: "Este campo es requerido"
                                     },
-                                    minLength: {
-                                        value: 0,
-                                        message: 'Ingrese un valor válido'
+                                    min: {
+                                        value: 9000,
+                                        message: 'Ingrese un valor mayor a 9000'
+                                    },
+                                    max: {
+                                        value: 240000,
+                                        message: "Ingrese un valor menor a 240000"
                                     }
                                 })}
                             />
-                            {errors.capacity && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
+                            {errors.capacity && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.capacity.message}</p>}
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <FormControl fullWidth variant="outlined">
+                                <InputLabel id="demo-simple-select-label">Tipo</InputLabel>
+                                <Select
+                                    value="Frio"
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    {...register("type", { required: true })}
+                                >
+                                    <MenuItem value="Frio">Frio</MenuItem>
+                                    <MenuItem value="Calor / Frio">Calor / Frio</MenuItem>
+                                    <MenuItem value="Ecológico">Ecológico</MenuItem>
+                                    <MenuItem value="Gas R22">Gas R22</MenuItem>
+                                </Select>
+                            </FormControl>
+                            {errors.type?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El tipo es requerido</p>}
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField
@@ -181,22 +206,12 @@ const RegisterProduct = () => {
                                 className={classes.input}
                                 {...register("model", { required: true })}
                             />
-                            {errors.model?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El modelo es requerido</p>}
+                            {errors.model?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El modelo es requerido</p>}
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Tipo"
-                                variant="outlined"
-                                className={classes.input}
-                                {...register("type", { required: true })}
-                            />
-                            {errors.type?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El tipo es requerido</p>}
-                        </Grid>
-                        <Grid item sm={6} xs={12}>
-                            <TextField
-                                fullWidth
-                                label="Consumo de energia (en watts)"
+                                label="Consumo de energia (en %)"
                                 variant="outlined"
                                 className={classes.input}
                                 type="number"
@@ -205,13 +220,17 @@ const RegisterProduct = () => {
                                         value: true,
                                         message: "Este campo es requerido"
                                     },
-                                    minLength: {
+                                    min: {
                                         value: 0,
                                         message: 'Ingrese un valor válido'
+                                    },
+                                    max: {
+                                        value: 100,
+                                        message: 'Valor invalido'
                                     }
                                 })}
                             />
-                            {errors.energyConsume && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.energyConsume.message}</p>}
+                            {errors.energyConsume && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.energyConsume.message}</p>}
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField
@@ -231,7 +250,7 @@ const RegisterProduct = () => {
                                     }
                                 })}
                             />
-                            {errors.price && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
+                            {errors.price && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.price.message}</p>}
                         </Grid>
 
                         <Grid item xs={12}>
@@ -284,7 +303,7 @@ const RegisterProduct = () => {
                                     }
                                 })}
                             />
-                            {errors.image && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
+                            {errors.image && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.image.message}</p>}
                         </Grid>
 
                     </Grid>

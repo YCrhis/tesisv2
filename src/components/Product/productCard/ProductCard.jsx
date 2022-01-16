@@ -1,28 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 /* style */
 import './ProductCard.scss'
 
-const ProductCard = ({ name, img, id, price, createdAt }) => {
-
-    const [newDate, setNewDate] = useState(false);
-
-    const newFunciton = () => {
-        var fecha = new Date();
-        const day = createdAt;
-        const deleatedDay = fecha.setDate(fecha.getDate(day) + 1)
-        if (day > deleatedDay) {
-            setNewDate(true)
-        }
-    }
+const ProductCard = ({ name, img, id, price }) => {
 
     return (
         <div className="card wow animate__animated animate__fadeIn animate__slow">
-            {newDate === false &&
-                <div className="card__productNew">
-                    <p>Nuevo</p>
-                </div>
-            }
+
+            <div className="card__productNew">
+                <p><i className="fas fa-check"></i></p>
+            </div>
 
             <div className="card-image">
                 <figure>
@@ -37,7 +25,7 @@ const ProductCard = ({ name, img, id, price, createdAt }) => {
                 <h2>{name}</h2>
                 <span>Precio</span>
                 <div className="price-card">
-                    <p>$/.{price}</p> {newFunciton()}
+                    <p>$/.{price}</p>
                 </div>
             </div>
             <div className="card-stats">
