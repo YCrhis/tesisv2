@@ -17,8 +17,9 @@ export default function PaginationOutlined({ pageNumber, setPage }) {
 
     const changePage = async (page) => {
         setPage(page - 1)
-        window.scroll(0, 50)
+        window.scroll(0, 70)
     }
+
 
     return (
         <div className={classes.root}>

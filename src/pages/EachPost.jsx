@@ -16,8 +16,6 @@ const EachPost = (props) => {
     const user = useSelector(selectUser);
     const myUser = user.id
 
-    console.log(myUser)
-
     const [post, setPost] = useState([])
     const [comments, setCommets] = useState([])
     const [loadingPost, setLoadingPost] = useState(true)
@@ -28,8 +26,7 @@ const EachPost = (props) => {
     const loadPost = async () => {
         const response = await searchPost(0, { id: id })
         const eachComments = {
-            postId: id,
-            userId: myUser
+            postId: id
         }
         const commentsResponse = await loadComments(eachComments)
         setPost(response.data.posts[0])

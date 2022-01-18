@@ -2,7 +2,6 @@ import React from 'react'
 import CompanyInformation from '../components/Companies/information/CompanyInformation'
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import ProductCompany from '../components/Companies/productsCompany/productCompany'
 
 import styled from 'styled-components'
 

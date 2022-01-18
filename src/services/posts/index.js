@@ -25,7 +25,7 @@ export const removePost = async (id) => {
 
 export const searchPost = async (page, body) => {
     try {
-        const response = await fetch(`${URL}/post/search?limit=10&page=${page}`, METHODS.POST(body));
+        const response = await fetch(`${URL}/post/search?limit=8&page=${page}`, METHODS.POST(body));
         const data = await response.json();
         return data;
     } catch (e) {
