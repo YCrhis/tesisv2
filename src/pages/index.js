@@ -8,6 +8,7 @@ import CardOpinion from '../components/sliders/Opinion'
 import ModalMessage from '../components/modal';
 /* images */
 
+
 import workingteam from '../images/workingteam.png'
 import community from '../images/community.svg'
 
@@ -137,7 +138,6 @@ const Index = () => {
                     img="https://cdn.dribbble.com/users/1001687/screenshots/2356993/media/7f4496bc0b92905ab70198777dac3df3.gif"
                 />
             }
-
             <Footer />
         </div>
     )

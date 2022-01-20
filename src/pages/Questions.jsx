@@ -30,12 +30,12 @@ const Questions = () => {
                     <div className="question__text">
                         <div className="">
                             <h2>¿Cómo contrato algun servicio?</h2>
-                            <p>Para poder obtener algun servicio de cualquier empresa solo debes dirigirte a la opcion "Empresas" es ahi donde encontraras un listado de empresas que existen, ahi puedes comunicarte con ellos y realizar algun trabajo</p>
+                            <p>Para poder obtener algún servicio de cualquier empresa solo debes dirigirte a la opción "Empresas", ahí encontraras un listado de empresas registradas a nuestra aplicación, al ingresar al perfil de la empresa puedes ver todas sus redes sociales.</p>
                         </div>
                         <br />
                         <div className="">
                             <h2>¿Qué ofrece nuestra web?</h2>
-                            <p>Ofrecemos una ayuda a las personas y tecnicos que quieran contactarse para ofrecer o recivir algun servicio.</p>
+                            <p>Ofrecemos una ayuda a las personas y/o  técnicos que quieran contactarse para ofrecer o recibir algún servicio o producto.</p>
                         </div>
                     </div>
                     <img src={Question2} alt="" />

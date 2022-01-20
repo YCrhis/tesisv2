@@ -31,6 +31,9 @@ import { useDarkMore } from '../components/stylesGeneral/useDarkMode'
 import { ThemeProvider } from 'styled-components'
 
 
+/* bot helper */
+import Bot from '../components/Bot'
+
 import Questions from '../pages/Questions'
 import Register from '../pages/Register'
 import Post from '../pages/Post'
@@ -53,6 +56,7 @@ const App = () => {
         <ThemeProvider theme={themeMode}>
             <GlobalStyle />
             <Toggle theme={theme} toggleTheme={toggleTheme} />
+            <Bot />
             <BrowserRouter>
                 <AnimatePresence>
                     <Switch>

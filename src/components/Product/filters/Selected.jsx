@@ -38,15 +38,15 @@ const Selected = ({ setInfo }) => {
         }
         if (data.model === '') {
             delete data['model']
-        } */
-        /* if (data.energyConsume === 0) {
+        }
+        if (data.energyConsume === 0) {
             delete data['energyConsume']
         }
         if (data.capacity === 9000) {
             delete data['capacity']
-        } */
+        }
 
-        /* if (data.type === '') {
+        if (data.type === '') {
             delete data['type']
         } */
 

@@ -1,0 +1,41 @@
+.container__bot {
+  width: 30%;
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  border-radius: 20px;
+  z-index: 1000;
+
+  button {
+    background: #5d60ff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 500ms;
+    margin: 1rem auto;
+    display: block;
+    &:hover {
+      background: #3437ff;
+    }
+  }
+  iframe {
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+    border: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .container__bot {
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container__bot {
+    width: 80%;
+  }
+}
