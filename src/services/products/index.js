@@ -47,3 +47,38 @@ export const filterProducts = async (body) => {
         return error;
     }
 }
+
+export const interestedProduct = async (body) => {
+    try {
+        const response = await fetch(`${URL}/interested`, METHODS.POST(body));
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+export const deleteInterestedProduct = async (id) => {
+    try {
+        const response = await fetch(`${URL}/delete-interested/${id}`, METHODS.DELETE());
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+export const getInterestedProduct = async (body) => {
+    try {
+        const response = await fetch(`${URL}/get-interested-prod`, METHODS.POST(body));
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+

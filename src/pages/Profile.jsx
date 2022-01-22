@@ -132,9 +132,9 @@ const Profile = () => {
     }
 
     const myDate = () => {
-        var fecha = new Date();
-        var day = newUser?.createdAt;
-        return fecha.toLocaleDateString("es-ES", day)
+        var fecha = new Date(newUser?.createdAt);
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return fecha.toLocaleDateString("es-ES", options)
     }
 
     const onSubmit = async (data) => {

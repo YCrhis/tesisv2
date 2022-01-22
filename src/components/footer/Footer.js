@@ -22,12 +22,13 @@ const Footer = () => {
                         <h3>Recursos</h3>
                         <Link to="/preguntas">Preguntas Frecuentes</Link><br />
                         <Link to="/empresa/informacion">Validación de Datos (Empresa)</Link><br />
-                        <Link to="/usuario/acciones">Funciones del Usuario</Link><br />
-                        <Link to="/empresa/acciones">Funciones de Empresa</Link><br />
+
                     </Grid>
                     <Grid item lg={6} xs={12}>
-                        <h3>Extra</h3>
-                        <Link to="/administrador">Administrador</Link><br />
+                        <h3>Funciones</h3>
+                        <Link to="/usuario/acciones">Funciones del Usuario</Link><br />
+                        <Link to="/empresa/acciones">Funciones de Empresa</Link><br />
+                        {/* <Link to="/administrador">Administrador</Link><br /> */}
                     </Grid>
                 </Grid>
 

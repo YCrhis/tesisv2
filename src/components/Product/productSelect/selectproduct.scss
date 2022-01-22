@@ -151,3 +151,21 @@
     padding-top: 0;
   }
 }
+.add__favourites {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 500ms;
+  display: flex;
+  align-items: center;
+  background: #5d60ff;
+  color: #fff !important;
+  border-radius: 10px;
+  i {
+    color: #fff;
+    font-size: 2rem;
+    margin-left: 10px;
+    font-size: 17px;
+  }
+}

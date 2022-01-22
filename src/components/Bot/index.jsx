@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { motion } from "framer-motion"
 
 import './bot.scss'
 
@@ -10,7 +9,7 @@ const Bot = () => {
 
             <button onClick={() => setOpen(!open)}
                 className="animate__animated animate__bounce animate__infinite"
-            >¿Tienes alguna pregunta? <i class="far fa-question-circle"></i></button>
+            >¿Tienes alguna pregunta? <i className="far fa-question-circle"></i></button>
             {open === true &&
                 <div
                     initial={{ opacity: 0 }}

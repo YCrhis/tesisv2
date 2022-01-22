@@ -1,0 +1,22 @@
+.container__interest {
+  width: 80%;
+  margin: 7rem auto;
+  .container__productInterest {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: calc(1rem + 1vw);
+    color: #5d60ff;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container__productInterest {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 1rem !important;
+  }
+}

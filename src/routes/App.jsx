@@ -45,6 +45,7 @@ import LoginAdmin from '../components/login/LoginAdmin'
 import UserList from '../pages/UserList'
 import EnterpriseDisable from '../pages/EnterpriseDisable'
 import Myproduct from '../pages/Myproducts'
+import ProducInterested from '../pages/ProductInterested'
 
 
 const App = () => {
@@ -75,6 +76,7 @@ const App = () => {
                         <PrivatesRoutesUser exact path="/perfil/empresa" component={MyCompany} />
                         <PrivatesRoutesUser exact path="/producto/nuevo" component={RegisterProd} />
                         <PrivatesRoutesUser exact path="/empresa/productos" component={Myproduct} />
+                        <PrivatesRoutesUser exact path="/productos/interesados" component={ProducInterested} />
                         {/* others */}
                         <Route exact path="/product" component={Product}></Route>
                         <Route exact path="/empresas" component={Companies}></Route>

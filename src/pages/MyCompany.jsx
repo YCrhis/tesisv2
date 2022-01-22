@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 import { selectCompany, selectUser } from "../features/userSlice";
 import Loader from '../components/loader/Loader'
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { loginCompany } from '../features/userSlice'
 import { useDispatch } from "react-redux";
@@ -262,6 +262,7 @@ const MyCompany = (props) => {
                             </ul>
                         </div>
                         <button className="button__eliminar" onClick={handleOpen}><i className="fas fa-pencil-alt"></i> Actualizar datos</button>
+                        <Link className="button__myProducts" to="/productos/interesados">Ver Productos Interesados</Link>
                     </div>
                 </>
 
