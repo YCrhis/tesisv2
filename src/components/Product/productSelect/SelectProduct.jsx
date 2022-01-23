@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ModalMessage from '../../modal';
 
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../features/userSlice';
+import { selectUser, selectCompany } from '../../../features/userSlice';
 import { interestedProduct, deleteInterestedProduct, getInterestedProduct } from '../../../services/products'
 /* styles */
 import './selectproduct.scss';
@@ -16,6 +16,7 @@ const SelectProduct = ({ data }) => {
     const [deleteInterest, setDeleteInterest] = useState(false);
 
     const user = useSelector(selectUser);
+    const company = useSelector(selectCompany);
 
     const myDate = () => {
         var fecha = new Date(data?.createdAt);
@@ -131,7 +132,7 @@ const SelectProduct = ({ data }) => {
                                 {data.webPage &&
                                     <a href={data.enterpriseId.link}><i className="fab fa-google"></i> Visitar Web Oficial</a>
                                 }
-                                {user ?
+                                {company ?
                                     <button className='add__favourites' onClick={handleInteresting}>
                                         {interest === true ?
                                             <p>Estoy interesado</p>

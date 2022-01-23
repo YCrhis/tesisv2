@@ -83,3 +83,14 @@ export const updateEnterprise = async (id, newData, token) => {
         return error.message;
     }
 }
+
+export const getInterest = async (id) => {
+    try {
+        const response = await fetch(`${URL}/get-interesteds/${id}`, METHODS.GET());
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}

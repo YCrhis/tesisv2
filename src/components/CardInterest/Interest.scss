@@ -31,9 +31,14 @@
       }
       span {
         color: #5d60ff;
+        margin-right: 15px;
       }
     }
   }
+}
+.interest__productNoone {
+  margin-top: 2rem;
+  text-align: center;
 }
 
 @media screen and (max-width: 800px) {
