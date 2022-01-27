@@ -1,0 +1,30 @@
+.container__informationCompanyNew {
+  width: 80%;
+  margin: 1rem auto;
+  text-align: center;
+  h1 {
+    margin: 2rem auto;
+  }
+  .container__products {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container__products {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container__informationCompanyNew {
+    width: 100%;
+    margin: auto !important;
+  }
+  .container__products {
+    width: 100% !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}

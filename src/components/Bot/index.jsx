@@ -17,6 +17,7 @@ const Bot = () => {
                     exit={{ opacity: 0 }}
                 >
                     <iframe
+                        title="TermoBot"
                         allow="microphone;"
                         width="350"
                         height="430"

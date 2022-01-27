@@ -74,7 +74,7 @@ const Product = () => {
                     </div>
                     {/* products list*/}
                     <div className="container__products">
-                        {info.length === 0 ?
+                        {info?.length === 0 ?
                             <NoResults />
                             :
                             info?.map(infos => (

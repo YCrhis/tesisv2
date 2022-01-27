@@ -25,6 +25,7 @@ const ProductInformation = (props) => {
 
     useEffect(() => {
         loadData()
+        /* eslint-disable */
     }, [])
 
     return (

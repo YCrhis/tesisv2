@@ -27,7 +27,7 @@ const Selected = ({ setInfo }) => {
         const { name, type, checked, value } = e.target;
         const eachValue = type === 'checkbox' ? checked : value;
 
-        /* if (data['warranty'] === false) {
+        if (data['warranty'] === false) {
             delete data['warranty']
         }
         if (data['install'] === false) {
@@ -48,7 +48,7 @@ const Selected = ({ setInfo }) => {
 
         if (data.type === '') {
             delete data['type']
-        } */
+        }
 
         setData(data => ({
             ...data,
@@ -57,7 +57,6 @@ const Selected = ({ setInfo }) => {
 
     }
 
-    console.disableYellowBox = true;
 
 
     const handleSubmit = async () => {

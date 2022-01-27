@@ -23,6 +23,7 @@ const ProducInterested = () => {
 
     useEffect(() => {
         loadInterested()
+        /* eslint-disable */
     }, [])
     return (
         <>

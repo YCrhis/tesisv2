@@ -37,11 +37,6 @@ const SelectProduct = ({ data }) => {
         });
     });
 
-    /* console.log(interest, ' valor INTEREST')
-
-
-    console.log(deleteInterest, ' valor deleteINTEREST') */
-
     function slideImage() {
         const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
         document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
@@ -66,6 +61,7 @@ const SelectProduct = ({ data }) => {
 
     useEffect(() => {
         getInterest();
+        /* eslint-disable */
     }, [])
 
     return (
