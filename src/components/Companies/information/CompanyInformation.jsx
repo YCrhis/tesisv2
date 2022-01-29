@@ -15,7 +15,7 @@ import { Grid } from '@material-ui/core'
 function CompanyInformation({ data }) {
 
     return (
-        <div maxWidth="lg" className="companyInformation__container">
+        <div maxwidth="lg" className="companyInformation__container">
             <div className="companyInformation__image">
                 <img src={data?.imageUrl} alt={data?.name} />
             </div>
@@ -66,14 +66,14 @@ function CompanyInformation({ data }) {
                 </div>
                 <div className="companyInformation__extraInformation">
                     <div className="companyInformation__extraInformationEach">
-                        <i class="far fa-user"></i>
+                        <i className="far fa-user"></i>
                         <div>
                             <p>Trabajadores</p>
                             <p>{data?.workers}</p>
                         </div>
                     </div>
                     <div className="companyInformation__extraInformationEach">
-                        <i class="far fa-thumbs-up"></i>
+                        <i className="far fa-thumbs-up"></i>
                         <div>
                             <p>Verificado</p>
                         </div>

@@ -35,7 +35,7 @@ import { ThemeProvider } from 'styled-components'
 import Bot from '../components/Bot'
 
 import Questions from '../pages/Questions'
-import Register from '../pages/Register'
+// import Register from '../pages/Register'
 import Post from '../pages/Post'
 import MyPost from '../pages/MyPost'
 import EachPost from '../pages/EachPost'
@@ -66,7 +66,7 @@ const App = () => {
                         <Route exact path="/login/usuario" component={LoginUser}></Route>
                         <Route exact path="/login/administrador" component={LoginAdmin}></Route>
                         <Route exact path="/registro/usuario" component={UserRegister}></Route>
-                        <Route exact path="/registrarse" component={Register}></Route>
+                        {/* <Route exact path="/registrarse" component={Register}></Route> */}
                         <Route exact path="/preguntas" component={Questions}></Route>
                         {/* routes with user */}
                         <PrivatesRoutesUser exact path="/posts" component={Post} />

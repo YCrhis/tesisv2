@@ -45,7 +45,6 @@ const CompanyRegister = () => {
 
         console.log(newData)
         const response = await newCompany(user.token, newData)
-        console.log(response, ':) result')
         if (response.ok === true) {
             dispatch(
                 loginCompany(response.data)

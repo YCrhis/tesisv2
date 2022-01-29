@@ -78,7 +78,7 @@ function LoginUser() {
 
     return (
 
-        <div class="login">
+        <div className="login">
             {
                 !load ?
                     <div className="login__container">
