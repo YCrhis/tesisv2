@@ -19,48 +19,91 @@ const Selected = ({ setInfo }) => {
 
     const [data, setData] = useState({
         /* eslint-disable */
-        type: ''
+        type: '',
+        capacity: 240000,
+        energyConsume: 100
     })
 
     const handleInputChanges = (e) => {
 
-        const { name, type, checked, value } = e.target;
-        const eachValue = type === 'checkbox' ? checked : value;
+        const { name, type, checked } = e.target;
+        const value = e.target.value.trim();
+        // const eachValue = type === 'checkbox' ? checked : value;
+        const newValue = {...data, [name]:  value}
 
-        if (data['warranty'] === false) {
-            delete data['warranty']
+        if(name === 'warranty'){
+            if(checked === false){
+                delete newValue.warranty;
+            }else{
+                newValue.warranty = true;
+            }
         }
-        if (data['install'] === false) {
-            delete data['install']
+        if(name === 'install'){
+            if(checked === false){
+                delete newValue.install;
+            }else{
+                newValue.install = true;
+            }
         }
-        if (data.brand === '') {
-            delete data['brand']
+        if (name === 'brand') {
+            if(value === ''){
+                delete newValue['brand'];
+            }
         }
-        if (data.model === '') {
-            delete data['model']
+        if (name === 'model') {
+            if(value === ''){
+                delete newValue['model'];
+            }
         }
-        if (data.energyConsume === 0) {
-            delete data['energyConsume']
+        // if (name === 'type') {
+        //     if(value === ''){
+        //         delete newValue['type'];
+        //     }
+        // }
+        if (name === 'capacity') {
+            newValue['capacity'] = parseInt(newValue['capacity'])
         }
-        if (data.capacity === 9000) {
-            delete data['capacity']
+        if (name === 'energyConsume') {
+            newValue['energyConsume'] = parseInt(newValue['energyConsume'])
         }
+        // if (data['warranty'] === false) {
+        //     delete data['warranty']
+        // }
+        // if (data['install'] === false) {
+        //     delete data['install']
+        // }
+        // if (data.brand === '') {
+        //     delete data['brand']
+        // }
+        // if (data.model === '') {
+        //     delete data['model']
+        // }
+        // if (data.energyConsume === 0) {
+        //     delete data['energyConsume']
+        // }
+        // if (data.capacity === 9000) {
+        //     delete data['capacity']
+        // }
 
-        if (data.type === '') {
-            delete data['type']
-        }
+        // if (data.type === '') {
+        //     delete data['type']
+        // }
 
-        setData(data => ({
-            ...data,
-            [name]: eachValue
-        }))
+        // setData(data => ({
+        //     // ...data,
+        //     // [name]: value,
+        // }))
+
+        setData({...newValue})
 
     }
 
 
 
     const handleSubmit = async () => {
-        const response = await filterProducts(data);
+        const toFilter = {...data}
+        if(toFilter.type === '') delete toFilter.type;
+        const response = await filterProducts(toFilter);
         setInfo(response.data.products)
     }
 
@@ -131,6 +174,7 @@ const Selected = ({ setInfo }) => {
                                     onChange={handleInputChanges}
                                 >
                                     {/* eslint-disable */}
+                                    <MenuItem  value="">Seleccione un valor</MenuItem>
                                     <MenuItem value="Frio">Frio</MenuItem>
                                     <MenuItem value="Calor / Frio">Calor / Frio</MenuItem>
                                     <MenuItem value="Ecológico">Ecológico</MenuItem>
@@ -180,7 +224,6 @@ const Selected = ({ setInfo }) => {
                     </Grid>
 
                 </Grid>
-
                 <button onClick={handleSubmit} className='button__filter'>Filtrar</button>
             </div>
         </>

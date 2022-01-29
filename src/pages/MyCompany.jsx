@@ -136,7 +136,6 @@ const MyCompany = (props) => {
 
     const isEnterprise = async () => {
         const response = await getEnterprise(newUser?.id);
-        console.log(response, 'has enterprise')
         if (response.data.state === 0 && response.data.state === 2) {
             setIsCompany(true)
         }
@@ -181,8 +180,6 @@ const MyCompany = (props) => {
         newData.append('image', file)
 
         const response = await updateEnterprise(user?.id, newData, newUser?.token)
-
-        console.log(response, 'este memesmo ')
 
         if (response.ok === true) {
             dispatch(

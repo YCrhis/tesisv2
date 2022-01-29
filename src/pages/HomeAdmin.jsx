@@ -43,10 +43,10 @@ const HomeAdmin = () => {
                 <h1 className={classes.title}>Bienvenido</h1>
                 <p className={classes.text}>En este momento estas registrado como administrador de la aplicación, aqui puedes realizar algunas opciones para el funcionamiento de esta misma, lo que puedes hacer en este modo es: </p>
                 <ul className={classes.list}>
-                    <li><i class="fas fa-check"></i> Ver todos los usuarios registrados en la base de datos</li>
-                    <li><i class="fas fa-check"></i> Ver todas las empresas registrados en la base de datos</li>
-                    <li><i class="fas fa-check"></i> Puedes aceptar o denegar el permiso para las empresas</li>
-                    <li><i class="fas fa-check"></i> En algunos casos vas a poder eliminar a algunos usuarios y/o empresas</li>
+                    <li><i className="fas fa-check"></i> Ver todos los usuarios registrados en la base de datos</li>
+                    <li><i className="fas fa-check"></i> Ver todas las empresas registrados en la base de datos</li>
+                    <li><i className="fas fa-check"></i> Puedes aceptar o denegar el permiso para las empresas</li>
+                    <li><i className="fas fa-check"></i> En algunos casos vas a poder eliminar a algunos usuarios y/o empresas</li>
                 </ul>
                 <img src={WorkingTeam} alt="" className={classes.image} />
             </Container>

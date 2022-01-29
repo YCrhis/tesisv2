@@ -103,7 +103,7 @@ const EachPost = (props) => {
                     {
                         comments &&
                         comments?.map((i) => (
-                            <div className="each__comment">
+                            <div key={i.id} className="each__comment">
                                 <Comments
                                     key={i.id}
                                     comment={i.comment}

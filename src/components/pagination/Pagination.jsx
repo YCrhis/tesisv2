@@ -20,7 +20,6 @@ export default function PaginationOutlined({ pageNumber, setPage }) {
         window.scroll(0, 70)
     }
 
-
     return (
         <div className={classes.root}>
             <Pagination

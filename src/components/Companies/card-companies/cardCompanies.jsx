@@ -14,33 +14,33 @@ const cardCompanies = ({ name, img, description, workers, id }) => {
 
     return (
         <>
-            <div class="bussines-card wow animate__animated animate__fadeIn animate__slow">
-                <div class="business-head">
-                    <div class="bussines-head-image">
+            <div className="bussines-card wow animate__animated animate__fadeIn animate__slow">
+                <div className="business-head">
+                    <div className="bussines-head-image">
                         <img src={img} alt="imagen" />
-                        <div class="business-head-check">
-                            <i class="fas fa-check"></i>
+                        <div className="business-head-check">
+                            <i className="fas fa-check"></i>
                         </div>
                     </div>
                     <h3>{name}</h3>
                     <p>{cutText()}</p>
                 </div>
-                <div class="bussines-buttons">
+                <div className="bussines-buttons">
                     <Link to={`/empresa/perfil/${id}`}>Más información</Link>
                 </div>
-                <div class="bussines-about">
-                    {/* <div class="each-about-staff">
-                        <i class="fas fa-user-tie"></i>
+                <div className="bussines-about">
+                    {/* <div className="each-about-staff">
+                        <i className="fas fa-user-tie"></i>
                         <h4>20</h4>
                         <p>Staff</p>
                     </div>
-                    <div class="each-about-product">
-                        <i class="fas fa-shopping-bag"></i>
+                    <div className="each-about-product">
+                        <i className="fas fa-shopping-bag"></i>
                         <h4>7</h4>
                         <p>Products</p>
                     </div> */}
-                    <div class="each-about-another">
-                        <i class="fas fa-user-tie"></i>
+                    <div className="each-about-another">
+                        <i className="fas fa-user-tie"></i>
                         <h4>{workers}</h4>
                         <p>Personal N°</p>
                     </div>

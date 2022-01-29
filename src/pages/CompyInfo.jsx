@@ -23,7 +23,6 @@ function CompyInfo(props) {
         const responseProduct = await filterProducts({ enterpriseId: response.data.id })
         setData(response.data)
         setProduct(responseProduct.data.products);
-        console.log(responseProduct.data.products)
     }
 
     useState(() => {
