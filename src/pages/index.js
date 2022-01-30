@@ -32,7 +32,11 @@ const Index = () => {
                     <div className="text__section__information">
                         <h1>Te Espera Una Gran Comunidad</h1>
                         <p>Aqui puedes encontrar productos de ventilación para tu casa y si tienes alguna pregunta con respecto al tema ingresa a nuestra comunidad.</p>
-                        <button>Ver Productos</button>
+                        <button>
+                            <Link to="/product" className="button_used">
+                            Ver Productos
+                            </Link>
+                        </button>
                     </div>
                     <div className="text__section__image">
                         <img src={workingteam} alt="work" />
@@ -51,12 +55,16 @@ const Index = () => {
                         <div className="about__us__services__each1">
                             <h3>PRODUCTOS</h3>
                             <p>Puedes publicar todos tus productos aqui, este servicio es gratis, pero para ello debes unirte a nuestra comunidad.</p>
-                            <button>Ver Productos</button>
+                            <button>
+                            <Link to="/product" className="button_used">
+                                Ver Productos
+                            </Link>
+                            </button>
                         </div>
                         <div className="about__us__services__each2">
                             <h3>EMPRESAS</h3>
                             <p>Puedes crear tu propia empresa aqui, además que este servicio es gratuito para cualquier persona</p>
-                            <button>Ver Empresas</button>
+                            <button><Link to="/empresas" className="button_used">Ver Empresas</Link></button>
                         </div>
                     </div>
                 </div>

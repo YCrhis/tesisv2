@@ -1,0 +1,10 @@
+.align{
+    text-align: right;
+}
+.align span {
+    margin: 10px 5px;
+    cursor: pointer;
+}
+.active {
+    text-decoration: underline;
+}
