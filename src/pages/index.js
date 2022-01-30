@@ -136,6 +136,7 @@ const Index = () => {
                     message='Crea tu cuenta para tener una funcional completa en nuestra aplicación'
                     link="/registro/usuario"
                     img="https://cdn.dribbble.com/users/1001687/screenshots/2356993/media/7f4496bc0b92905ab70198777dac3df3.gif"
+                    button="Crear Cuenta"
                 />
             }
             <Footer />

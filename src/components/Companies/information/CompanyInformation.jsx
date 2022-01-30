@@ -34,32 +34,44 @@ function CompanyInformation({ data }) {
 
                         {data?.youtube &&
                             <Grid item lg={2}>
-                                <YouTubeIcon />
+                                <a href={data?.youtube} target="_blank" rel="noreferrer">
+                                    <YouTubeIcon />
+                                </a>
                             </Grid>
                         }
                         {data?.twitter &&
                             <Grid item lg={2}>
-                                <TwitterIcon />
+                                <a href={data?.twitter} target="_blank" rel="noreferrer">
+                                    <TwitterIcon />
+                                </a>
                             </Grid>
                         }
                         {data?.facebook &&
                             <Grid item lg={2}>
-                                <FacebookIcon />
+                                <a href={data?.facebook} target="_blank" rel="noreferrer">
+                                    <FacebookIcon />
+                                </a>
                             </Grid>
                         }
                         {data?.instagram &&
                             <Grid item lg={2}>
-                                <InstagramIcon />
+                                <a href={data?.instagram} target="_blank" rel="noreferrer">
+                                    <InstagramIcon />
+                                </a>
                             </Grid>
                         }
                         {data?.linkedin &&
                             <Grid item lg={2}>
-                                <LinkedInIcon />
+                                <a href={data?.linkedin} target="_blank" rel="noreferrer">
+                                    <LinkedInIcon />
+                                </a>
                             </Grid>
                         }
                         {data?.webPage &&
                             <Grid item lg={2}>
-                                <CameraIcon />
+                                <a href={data?.webPage} target="_blank" rel="noreferrer">
+                                    <CameraIcon />
+                                </a>
                             </Grid>
                         }
                     </Grid>

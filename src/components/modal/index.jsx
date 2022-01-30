@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ModalMessage = ({ message, img, title, link }) => {
+const ModalMessage = ({ message, img, title, link, button }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
 
@@ -68,7 +68,7 @@ const ModalMessage = ({ message, img, title, link }) => {
                         <h2 id="transition-modal-title">{title}</h2>
                         <img src={img} alt="" className={classes.imageModal} />
                         <p id="transition-modal-description" className={classes.text}>{message}</p>
-                        {link && <Link to={link} className={classes.button}>Crear Cuenta</Link>}
+                        {link && <Link to={link} className={classes.button}>{button}</Link>}
 
                     </div>
                 </Fade>
