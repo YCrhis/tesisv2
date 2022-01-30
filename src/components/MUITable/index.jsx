@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
 import { acceptCompany } from "../../services/companies";
 
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, useRef } from 'react';
 import ModalMessage from "../modal";
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MUITable = ({ columns, data, option }) => {
     const classes = useStyles();
-
+    const tableRef = useRef();
     const user = useSelector(selectUser)
 
     const [accept, setAccept] = useState(null)
@@ -70,6 +70,7 @@ const MUITable = ({ columns, data, option }) => {
             console.log(response)
             if (response.ok === true) {
                 setAccept(true)
+                tableRef.current.onQueryChange()
             }
         }
     }
@@ -141,6 +142,7 @@ const MUITable = ({ columns, data, option }) => {
                     <MaterialTable
                         columns={columns}
                         data={data}
+                        tableRef={tableRef}
                         title={null}
                         icons={tableIcons}
                         options={{
@@ -168,7 +170,7 @@ const MUITable = ({ columns, data, option }) => {
                         <ModalMessage
                             img="https://i.gifer.com/DLAN.gif"
                             title="Acción realizada con éxito"
-                            message="La empresa se volvio técnicamente {}"
+                            message="La empresa está habilitada"
                         />
                     }
                 </>

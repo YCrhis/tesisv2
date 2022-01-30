@@ -16,6 +16,7 @@ import 'swiper/components/navigation/navigation.scss';
 
 /* style component */
 import './cardswiper.scss'
+import { defaultFilterProducts } from '../../helpers/products';
 
 // install Swiper modules
 SwiperCore.use([Navigation]);
@@ -33,7 +34,7 @@ const CardSwiper = () => {
     }, [])
 
     const getProducts = async () => {
-        const result = await listProducts()
+        const result = await listProducts(0,defaultFilterProducts)
         setInfo(result.data.products)
         setLoader(false)
     }

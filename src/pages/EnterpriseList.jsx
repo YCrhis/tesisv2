@@ -65,7 +65,7 @@ const EnterpriseList = () => {
     useEffect(() => {
         loadUsers()
     }, [])
-
+    
     return (
         <>
             <CompanyOptions />

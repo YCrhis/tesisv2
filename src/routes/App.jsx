@@ -46,6 +46,7 @@ import UserList from '../pages/UserList'
 import EnterpriseDisable from '../pages/EnterpriseDisable'
 import Myproduct from '../pages/Myproducts'
 import ProducInterested from '../pages/ProductInterested'
+import EnterpriseListV2 from '../pages/EnterpriseListV2'
 
 
 const App = () => {
@@ -96,6 +97,9 @@ const App = () => {
                         <PrivatesRoutesAdmin exact path="/administrador/empresas/espera" component={EnterpriseList} />
                         <PrivatesRoutesAdmin exact path="/administrador/empresas/aceptados" component={EnterprisePassed} />
                         <PrivatesRoutesAdmin exact path="/administrador/empresas/desabilitadas" component={EnterpriseDisable} />
+
+                        <PrivatesRoutesAdmin exact path="/administrador/empresas/esperaV2" component={EnterpriseListV2} />
+
                         <Route component={Error} />
                     </Switch>
                 </AnimatePresence>

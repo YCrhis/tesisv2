@@ -1,11 +1,10 @@
 .container__bot {
-  width: 30%;
+  width: auto;
   position: fixed;
-  bottom: 3%;
-  right: 3%;
+  bottom: 0%;
+  right: 15px;
   border-radius: 20px;
   z-index: 1000;
-
   button {
     background: #5d60ff;
     padding: 10px 20px;

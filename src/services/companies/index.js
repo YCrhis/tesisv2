@@ -36,7 +36,7 @@ export const showCompany = async (id) => {
 
 export const listCompaniesAll = async (state) => {
     try {
-        const response = await fetch(`${URL}/search?limit=9&page=0`, METHODS.POST(state));
+        const response = await fetch(`${URL}/search?limit=1000&page=0`, METHODS.POST(state));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -46,7 +46,7 @@ export const listCompaniesAll = async (state) => {
 
 export const listCompaniesPagination = async (state, page) => {
     try {
-        const response = await fetch(`${URL}/search?limit=9&page=${page}`, METHODS.POST(state));
+        const response = await fetch(`${URL}/search?limit=10000&page=${page}`, METHODS.POST(state));
         const data = await response.json();
         return data;
     } catch (error) {
@@ -92,5 +92,28 @@ export const getInterest = async (id) => {
     }
     catch (error) {
         return error;
+    }
+}
+
+
+
+export const getEnterprisesFiltered = async (filter, page = 0,limit = 9) => {
+    try {
+        const response = await fetch(`${URL}/search?limit=${limit}&page=${page}`, METHODS.POST(filter));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+
+export const updateCompanyState = async (id, object, token) => {
+    try {
+        const response = await fetch(`${URL}/update-state/${id}`, METHODS.PUT_TOKEN_JSON(object, token));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
     }
 }

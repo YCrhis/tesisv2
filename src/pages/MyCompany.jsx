@@ -124,6 +124,7 @@ const MyCompany = (props) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const user = useSelector(selectCompany);
+    console.log(user);
     const newUser = useSelector(selectUser);
 
     const id = user.id;
@@ -243,10 +244,10 @@ const MyCompany = (props) => {
                         <div className="right__info">
                             <h4>Redes Sociales</h4>
                             <ul>
-                                <li><i className="fab fa-facebook-f"></i>Facebook: <span> {user?.facebook}</span></li>
-                                <li><i className="fab fa-instagram"></i>Instagram: <span> {user?.instagram} </span></li>
-                                <li><i className="fab fa-youtube"></i>Youtube: <span>{user?.youtube}</span></li>
-                                <li><i className="fab fa-linkedin"></i>Linkedin: <span>{user?.linkedin}</span></li>
+                                <li><i className="fab fa-facebook-f"></i>Facebook: <span> {user?.facebook != 'undefined' ? user?.facebook : ''}</span></li>
+                                <li><i className="fab fa-instagram"></i>Instagram: <span> {user?.instagram != 'undefined' ? user?.instagram : ''} </span></li>
+                                <li><i className="fab fa-youtube"></i>Youtube: <span>{user?.youtube != 'undefined' ? user?.youtube : ''}</span></li>
+                                <li><i className="fab fa-linkedin"></i>Linkedin: <span>{user?.linkedin != 'undefined' ? user?.linkedin : ''}</span></li>
                             </ul>
                         </div>
                         <div className="right__info">

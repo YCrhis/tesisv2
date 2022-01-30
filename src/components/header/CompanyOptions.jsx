@@ -128,6 +128,15 @@ export default function CompanyOptions() {
                 </ListItem>
             </Link>
 
+            <Link to="/administrador/empresas/esperaV2" className={classes.link}>
+                <ListItem button>
+                    <ListItemIcon>
+                        <BusinessIcon className={classes.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary="Listado de empresas" />
+                </ListItem>
+            </Link>
+
             <button className={classes.button} onClick={handleLogout}>Cerrar Sesión</button>
 
         </List>
