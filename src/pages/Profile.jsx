@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '600',
     },
     information: {
-        margin: '3rem auto',
+        margin: '9rem auto 3rem !important',
         '& h3': {
             fontWeight: '600',
             marginBottom: '1rem'
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     information__profile: {
         color: '#606060 !important',
         zIndex: 100,
-        position: 'relative'
+        position: 'relative',
     },
     button: {
         padding: '.5rem 1.5rem',

@@ -89,7 +89,7 @@ const MUITable = ({ columns, data, option }) => {
 
     const handleEnabled = async (rowData) => {
 
-        const answer = window.confirm('¿Desea desabilitar Empresa?');
+        const answer = window.confirm('¿Desea habilitar Empresa?');
         if (answer === true) {
             const response = await acceptCompany(rowData.id, JSON.stringify({ state: 1 }), user.token);
             if (response.ok === true) {
@@ -116,23 +116,7 @@ const MUITable = ({ columns, data, option }) => {
                             },
                             actionsColumnIndex: -1
                         }}
-                        actions={[
-                            {
-                                icon: DeleteOutline,
-                                tooltip: 'Desabilitar empresa',
-                                onClick: (_, rowData) => {
-                                    handleDisable(rowData);
-                                }
-                            }
-                        ]}
                     />
-                    {accept &&
-                        <ModalMessage
-                            img="https://i.gifer.com/DLAN.gif"
-                            title="Acción realizada con éxito"
-                            message="La empresa se volvio técnicamente 'fantasma' (desabilitada)"
-                        />
-                    }
                 </>
             )
         }
@@ -170,7 +154,10 @@ const MUITable = ({ columns, data, option }) => {
                         <ModalMessage
                             img="https://i.gifer.com/DLAN.gif"
                             title="Acción realizada con éxito"
-                            message="La empresa está habilitada"
+
+                            message="Buenas noticias"
+                            link="/administrador/empresas/desabilitadas"
+                            button="Ver empresas"
                         />
                     }
                 </>
@@ -206,6 +193,8 @@ const MUITable = ({ columns, data, option }) => {
                             img="https://i.gifer.com/DLAN.gif"
                             title="Acción realizada con éxito"
                             message="La empresa se volvio técnicamente 'fantasma' (desabilitada)"
+                            link="/administrador/empresas/desabilitadas"
+                            button="Ver empresas desabilitadas"
                         />
                     }
                 </>
@@ -241,6 +230,8 @@ const MUITable = ({ columns, data, option }) => {
                             img="https://c.tenor.com/RnzjhOMS0NMAAAAC/friday-happy.gif"
                             title="Acción realizada con éxito"
                             message="En estos momentos la empresa ya esta habilitada"
+                            link="/administrador/empresas/aceptados"
+                            button="Ver empresas aceptadas"
                         />
                     }
                 </>

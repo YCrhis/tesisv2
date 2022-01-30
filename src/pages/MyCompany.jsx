@@ -248,6 +248,7 @@ const MyCompany = (props) => {
                                 <li><i className="fab fa-instagram"></i>Instagram: <span> {user?.instagram != 'undefined' ? user?.instagram : ''} </span></li>
                                 <li><i className="fab fa-youtube"></i>Youtube: <span>{user?.youtube != 'undefined' ? user?.youtube : ''}</span></li>
                                 <li><i className="fab fa-linkedin"></i>Linkedin: <span>{user?.linkedin != 'undefined' ? user?.linkedin : ''}</span></li>
+
                             </ul>
                         </div>
                         <div className="right__info">
@@ -301,7 +302,7 @@ const MyCompany = (props) => {
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField
-                                            label="Numero de trabajadores"
+                                            label="Correo de la corporacion"
                                             variant="outlined"
                                             fullWidth
                                             {...register('email', {
@@ -348,7 +349,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.linkedin}
                                         />
-                                        {errors.number && <p><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.linkedin && <p><i className="fas fa-exclamation-triangle"></i> {errors.linkedin.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -363,7 +364,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.facebook}
                                         />
-                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.facebook && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.facebook.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -378,7 +379,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.twitter}
                                         />
-                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.twitter && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.twitter.message}</p>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
@@ -397,6 +398,21 @@ const MyCompany = (props) => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
+                                            label="Link de Youtube"
+                                            variant="outlined"
+                                            fullWidth
+                                            {...register('youtube', {
+                                                required: {
+                                                    value: false,
+                                                    message: "este campo no es obligatorio, pero te recomendamos ponerlo"
+                                                },
+                                            })}
+                                            defaultValue={user?.youtube}
+                                        />
+                                        {errors.youtube && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.youtube.message}</p>}
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
                                             label="Link de tu pagina web"
                                             variant="outlined"
                                             fullWidth
@@ -408,7 +424,7 @@ const MyCompany = (props) => {
                                             })}
                                             defaultValue={user?.webPage}
                                         />
-                                        {errors.number && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.number.message}</p>}
+                                        {errors.webPage && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> {errors.webPage.message}</p>}
                                     </Grid>
                                     <Grid item xs={12} lg={6}>
                                         <TextField

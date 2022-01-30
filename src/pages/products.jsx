@@ -26,10 +26,8 @@ const Product = () => {
 
 
     const getProducts = async () => {
-        const response = await listProducts(page, { 
-            name: searchName, 
-            energyConsume: 100, 
-            capacity: 240000 
+        const response = await listProducts(page, {
+            name: searchName,
         });
         setInfo(response.data.products)
         setPageNumber(response.data.pages)
