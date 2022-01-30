@@ -46,7 +46,7 @@ const HomeAdmin = () => {
                     <li><i className="fas fa-check"></i> Ver todos los usuarios registrados en la base de datos</li>
                     <li><i className="fas fa-check"></i> Ver todas las empresas registrados en la base de datos</li>
                     <li><i className="fas fa-check"></i> Puedes aceptar o denegar el permiso para las empresas</li>
-                    <li><i className="fas fa-check"></i> En algunos casos vas a poder eliminar a algunos usuarios y/o empresas</li>
+                    {/* <li><i className="fas fa-check"></i> En algunos casos vas a poder eliminar a algunos usuarios y/o empresas</li> */}
                 </ul>
                 <img src={WorkingTeam} alt="" className={classes.image} />
             </Container>

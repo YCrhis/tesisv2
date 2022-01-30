@@ -23,6 +23,9 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import Visibility from '@material-ui/icons/Visibility';
+import { UserInfo } from '../modal/UserInfo';
+
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -41,7 +44,8 @@ const tableIcons = {
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
     SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+    Visibility: forwardRef((props, ref) => <Visibility {...props} ref={ref} />),
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -60,6 +64,10 @@ const MUITable = ({ columns, data, option }) => {
     const user = useSelector(selectUser)
 
     const [accept, setAccept] = useState(null)
+
+    const [toggleModal, setToggleModal] = useState(false);
+    const [userIdInfo, setUserIdInfo] = useState(0);
+
 
     const handleAccept = async (rowData) => {
 
@@ -99,7 +107,10 @@ const MUITable = ({ columns, data, option }) => {
 
     }
 
-
+    const handleInfoUser = async (id) => {
+        setUserIdInfo(id);
+        setToggleModal(open => !open);
+    }
     const renderTable = () => {
         if (option === 'user') {
             return (
@@ -116,6 +127,20 @@ const MUITable = ({ columns, data, option }) => {
                             },
                             actionsColumnIndex: -1
                         }}
+                        actions={[
+                            {
+                                icon: Visibility,
+                                tooltip: 'Mostrar',
+                                onClick: (_, rowData) => {
+                                    handleInfoUser(rowData.id);
+                                }
+                            }
+                        ]}
+                    />
+                    <UserInfo 
+                        toggleModal={toggleModal}
+                        setToggleModal={setToggleModal}
+                        userIdInfo={userIdInfo}
                     />
                 </>
             )

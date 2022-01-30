@@ -12,3 +12,13 @@ export const allUser = async () => {
         return error.message;
     }
 }
+
+export const filterUser = async (filter = {}) => {
+    try {
+        const response = await fetch(`${URL}/user/search`, METHODS.POST(filter));
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        return error.message;
+    }
+}
