@@ -8,9 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import BusinessIcon from '@material-ui/icons/Business';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
+// import DoneAllIcon from '@material-ui/icons/DoneAll';
 import HomeIcon from '@material-ui/icons/Home';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+// import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { Link, useHistory } from 'react-router-dom'
 
@@ -101,16 +101,16 @@ export default function CompanyOptions() {
                 </ListItem>
             </Link>
 
-            <Link to="/administrador/empresas/espera" className={classes.link}>
+            {/* <Link to="/administrador/empresas/espera" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
                         <BusinessIcon className={classes.icon} />
                     </ListItemIcon>
                     <ListItemText primary="Peticiones de Empresas" />
                 </ListItem>
-            </Link>
+            </Link> */}
 
-            <Link to="/administrador/empresas/aceptados" className={classes.link}>
+            {/* <Link to="/administrador/empresas/aceptados" className={classes.link}>
                 <ListItem button>
                     <ListItemIcon>
                         <DoneAllIcon className={classes.icon} />
@@ -126,7 +126,7 @@ export default function CompanyOptions() {
                     </ListItemIcon>
                     <ListItemText primary="Empresas Desabilitadas" />
                 </ListItem>
-            </Link>
+            </Link> */}
 
             <Link to="/administrador/empresas/esperaV2" className={classes.link}>
                 <ListItem button>
