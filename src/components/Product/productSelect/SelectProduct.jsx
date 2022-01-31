@@ -1,19 +1,14 @@
-import React, { useState } from 'react'
-
-import ModalMessage from '../../modal';
+import React from 'react'
 
 import { useSelector } from 'react-redux';
 import { selectUser, selectCompany } from '../../../features/userSlice';
-import { interestedProduct, deleteInterestedProduct, getInterestedProduct } from '../../../services/products'
+import { interestedProduct, deleteInterestedProduct } from '../../../services/products'
 /* styles */
 import './selectproduct.scss';
-import { useEffect } from 'react';
 
-const SelectProduct = ({ data }) => {
+const SelectProduct = ({ data, isInterested, setIsInterested, setOrder, order }) => {
 
-    const [interest, setInterest] = useState(true);
-    const [idInterest, setIdInterest] = useState();
-    const [deleteInterest, setDeleteInterest] = useState(false);
+    // console.log(data, 'mi data no carga');
 
     const user = useSelector(selectUser);
     const company = useSelector(selectCompany);
@@ -42,27 +37,20 @@ const SelectProduct = ({ data }) => {
         document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
     }
     const handleInteresting = async () => {
-        if (interest === true) {
-            await interestedProduct({ productId: data.id, userId: user.id });
-            setDeleteInterest(false)
+        // console.log(isInterested);
+        if (isInterested === true) {
+            await deleteInterestedProduct(order.id);
+            setOrder(null);
+            setIsInterested(false);
         }
-        if (interest === false) {
-            await deleteInterestedProduct(idInterest);
-            setDeleteInterest(true)
+        if (isInterested === false) {
+            // console.log({ productId: data.id, userId: user.id },' hay qye ver');
+            const res = await interestedProduct({ productId: data.id, userId: user.id });
+            setOrder(res.data);
+            setIsInterested(true);
         }
 
-        setInterest(!interest)
     }
-
-    const getInterest = async () => {
-        const response = await getInterestedProduct({ productId: data?.id, userId: user?.id });
-        setIdInterest(response.data?.id)
-    }
-
-    useEffect(() => {
-        getInterest();
-        /* eslint-disable */
-    }, [])
 
     return (
 
@@ -109,7 +97,7 @@ const SelectProduct = ({ data }) => {
                                 </div>
                                 <p>{data.description}</p>
                                 <ul>
-                                    <li>Capacidad: <span> {data.capacity}</span></li>
+                                    <li>Capacidad: <span> {data.capacity}</span> BTU</li>
                                     <li>Cantidad de unidades: <span> {data.stock} </span></li>
                                     <li>Modelo: <span>{data.model}</span></li>
                                     <li>Marca: <span>{data.brand}</span></li>
@@ -130,10 +118,10 @@ const SelectProduct = ({ data }) => {
                                 }
                                 {company ?
                                     <button className='add__favourites' onClick={handleInteresting}>
-                                        {interest === true ?
-                                            <p>Estoy interesado</p>
-                                            :
+                                        {isInterested === true ?
                                             <p>Ya no estoy interesado</p>
+                                            :
+                                            <p>Estoy interesado</p>
                                         }
                                         <i className="far fa-hand-pointer"></i>
                                     </button>
@@ -145,7 +133,7 @@ const SelectProduct = ({ data }) => {
                     </div>
                 </div>
             }
-            {interest === false &&
+            {/* {interest === false &&
                 < ModalMessage
                     title="Gracias por su apoyo"
                     message="Ahora el dueño sabe que estas interesado en su producto"
@@ -159,7 +147,7 @@ const SelectProduct = ({ data }) => {
                     message="El producto ya no es de tu interes"
                     img="https://static.thenounproject.com/png/370710-200.png"
                 />
-            }
+            } */}
 
         </div>
 

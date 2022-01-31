@@ -149,10 +149,14 @@ const Profile = () => {
         const newData = new FormData();
         newData.append('name', data.name)
         newData.append('email', data.email)
-        newData.append('password', data.password)
+        
+        if(data.password.trim() !== ''){
+            newData.append('password', data.password)
+        }
+        
         newData.append('phoneNumber', data.phoneNumber)
         newData.append('image', file)
-
+        
         const response = await updateUser(newUser.id, newData, newUser.token)
 
         if (response.ok === true) {
@@ -303,7 +307,7 @@ const Profile = () => {
                                             fullWidth
                                             {...register('password', {
                                                 required: {
-                                                    value: true,
+                                                    value: false,
                                                     message: "Ingrese Contraseña"
                                                 }
                                             })}
