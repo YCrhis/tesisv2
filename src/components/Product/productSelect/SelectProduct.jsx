@@ -109,7 +109,7 @@ const SelectProduct = ({ data }) => {
                                 </div>
                                 <p>{data.description}</p>
                                 <ul>
-                                    <li>Capacidad: <span> {data.capacity}</span></li>
+                                    <li>Capacidad: <span> {data.capacity}</span> BTU</li>
                                     <li>Cantidad de unidades: <span> {data.stock} </span></li>
                                     <li>Modelo: <span>{data.model}</span></li>
                                     <li>Marca: <span>{data.brand}</span></li>

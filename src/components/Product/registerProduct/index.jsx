@@ -160,7 +160,7 @@ const RegisterProduct = () => {
                         <Grid item sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Capacidad"
+                                label="Capacidad (BTU)"
                                 variant="outlined"
                                 className={classes.input}
                                 type="number"
@@ -211,7 +211,7 @@ const RegisterProduct = () => {
                         <Grid item sm={6} xs={12}>
                             <TextField
                                 fullWidth
-                                label="Consumo de energia (en %)"
+                                label="Consumo de energia (%)"
                                 variant="outlined"
                                 className={classes.input}
                                 type="number"

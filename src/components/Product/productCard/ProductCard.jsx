@@ -34,7 +34,7 @@ const ProductCard = ({ name, img, id, price, edit }) => {
                 </div>
                 <div className="card-stats">
                     <div className="stat">
-                        <div className="type"><Link to={`/product/information/${id}`}>Mas Informacion</Link></div>
+                        <div className="type"><a href={`/product/information/${id}`}>Mas Informacion</a></div>
                     </div>
                 </div>
             </div>
