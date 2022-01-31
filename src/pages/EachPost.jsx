@@ -8,6 +8,7 @@ import Comments from '../components/Post/card/comments'
 import { selectUser } from "../features/userSlice";
 import Loader from "../components/loader/Loader";
 
+import NoResults from '../components/Errors/NoResults'
 
 import './styles/eachpost.scss'
 
@@ -101,18 +102,18 @@ const EachPost = (props) => {
                 <div className="right__comments">
                     <h4>Comentarios {post?.comments}</h4>
                     {
-                        comments &&
-                        comments?.map((i) => (
-                            <div key={i.id} className="each__comment">
-                                <Comments
-                                    key={i.id}
-                                    comment={i.comment}
-                                    createdAt={i.createdAt}
-                                    name={i.name}
-                                    image={i.image}
-                                />
-                            </div>
-                        ))
+                        comments.length === 0 ? <NoResults /> :
+                            comments?.map((i) => (
+                                <div key={i.id} className="each__comment">
+                                    <Comments
+                                        key={i.id}
+                                        comment={i.comment}
+                                        createdAt={i.createdAt}
+                                        name={i.name}
+                                        image={i.image}
+                                    />
+                                </div>
+                            ))
                     }
                 </div>
             </div>

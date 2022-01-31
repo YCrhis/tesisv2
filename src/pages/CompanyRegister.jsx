@@ -5,7 +5,7 @@ import User from '../images/user.svg'
 import './styles/registerCompany.scss'
 import { TextField, Grid } from '@material-ui/core';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import ApiLoader from '../components/loader/ApiLoader'
+import Loader from '../components/loader/Loader'
 
 import { useForm } from 'react-hook-form'
 import MyStepper from '../components/Steper';
@@ -13,6 +13,8 @@ import { newCompany } from '../services/companies';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser, loginCompany } from '../features/userSlice';
+
+import { Link } from 'react-router-dom'
 
 const CompanyRegister = () => {
 
@@ -55,7 +57,7 @@ const CompanyRegister = () => {
     }
 
     if (load === true) {
-        return (<ApiLoader />)
+        return (<Loader />)
     }
 
 
@@ -79,7 +81,7 @@ const CompanyRegister = () => {
                             <p>Ahora solo espera, vamos a comprobar si tu empresa existe y/o cumple con los requisitos. <br />
                                 Esto puedo tomar tiempo, solo no te estreses que pronto tendras un mensaje
                             </p>
-                            <button>Ir al inicio</button>
+                            <button component={Link} to="/">Ir al inicio</button>
                         </div>
                         :
 

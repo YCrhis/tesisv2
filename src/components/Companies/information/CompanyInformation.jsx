@@ -14,6 +14,8 @@ import { Grid } from '@material-ui/core'
 
 function CompanyInformation({ data }) {
 
+    console.log(data)
+
     return (
         <div maxwidth="lg" className="companyInformation__container">
             <div className="companyInformation__image">
@@ -32,44 +34,44 @@ function CompanyInformation({ data }) {
                         alignItems="center"
                     >
 
-                        {data?.youtube &&
+                        {data?.youtube === "undefined" ? null :
                             <Grid item lg={2}>
-                                <a href={data?.youtube} target="_blank" rel="noreferrer">
+                                <a href={data?.youtube} target="_blank" rel="noreferrer" title="Página de youtube">
                                     <YouTubeIcon />
                                 </a>
                             </Grid>
                         }
                         {data?.twitter &&
                             <Grid item lg={2}>
-                                <a href={data?.twitter} target="_blank" rel="noreferrer">
+                                <a href={data?.twitter} target="_blank" rel="noreferrer" title="Página de twiter">
                                     <TwitterIcon />
                                 </a>
                             </Grid>
                         }
                         {data?.facebook &&
                             <Grid item lg={2}>
-                                <a href={data?.facebook} target="_blank" rel="noreferrer">
+                                <a href={data?.facebook} target="_blank" rel="noreferrer" title="Página de facebook">
                                     <FacebookIcon />
                                 </a>
                             </Grid>
                         }
                         {data?.instagram &&
                             <Grid item lg={2}>
-                                <a href={data?.instagram} target="_blank" rel="noreferrer">
+                                <a href={data?.instagram} target="_blank" rel="noreferrer" title="Página de instagram">
                                     <InstagramIcon />
                                 </a>
                             </Grid>
                         }
                         {data?.linkedin &&
                             <Grid item lg={2}>
-                                <a href={data?.linkedin} target="_blank" rel="noreferrer">
+                                <a href={data?.linkedin} target="_blank" rel="noreferrer" title="Página de linkedin">
                                     <LinkedInIcon />
                                 </a>
                             </Grid>
                         }
                         {data?.webPage &&
                             <Grid item lg={2}>
-                                <a href={data?.webPage} target="_blank" rel="noreferrer">
+                                <a href={data?.webPage} target="_blank" rel="noreferrer" title="Página de la empresa">
                                     <CameraIcon />
                                 </a>
                             </Grid>

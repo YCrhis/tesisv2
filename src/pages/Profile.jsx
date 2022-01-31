@@ -50,7 +50,10 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '600',
     },
     information: {
-        margin: '9rem auto 3rem !important',
+        width: '80%',
+        bottom: '7%',
+        position: 'absolute',
+        margin: 'auto',
         '& h3': {
             fontWeight: '600',
             marginBottom: '1rem'
