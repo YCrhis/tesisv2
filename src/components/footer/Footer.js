@@ -33,8 +33,12 @@ const Footer = () => {
                 </Grid>
 
                 <div className="footer__social__media">
-                    <i className="fab fa-facebook-f"></i>
-                    <i className="fab fa-whatsapp"></i>
+                    <a href='https://www.facebook.com/TermoconfortPeru' target="_blank"  rel="noreferrer">
+                        <i className="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=51940331889" target="_blank" rel="noreferrer">
+                        <i className="fab fa-whatsapp"></i>
+                    </a>
                     <i className="fab fa-twitter"></i>
                     <i className="fab fa-instagram"></i>
                 </div>

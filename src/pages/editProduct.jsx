@@ -20,6 +20,9 @@ import { useHistory } from 'react-router-dom';
 import { selectUser, selectCompany } from '../features/userSlice'
 import { filterProducts, editProduct } from '../services/products';
 import { useState } from 'react';
+import '../components/Product/productSelect/selectproduct.scss';
+import './styles/editProduct.css';
+;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +76,6 @@ function EditProduct(props) {
     const idProduct = props.match.params.id;
 
     const [info, setInfo] = useState()
-
     const id = parseInt(idProduct)
 
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -82,18 +84,43 @@ function EditProduct(props) {
 
     const user = useSelector(selectUser)
     const company = useSelector(selectCompany)
-
+    const [booleans, setBooleans] = useState({
+        install: false,
+        warranty: false
+    });
     const { control } = useForm({
         defaultValues: {
             checkbox: false,
         }
     });
 
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
 
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage() {
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+    // const [product, setProduct] = useState();
     const loadProduct = async () => {
         const response = await filterProducts({ id: id })
-        setInfo(response.data.products[0])
-        console.log(response.data.products[0])
+        // setProduct(response.data.products[0]);
+        const product = response.data.products[0];
+        setBooleans({
+            install: product.install,
+            warranty: product.warranty
+        });
+        setInfo(product)
     }
 
     useEffect(() => {
@@ -116,10 +143,11 @@ function EditProduct(props) {
         formData.append('stock', data.stock)
         formData.append('price', data.price)
         formData.append('install', data.install)
-        formData.append('images', data.image[0])
-        formData.append('images', data.image[1])
-        formData.append('images', data.image[2])
-
+        if (data.image.length > 0) {
+            formData.append('images', data.image[0])
+            formData.append('images', data.image[1])
+            formData.append('images', data.image[2])
+        }
         const response = await editProduct(id, formData, user.token)
 
         if (response.ok === false) {
@@ -134,7 +162,7 @@ function EditProduct(props) {
         <>
             <Header />
             <div className={classes.container}>
-                <div className={classes.imageContainer}>
+                {/* <div className={classes.imageContainer}>
                     {info?.images.length === 0 ? null
                         :
                         <>
@@ -143,12 +171,37 @@ function EditProduct(props) {
                             <img src={info?.images[2].url} alt={info?.images[2]?.url} />
                         </>
                     }
+                </div> */}
+                <div className="product-img wow animate__animated animate__fadeInLeft">
+                    <div className="img-display">
+                        <div className="img-showcase">
+                            {
+                                /* eslint-disable */
+                                info?.images.map(i => (
+                                    <img src={i.url} key={i.url} />
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <div className="img-select">
+                        {
+                            /* eslint-disable  */
+                            info?.images.map((i, index) => (
+                                <div className="img-item" key={i.url}>
+                                    <a href="#" data-id={index + 1}>
+                                        <img src={i.url} key={i.url} />
+                                    </a>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className={classes.form}>
                     <div className={classes.containerForm}>
                         {info &&
                             <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
                                 <h2 className={classes.subtitle}>Ingrese información del producto</h2>
+                                <br />
                                 <Grid container spacing={3}>
                                     <Grid item sm={6} xs={12}>
                                         <TextField
@@ -156,10 +209,11 @@ function EditProduct(props) {
                                             label="Nombre del producto"
                                             variant="outlined"
                                             defaultValue={info?.name}
+                                            // onChange={handleChangeInput}
                                             className={classes.input}
                                             {...register("name", { required: true })}
                                         />
-                                        {errors.name?.type === 'required' && <p className="error__message"><i class="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
+                                        {errors.name?.type === 'required' && <p className="error__message"><i className="fas fa-exclamation-triangle"></i> El nombre es requerido</p>}
                                     </Grid>
                                     <Grid item sm={6} xs={12}>
                                         <TextField
@@ -195,7 +249,7 @@ function EditProduct(props) {
                                     <Grid item sm={6} xs={12}>
                                         <TextField
                                             fullWidth
-                                            label="Capacidad"
+                                            label="Capacidad (BTU)"
                                             variant="outlined"
                                             className={classes.input}
                                             type="number"
@@ -249,7 +303,7 @@ function EditProduct(props) {
                                     <Grid item sm={6} xs={12}>
                                         <TextField
                                             fullWidth
-                                            label="Consumo de energia (en %)"
+                                            label="Consumo de energia (%)"
                                             variant="outlined"
                                             className={classes.input}
                                             type="number"
@@ -311,7 +365,16 @@ function EditProduct(props) {
                                                 name="warranty"
                                                 control={control}
                                                 rules={{ required: true }}
-                                                render={({ field }) => <Checkbox {...field} />}
+                                                render={({ field }) => (
+                                                    <Checkbox
+                                                        checked={booleans?.warranty}
+                                                        {...field}
+                                                        onClick={(e) => {
+                                                            setBooleans(myBool => ({
+                                                                ...myBool,
+                                                                warranty: !myBool.warranty
+                                                            }))
+                                                        }} />)}
                                             />
                                         }
                                         label="¿Tiene Garantía?"
@@ -326,11 +389,24 @@ function EditProduct(props) {
                                                 name="install"
                                                 control={control}
                                                 rules={{ required: true }}
-                                                render={({ field }) => <Checkbox {...field} />}
+                                                render={({ field }) => (
+                                                    <Checkbox
+                                                        checked={booleans?.install}
+                                                        {...field}
+                                                        onClick={(e) => {
+                                                            setBooleans(myBool => ({
+                                                                ...myBool,
+                                                                install: !myBool.install
+                                                            }))
+                                                        }}
+
+                                                    />
+                                                )}
                                             />
                                         }
                                         label="¿Tiene instalación?"
                                         {...register("install")}
+
                                     />
                                     <Grid item xs={12}>
                                         <h5>Seleccione 3 imagenes</h5>
@@ -348,7 +424,7 @@ function EditProduct(props) {
                                     </Grid>
 
                                 </Grid>
-                                <button className="sendButton">Publicar Producto</button>
+                                <button className="sendButton">Actualizar Producto</button>
                             </form>
                         }
 

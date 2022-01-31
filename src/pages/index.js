@@ -78,7 +78,7 @@ const Index = () => {
                     </div>
                     <div className="community__rightSection">
                         <h2>Únete a Nuestra Comunidad</h2>
-                        <Link to="/login" className="link__login">Conocer Comunidad</Link>
+                        <Link to="/posts" className="link__login button_used">Conocer Comunidad</Link>
                     </div>
                 </div>
 

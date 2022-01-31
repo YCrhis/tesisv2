@@ -124,7 +124,6 @@ const MyCompany = (props) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const user = useSelector(selectCompany);
-    console.log(user);
     const newUser = useSelector(selectUser);
 
     const id = user.id;
