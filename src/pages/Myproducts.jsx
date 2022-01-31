@@ -79,6 +79,7 @@ const Myproduct = () => {
                                     img={infos.images}
                                     id={infos.id}
                                     price={infos.price}
+                                    edit={true}
                                 />
                             ))
                         }

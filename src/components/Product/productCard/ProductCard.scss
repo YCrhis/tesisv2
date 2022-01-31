@@ -18,6 +18,9 @@
     transform: scale(1.05);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.171);
   }
+  i {
+    color: #fff !important;
+  }
   .card__productNew {
     background: linear-gradient(to right, #5b86e5, #7636dc);
     font-size: 13px;

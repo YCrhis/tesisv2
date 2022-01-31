@@ -53,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         paddingTop: '2rem',
-        paddingBottom: '4rem'
+        paddingBottom: '4rem',
+        position: 'relative !important'
     }
 }));
 
@@ -72,7 +73,7 @@ export default function CompanyOptions() {
         <List
             component="nav"
             subheader={
-                <ListSubheader component="div" id="nested-list-subheader" className={classes.header}>
+                <ListSubheader className={classes.header}>
                     <h1 className={classes.title}>Termoconfort</h1>
                     <h3>Administrador</h3>
                 </ListSubheader>

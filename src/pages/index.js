@@ -5,23 +5,18 @@ import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
 import SwiperHome from '../components/sliders/SwiperHome'
 import CardOpinion from '../components/sliders/Opinion'
-import ModalMessage from '../components/modal';
 /* images */
 
 
 import workingteam from '../images/workingteam.png'
 import community from '../images/community.svg'
 
-/* redux */
-import { useSelector } from 'react-redux';
-import { selectUser } from '../features/userSlice';
 
 /* links */
 import { Link } from 'react-router-dom'
 
 const Index = () => {
 
-    const user = useSelector(selectUser)
 
     return (
         <div>
@@ -34,7 +29,7 @@ const Index = () => {
                         <p>Aqui puedes encontrar productos de ventilación para tu casa y si tienes alguna pregunta con respecto al tema ingresa a nuestra comunidad.</p>
                         <button>
                             <Link to="/product" className="button_used">
-                            Ver Productos
+                                Ver Productos
                             </Link>
                         </button>
                     </div>
@@ -56,9 +51,9 @@ const Index = () => {
                             <h3>PRODUCTOS</h3>
                             <p>Puedes publicar todos tus productos aqui, este servicio es gratis, pero para ello debes unirte a nuestra comunidad.</p>
                             <button>
-                            <Link to="/product" className="button_used">
-                                Ver Productos
-                            </Link>
+                                <Link to="/product" className="button_used">
+                                    Ver Productos
+                                </Link>
                             </button>
                         </div>
                         <div className="about__us__services__each2">
@@ -131,22 +126,6 @@ const Index = () => {
                 </div>
             </section>
 
-            {/* message successed */}
-            {user ?
-                <ModalMessage
-                    title='TODO ESTA BIEN !!!'
-                    message='Inició sesión exitósamente'
-                    img="https://www.syl.cl/wp-content/themes/syl/img/wrapper-img.gif"
-                />
-                :
-                <ModalMessage
-                    title="EMPIEZA A DAR TUS PRIMEROS PASOS"
-                    message='Crea tu cuenta para tener una funcional completa en nuestra aplicación'
-                    link="/registro/usuario"
-                    img="https://cdn.dribbble.com/users/1001687/screenshots/2356993/media/7f4496bc0b92905ab70198777dac3df3.gif"
-                    button="Crear Cuenta"
-                />
-            }
             <Footer />
         </div>
     )

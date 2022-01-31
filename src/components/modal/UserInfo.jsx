@@ -63,6 +63,7 @@ export const UserInfo = ({ toggleModal, setToggleModal, userIdInfo }) => {
     }
     useEffect(() => {
         loadUser();
+        /* eslint-disable */
     }, [userIdInfo]);
 
     return (
@@ -125,7 +126,7 @@ export const UserInfo = ({ toggleModal, setToggleModal, userIdInfo }) => {
                                     defaultValue={'Activo'}
                                 />
                             </Box>
-                            
+
                             <Box sx={{ mt: 3 }}>
                                 <Button onClick={handleToggle} >Cerrar</Button>
 

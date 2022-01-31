@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     container: {
         float: 'right',
         width: '75%',
-        padding: '2rem 2rem 2rem 4rem'
+        padding: '2rem 2rem 2rem 4rem',
+        marginBottom: '4rem'
     },
     title: {
         textTransform: 'uppercase',
@@ -33,11 +34,12 @@ const EnterpriseListV2 = () => {
         const res = await getEnterprisesFiltered(filter, page);
         setData(res.data);
     }
-    
+
     useEffect(() => {
         getEnterprises();
+        /* eslint-disable */
     }, []);
-    
+
     return (
         <>
             <CompanyOptions />

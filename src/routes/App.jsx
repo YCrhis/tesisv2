@@ -47,6 +47,7 @@ import EnterpriseDisable from '../pages/EnterpriseDisable'
 import Myproduct from '../pages/Myproducts'
 import ProducInterested from '../pages/ProductInterested'
 import EnterpriseListV2 from '../pages/EnterpriseListV2'
+import EditProduct from '../pages/editProduct'
 
 
 const App = () => {
@@ -90,6 +91,8 @@ const App = () => {
                         <Route exact path="/empresa/acciones" component={CompanyActions}></Route>
 
                         <Route exact path="/posts/:id" component={EachPost}></Route>
+
+                        <Route exact path="/empresa/productos/editar/:id" component={EditProduct} />
 
                         {/* administrador */}
                         <PrivatesRoutesAdmin exact path="/administrador" component={HomeAdmin} />

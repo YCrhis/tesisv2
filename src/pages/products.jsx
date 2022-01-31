@@ -32,6 +32,7 @@ const Product = () => {
         setInfo(response.data.products)
         setPageNumber(response.data.pages)
         setLoad(false)
+        console.log(response.data.products)
     }
 
 

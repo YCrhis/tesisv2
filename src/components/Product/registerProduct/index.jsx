@@ -15,13 +15,22 @@ import './stylesRegister.scss';
 import Loader from '../../loader/Loader';
 
 import { useHistory } from 'react-router-dom';
-import Alert from '@material-ui/lab/Alert';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux'
 import { selectCompany, selectUser } from '../../../features/userSlice'
 import { creatingProduct } from '../../../services/products';
 
 const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%',
+        margin: 'auto',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'column'
+        },
+    },
     containerForm: {
         width: '100%',
         margin: '8rem auto 10px !important',
@@ -56,8 +65,6 @@ const RegisterProduct = () => {
     const history = useHistory()
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
-    const [message, setMessage] = useState(null)
     const [load, setLoad] = useState(false)
 
 
@@ -108,13 +115,6 @@ const RegisterProduct = () => {
 
         <div className="everyting">
             <div className={classes.containerForm}>
-                {
-                    message &&
-                    <Alert severity="success" color="info" onClose={() => setMessage(null)} className="success">
-                        Tu producto ha sido ingresado <a href="/product">Ver productos</a>
-                    </Alert>
-
-                }
                 <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
                     <h2 className={classes.subtitle}>Ingrese información del producto</h2>
                     <Grid container spacing={3}>

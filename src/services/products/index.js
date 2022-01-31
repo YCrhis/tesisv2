@@ -81,5 +81,16 @@ export const getInterestedProduct = async (body) => {
     }
 }
 
+export const editProduct = async (id, body, token) => {
+    try {
+        const response = await fetch(`${URL}/update/${id}`, METHODS.PUT_TOKEN(body, token));
+        const data = await response.json();
+        return data;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 
 

@@ -1,5 +1,6 @@
 import { Container, makeStyles } from "@material-ui/core"
 import Header from "../header/Header"
+import WaitingImage from '../../setting/images/waitingImage.png'
 
 const useStyles = makeStyles({
     container: {
@@ -9,6 +10,10 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         height: '100vh'
     },
+    image: {
+        width: '30%',
+        marginBottom: '4rem'
+    }
 });
 
 const Waiting = ({ name }) => {
@@ -17,7 +22,7 @@ const Waiting = ({ name }) => {
         <>
             <Header />
             <Container className={classes.container}>
-                <img src="https://i.pinimg.com/originals/8d/d3/ed/8dd3ed839851364b5653440ee4a6a5a9.gif" alt="" />
+                <img src={WaitingImage} alt="Esperando" className={classes.image} />
                 <h2>Tu empresa "{name}" esta siendo verificada, por favor espera</h2>
                 <p>Cuando tu empresa este aceptada podras ver la información de tu empresa</p>
             </Container>
