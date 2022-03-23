@@ -9,6 +9,8 @@ import { showCompany } from '../services/companies'
 import { filterProducts } from '../services/products'
 import { useState } from 'react'
 
+import NoResults from '../components/Errors/NoResults'
+
 function CompyInfo(props) {
 
     const companyId = props.match.params.id;
@@ -38,16 +40,18 @@ function CompyInfo(props) {
             <div className='container__informationCompanyNew'>
                 <h1>Productos de {data?.name}</h1>
                 <div className="container__products">
-                    {product?.map(i => (
-                        <div key={i.id}>
-                            <ProductCard
-                                name={i.name}
-                                price={i.price}
-                                img={i.images}
-                                id={i.id}
-                            />
-                        </div>
-                    ))}
+                    {product?.length === 0 ? <NoResults /> :
+
+                        product?.map(i => (
+                            <div key={i.id}>
+                                <ProductCard
+                                    name={i.name}
+                                    price={i.price}
+                                    img={i.images}
+                                    id={i.id}
+                                />
+                            </div>
+                        ))}
 
                 </div>
             </div>
