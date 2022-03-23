@@ -116,7 +116,7 @@ const SelectProduct = ({ data, isInterested, setIsInterested, setOrder, order })
                                 {data.webPage &&
                                     <a href={data.enterpriseId.link}><i className="fab fa-google"></i> Visitar Web Oficial</a>
                                 }
-                                {company ?
+                                {user ?
                                     <button className='add__favourites' onClick={handleInteresting}>
                                         {isInterested === true ?
                                             <p>Ya no estoy interesado</p>
